@@ -28,7 +28,7 @@ const Featured = () => {
         <Image
           layout="fill"
           src="/img/arrowl.png"
-          alt=""
+          alt="Left arrow"
           onClick={() => handleArrow('l')}
         />
       </div>
@@ -39,7 +39,7 @@ const Featured = () => {
         {image.map((image, key) => {
           return (
             <div key={key} className={styles.imgContainer}>
-              <Image layout="fill" src={image} alt="" />
+              <Image layout="fill" src={image} alt={`FeaturedImage-${key}`} />
             </div>
           );
         })}
@@ -47,10 +47,8 @@ const Featured = () => {
       <div className={styles.arrowContainer}>
         <Image
           layout="fill"
-          width="25px"
-          height="25px"
           src="/img/arrowr.png"
-          alt=""
+          alt="Right arrow"
           onClick={() => handleArrow('r')}
         />
       </div>
