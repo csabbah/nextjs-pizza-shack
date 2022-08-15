@@ -1,0 +1,81 @@
+.container {
+  height: 100px;
+  padding: 0 50px;
+  background-color: lightcoral;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+}
+
+.item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.item:nth-child(2) {
+  flex: 3;
+}
+
+.item:last-child {
+  justify-content: flex-end;
+}
+
+.callButton {
+  background-color: white;
+  border-radius: 50px;
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+}
+
+.texts {
+  margin-left: 20px;
+  color: white;
+}
+
+.texts:first-child {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.texts:last-child {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.list {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  color: white;
+}
+
+.listItem {
+  margin: 20px;
+  font-weight: 500;
+}
+
+.cart {
+  position: relative;
+}
+
+.counter {
+  font-size: 15px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white;
+  padding: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: lightcoral;
+}
