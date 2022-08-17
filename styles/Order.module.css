@@ -113,7 +113,7 @@
   }
 
   .trTitle {
-    font-size: 15px;
+    font-size: 18px;
   }
 
   .tr td {
@@ -177,5 +177,25 @@
   .address,
   .total {
     font-size: 20px;
+  }
+
+  .id::before {
+    content: 'Order id: ';
+    font-weight: bold;
+  }
+
+  .name::before {
+    content: 'Name: ';
+    font-weight: bold;
+  }
+
+  .address::before {
+    content: 'Address: ';
+    font-weight: bold;
+  }
+
+  .total::before {
+    content: 'Total: ';
+    font-weight: bold;
   }
 }
