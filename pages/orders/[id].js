@@ -2,13 +2,36 @@ import styles from '../../styles/Order.module.css';
 import Image from 'next/image';
 
 const Order = () => {
-  const status = 3;
+  const status = 0;
 
   const statusClass = (index) => {
     if (index - status < 1) return styles.done;
     if (index - status === 1) return styles.inProgress;
     if (index - status > 1) return styles.delivered;
   };
+
+  // // Here's another example that functions as the above statusClass method
+  //   var current = [0, 0, 0, 0];
+  //   if (status == 1) {
+  //     current = [
+  //       styles.done,
+  //       styles.inProgress,
+  //       styles.delivered,
+  //       styles.delivered,
+  //     ];
+  //   }
+  //   if (status == 2) {
+  //     current = [styles.done, styles.done, styles.inProgress, styles.delivered];
+  //   }
+
+  //   if (status == 3) {
+  //     current = [styles.done, styles.done, styles.done, styles.inProgress];
+  //   }
+
+  //   if (status == 4) {
+  //     current = [styles.done, styles.done, styles.done, styles.done];
+  //   }
+
   return (
     <div className={styles.container}>
       <div className={styles.left}>
@@ -41,6 +64,7 @@ const Order = () => {
           </table>
         </div>
         <div className={styles.row}>
+          {/* <div className={current[0]}> */}
           <div className={statusClass(0)}>
             <Image src="/img/paid.png" width={30} height={30} alt="" />
             <span>Payment</span>
@@ -54,6 +78,7 @@ const Order = () => {
               />
             </div>
           </div>
+          {/* <div className={current[1]}> */}
           <div className={statusClass(1)}>
             <Image src="/img/bake.png" width={30} height={30} alt="" />
             <span>Preparing</span>
@@ -67,6 +92,7 @@ const Order = () => {
               />
             </div>
           </div>
+          {/* <div className={current[2]}> */}
           <div className={statusClass(2)}>
             <Image src="/img/bike.png" width={30} height={30} alt="" />
             <span>On the way</span>
@@ -80,6 +106,7 @@ const Order = () => {
               />
             </div>
           </div>
+          {/* <div className={current[3]}> */}
           <div className={statusClass(3)}>
             <Image src="/img/delivered.png" width={30} height={30} alt="" />
             <span>Delivered</span>
