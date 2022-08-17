@@ -4,10 +4,14 @@ import Image from 'next/image';
 const Order = () => {
   const status = 0;
 
+  // This works as intended regardless of how many steps there are
   const statusClass = (index) => {
+    // If index minus status is less than 1, that means it is done (APPLY done CSS)
     if (index - status < 1) return styles.done;
+    // If index minus status is 1, that means it's in progress (APPLY progress CSS)
     if (index - status === 1) return styles.inProgress;
-    if (index - status > 1) return styles.delivered;
+    // If index minus status is greater than 1, this stage is completed (APPLY completed CSS)
+    if (index - status > 1) return styles.completed;
   };
 
   // // Here's another example that functions as the above statusClass method
@@ -16,12 +20,12 @@ const Order = () => {
   //     current = [
   //       styles.done,
   //       styles.inProgress,
-  //       styles.delivered,
-  //       styles.delivered,
+  //       styles.completed,
+  //       styles.completed,
   //     ];
   //   }
   //   if (status == 2) {
-  //     current = [styles.done, styles.done, styles.inProgress, styles.delivered];
+  //     current = [styles.done, styles.done, styles.inProgress, styles.completed];
   //   }
 
   //   if (status == 3) {
@@ -108,8 +112,8 @@ const Order = () => {
           </div>
           {/* <div className={current[3]}> */}
           <div className={statusClass(3)}>
-            <Image src="/img/delivered.png" width={30} height={30} alt="" />
-            <span>Delivered</span>
+            <Image src="/img/completed.png" width={30} height={30} alt="" />
+            <span>completed</span>
             <div className={styles.checkedIcon}>
               <Image
                 className={styles.checkedIcon}

@@ -40,14 +40,14 @@
   }
 }
 
-.delivered {
+.completed {
   display: flex;
   flex-direction: column;
   align-items: center;
   opacity: 0.3;
 }
 
-.delivered .checkedIcon,
+.completed .checkedIcon,
 .inProgress .checkedIcon {
   display: none;
 }
