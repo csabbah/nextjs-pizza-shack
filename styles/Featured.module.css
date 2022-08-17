@@ -2,6 +2,7 @@
   height: calc(100vh - 100px);
   background-color: lightcoral;
   overflow: hidden;
+  position: relative;
 }
 
 .arrowContainer {
@@ -39,4 +40,22 @@
 .imgContainer img,
 .arrowContainer img {
   object-fit: contain;
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    height: 90vh;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    height: 70vh;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    height: 50vh;
+  }
 }

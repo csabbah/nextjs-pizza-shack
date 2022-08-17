@@ -11,7 +11,7 @@
 }
 
 .item {
-  flex: 1;
+  flex: 2;
   display: flex;
   align-items: center;
 }
@@ -28,11 +28,8 @@
   background-color: white;
   border-radius: 50px;
   padding: 10px;
-}
-
-.callButton img {
-  width: 50px;
   height: 50px;
+  width: 50px;
 }
 
 .texts {
@@ -83,4 +80,34 @@
   align-items: center;
   font-weight: bold;
   color: lightcoral;
+}
+
+@media screen and (max-width: 1024px) {
+  .item:nth-child(2) {
+    display: none;
+  }
+
+  .item:nth-child(1) {
+    flex: 3;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .item:nth-child(2) {
+    display: none;
+  }
+
+  .item:nth-child(1) {
+    flex: 3;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .item:nth-child(2) {
+    display: none;
+  }
+
+  .item:nth-child(1) {
+    flex: 3;
+  }
 }

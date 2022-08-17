@@ -18,3 +18,36 @@
   align-items: center;
   justify-content: center;
 }
+
+@media screen and (max-width: 1024px) {
+  .title {
+    text-align: center;
+  }
+
+  .desc {
+    width: 90%;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    text-align: center;
+  }
+
+  .desc {
+    width: 90%;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .title {
+    text-align: center;
+  }
+
+  .desc {
+    width: 90%;
+    text-align: center;
+  }
+}
