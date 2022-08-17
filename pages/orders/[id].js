@@ -10,7 +10,7 @@ const Order = () => {
     if (index - status < 1) return styles.done;
     // If index minus status is 1, that means it's in progress (APPLY progress CSS)
     if (index - status === 1) return styles.inProgress;
-    // If index minus status is greater than 1, this stage is completed (APPLY completed CSS)
+    // If index minus status is greater than 1, this stage is completed (APPLY delivered CSS)
     if (index - status > 1) return styles.completed;
   };
 
@@ -20,12 +20,12 @@ const Order = () => {
   //     current = [
   //       styles.done,
   //       styles.inProgress,
-  //       styles.completed,
-  //       styles.completed,
+  //       styles.delivered,
+  //       styles.delivered,
   //     ];
   //   }
   //   if (status == 2) {
-  //     current = [styles.done, styles.done, styles.inProgress, styles.completed];
+  //     current = [styles.done, styles.done, styles.inProgress, styles.delivered];
   //   }
 
   //   if (status == 3) {
@@ -112,8 +112,8 @@ const Order = () => {
           </div>
           {/* <div className={current[3]}> */}
           <div className={statusClass(3)}>
-            <Image src="/img/completed.png" width={30} height={30} alt="" />
-            <span>completed</span>
+            <Image src="/img/delivered.png" width={30} height={30} alt="" />
+            <span>Delivered</span>
             <div className={styles.checkedIcon}>
               <Image
                 className={styles.checkedIcon}

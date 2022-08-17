@@ -19,6 +19,7 @@
 
 .table {
   width: 100%;
+  text-align: left;
   border-spacing: 20px;
 }
 
@@ -55,4 +56,13 @@
   font-weight: bold;
   cursor: pointer;
   margin-top: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 480px) {
 }
