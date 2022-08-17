@@ -11,15 +11,21 @@
 }
 
 .item {
-  flex: 2;
   display: flex;
   align-items: center;
 }
 
-.item:nth-child(2) {
+.item:nth-child(1) {
   flex: 3;
 }
 
+.item:nth-child(2) {
+  flex: 5;
+}
+
+.item:nth-child(3) {
+  flex: 2;
+}
 .item:last-child {
   justify-content: flex-end;
 }
