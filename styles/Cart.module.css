@@ -4,6 +4,7 @@
 }
 
 .left {
+  margin-right: 15px;
   flex: 2;
 }
 
