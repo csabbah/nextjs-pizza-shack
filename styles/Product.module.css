@@ -8,20 +8,20 @@
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .right {
   flex: 1;
-  padding: 20px;
+  padding-left: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .imgContainer {
-  width: 80%;
-  height: 80%;
+  width: 75%;
+  height: 75%;
   position: relative;
 }
 
