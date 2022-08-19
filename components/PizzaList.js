@@ -13,13 +13,11 @@ const PizzaList = ({ pizzaList }) => {
         at.
       </p>
       <div className={styles.wrapper}>
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
+        {pizzaList.length == 0
+          ? 'No Available Pizzas'
+          : pizzaList.map((pizza) => {
+              return <PizzaCard pizza={pizza} key={pizza._id} />;
+            })}
       </div>
     </div>
   );
