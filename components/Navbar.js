@@ -1,6 +1,8 @@
 import styles from '../styles/Navbar.module.css';
 import Image from 'next/image';
 
+import Link from 'next/link';
+
 const Navbar = () => {
   return (
     <div className={styles.container}>
@@ -22,7 +24,15 @@ const Navbar = () => {
         <ul className={styles.list}>
           <li className={styles.listItem}>Products</li>
           <li className={styles.listItem}>Menu</li>
-          <Image src="/img/logo.png" alt="" width="160px" height="69px" />
+          <Link href="/" passHref>
+            <Image
+              style={{ cursor: 'pointer' }}
+              src="/img/logo.png"
+              alt=""
+              width="160px"
+              height="69px"
+            />
+          </Link>
           <li className={styles.listItem}>Blog</li>
           <li className={styles.listItem}>Contact</li>
         </ul>
