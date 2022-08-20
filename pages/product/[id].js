@@ -2,8 +2,13 @@ import styles from '../../styles/Product.module.css';
 import Image from 'next/image';
 import { useState } from 'react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { addProduct } from '../../redux/cartSlice';
 
 const Product = ({ pizza }) => {
+  // This variable allows us to dispatch our action (update state)
+  const dispatch = useDispatch();
+
   // Remember, pizza.prices is an array of numbers
   const [price, setPrice] = useState(pizza.prices[0]);
   // Initial extras are an empty array
@@ -33,6 +38,10 @@ const Product = ({ pizza }) => {
       // Remove the extra that was unchecked
       setChosenExtras(chosenExtras.filter((extra) => extra._id !== option._id));
     }
+  };
+
+  const handleClick = () => {
+    dispatch(addProduct({ ...pizza, chosenExtras, price, quantity }));
   };
 
   return (
@@ -85,7 +94,9 @@ const Product = ({ pizza }) => {
             defaultValue={1}
             className={styles.quantity}
           />
-          <button className={styles.button}>Add to Cart</button>
+          <button className={styles.button} onClick={() => handleClick()}>
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>
