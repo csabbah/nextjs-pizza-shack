@@ -1,7 +1,11 @@
 import styles from '../styles/Cart.module.css';
 import Image from 'next/image';
+import { useSelector } from 'react-redux';
 
 const Cart = () => {
+  const cart = useSelector((state) => state.cart);
+
+  console.log(cart);
   return (
     <div className={styles.container}>
       <div className={styles.left}>
@@ -17,64 +21,43 @@ const Cart = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className={styles.tr}>
-              <td>
-                <div className={styles.imgContainer}>
-                  <Image
-                    src="/img/pizza.png"
-                    layout="fill"
-                    objectFit="cover"
-                    alt=""
-                  />
-                </div>
-              </td>
-              <td>
-                <span className={styles.name}>CORALZO</span>
-              </td>
-              <td>
-                <span className={styles.extras}>
-                  Double ingredient, spicy sauce
-                </span>
-              </td>
-              <td>
-                <span className={styles.price}>$19.90</span>
-              </td>
-              <td>
-                <span className={styles.quantity}>2</span>
-              </td>
-              <td>
-                <span className={styles.total}>$39.80</span>
-              </td>
-            </tr>
-            <tr className={styles.tr}>
-              <td>
-                <div className={styles.imgContainer}>
-                  <Image
-                    src="/img/pizza.png"
-                    layout="fill"
-                    objectFit="cover"
-                    alt=""
-                  />
-                </div>
-              </td>
-              <td>
-                <span className={styles.name}>CORALZO</span>
-              </td>
-              <td>
-                <span className={styles.extras}>
-                  Double ingredient, spicy sauce
-                </span>
-              </td>
-              <td>
-                <span className={styles.price}>$19.90</span>
-              </td>
-              <td>
-                <span className={styles.quantity}>2</span>
-              </td>
-              <td>
-                <span className={styles.total}>$39.80</span>
-              </td>
-            </tr>
+            {cart.products.map((pizza) => {
+              return (
+                <tr className={styles.tr} key={pizza._id}>
+                  <td>
+                    <div className={styles.imgContainer}>
+                      <Image
+                        src={pizza.img}
+                        layout="fill"
+                        objectFit="cover"
+                        alt=""
+                      />
+                    </div>
+                  </td>
+                  <td>
+                    <span className={styles.name}>{pizza.title}</span>
+                  </td>
+                  <td>
+                    <span className={styles.extras}>
+                      {pizza.extraOptions.map((extra) => {
+                        return <span key={extra._id}>{extra.text}, </span>;
+                      })}
+                    </span>
+                  </td>
+                  <td>
+                    <span className={styles.price}>${pizza.price}</span>
+                  </td>
+                  <td>
+                    <span className={styles.quantity}>{pizza.quantity}</span>
+                  </td>
+                  <td>
+                    <span className={styles.total}>
+                      ${pizza.price * pizza.quantity}
+                    </span>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
