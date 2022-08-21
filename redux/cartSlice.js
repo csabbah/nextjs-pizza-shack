@@ -12,9 +12,9 @@ const cartSlice = createSlice({
     addProduct: (state, action) => {
       // Pass pizza details as payload
       state.products.push(action.payload);
+      state.quantity += 1;
       // Add to payload the price and the quantity selected
       state.total += action.payload.price * action.payload.quantity;
-      state.quantity += 1;
     },
     reset: (state) => {
       state = initialState;
