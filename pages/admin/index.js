@@ -39,8 +39,8 @@ const Index = ({ orders, products }) => {
           </tbody>
           {pizzaList.map((product) => {
             return (
-              <tbody>
-                <tr key={product._id} className={styles.trTitle}>
+              <tbody key={product._id}>
+                <tr className={styles.trTitle}>
                   <td>
                     <Image
                       src={product.img}
