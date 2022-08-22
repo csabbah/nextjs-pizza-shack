@@ -5,7 +5,9 @@ import axios from 'axios';
 
 const Index = ({ orders, products }) => {
   const [pizzaList, setPizzaList] = useState(products);
-  const [orderList, setOrderList] = useState(products);
+  const [orderList, setOrderList] = useState(orders);
+
+  const status = ['Preparing', 'On the way', 'Delivered'];
 
   const handleDelete = async (id) => {
     try {
@@ -21,7 +23,27 @@ const Index = ({ orders, products }) => {
     }
   };
 
-  console.log(products);
+  const handleNext = async (id, order) => {
+    // If orderr.status is 2, that means it's delivered so don't increment further
+    if (order.status == 2) {
+    } else {
+      // Extract the current status from the order
+      const currentStatus = order.status;
+      try {
+        const res = await axios.put(`http://localhost:3000/api/orders/${id}`, {
+          // Increment the Current status by 1
+          status: currentStatus + 1,
+        });
+        // Return updated order
+        setOrderList([
+          res.data,
+          ...orderList.filter((order) => order._id !== id),
+        ]);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -81,18 +103,27 @@ const Index = ({ orders, products }) => {
               <th>Action</th>
             </tr>
           </tbody>
-          <tbody>
-            <tr className={styles.trTitle}>
-              <td>{'2315353285923151'.slice(0, 5)}...</td>
-              <td>John Doe</td>
-              <td>$50</td>
-              <td>paid</td>
-              <td>preparing</td>
-              <td>
-                <button className={styles.nextStageBtn}>Next Stage</button>
-              </td>
-            </tr>
-          </tbody>
+          {orderList.map((order) => {
+            return (
+              <tbody key={order._id}>
+                <tr className={styles.trTitle}>
+                  <td>{order._id.slice(0, 5)}...</td>
+                  <td>{order.customer}</td>
+                  <td>${order.total}</td>
+                  <td>{order.method == 1 ? 'PayPal' : 'Cash'}</td>
+                  <td>{status[order.status]}</td>
+                  <td>
+                    <button
+                      className={styles.nextStageBtn}
+                      onClick={() => handleNext(order._id, order)}
+                    >
+                      Next Stage
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            );
+          })}
         </table>
       </div>
     </div>

@@ -22,6 +22,15 @@ const handler = async (req, res) => {
   }
 
   if (method == 'PUT') {
+    try {
+      const order = await Order.findByIdAndUpdate(id, req.body, {
+        // 'new: true' == Return newest version of the data
+        new: true,
+      });
+      res.status(201).json(order);
+    } catch (err) {
+      res.status(500).json(err);
+    }
   }
   if (method == 'DELETE') {
   }
