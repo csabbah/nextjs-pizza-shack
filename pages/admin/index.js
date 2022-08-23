@@ -141,7 +141,22 @@ const Index = ({ orders, products }) => {
 export default Index;
 
 // Fetch all the active products and Orders via admin dashboard
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (ctx) => {
+  // If there is a request, we are going to take the cookie, else, make it an empty string
+  const myCookie = ctx.res?.cookies || '';
+
+  // If token is not valid, redirect to login
+  if (myCookie.token !== process.env.TOKEN) {
+    return {
+      // This is a next.js function to redirect to a different page
+      redirect: {
+        destination: '/admin/login',
+        // Setting to false will keep users on the same tab
+        permanent: false,
+      },
+    };
+  }
+
   const products = await axios.get(`http://localhost:3000/api/products`);
   const orders = await axios.get(`http://localhost:3000/api/orders`);
 
