@@ -13,7 +13,6 @@ const Add = ({ setClose }) => {
   const [extra, setExtra] = useState(null);
 
   const router = useRouter();
-  console.log(file);
   const handleExtraInput = (e) => {
     setExtra({ ...extra, [e.target.name]: e.target.value });
   };
@@ -45,7 +44,7 @@ const Add = ({ setClose }) => {
       );
 
       // Extract the cloud link (that was generated above)
-      const { url } = uploadRes.url;
+      const { url } = uploadRes.data;
 
       const newProduct = {
         title,
