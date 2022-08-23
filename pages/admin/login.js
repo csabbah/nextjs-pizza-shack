@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from '../../styles/Login.module.css';
 
 const Login = () => {
@@ -27,18 +27,17 @@ const Login = () => {
         <h1>Admin Dashboard</h1>
         <input
           placeholder="username"
-          type="text"
           className={styles.input}
           onChange={(e) => setUsername(e.target.value)}
-        ></input>
+        />
         <input
           placeholder="password"
           type="password"
           className={styles.input}
           onChange={(e) => setPassword(e.target.value)}
-        ></input>
-        <button onClick={() => handleClick()} className={styles.button}>
-          Sign in
+        />
+        <button onClick={handleClick} className={styles.button}>
+          Sign In
         </button>
         {error && <span className={styles.error}>Wrong Credentials!</span>}
       </div>
