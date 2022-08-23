@@ -4,6 +4,12 @@ import Image from 'next/image';
 import axios from 'axios';
 
 const Index = ({ orders, products }) => {
+  // IMPORTANT TO NOTE, handleDelete() and handleNext() ALLOW US TO UPDATE THE DATA REALTIME (DOM)
+  // handleDelete() SHOWS US HOW TO DELETE AND REFLECT THAT REALTIME
+  // handleNext9) SHOWS US HOW TO UPDATE A DATA IIN THE MODEL AND REFLECT IT REAL TIME
+
+  // By assigning state objects to contain our database data, we can update them to
+  // have the virtual DOM reflect the real time changes
   const [pizzaList, setPizzaList] = useState(products);
   const [orderList, setOrderList] = useState(orders);
 
@@ -24,7 +30,7 @@ const Index = ({ orders, products }) => {
   };
 
   const handleNext = async (id, order) => {
-    // If orderr.status is 2, that means it's delivered so don't increment further
+    // If order.status is 2, that means it's delivered so don't increment further
     if (order.status == 2) {
     } else {
       // Extract the current status from the order
@@ -36,7 +42,9 @@ const Index = ({ orders, products }) => {
         });
         // Return updated order
         setOrderList([
+          // Push the the updated data
           res.data,
+          // Keep the existing data but delete the previous version of the order we just modified
           ...orderList.filter((order) => order._id !== id),
         ]);
       } catch (err) {
