@@ -81,7 +81,7 @@ const Index = ({ orders, products }) => {
                     />
                   </td>
                   <td>{product._id.slice(0, 5)}...</td>
-                  <td>Pizza Title</td>
+                  <td>{product.title}</td>
                   <td>${product.prices[0]}</td>
                   <td>
                     <button className={styles.button}>Edit</button>
