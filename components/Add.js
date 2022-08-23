@@ -13,13 +13,13 @@ const Add = ({ setClose }) => {
   const [extra, setExtra] = useState(null);
 
   const router = useRouter();
-
+  console.log(file);
   const handleExtraInput = (e) => {
     setExtra({ ...extra, [e.target.name]: e.target.value });
   };
 
   const handleExtra = (e) => {
-    // Spread previous  array and push the new extra
+    // Spread previous array and push the new extra
     setExtraOptions((prev) => [...prev, extra]);
   };
 
@@ -31,15 +31,33 @@ const Add = ({ setClose }) => {
   };
 
   const handleCreate = async () => {
+    // For cloud hosting
+    const data = new FormData();
+    data.append('file', file);
+    data.append('upload_preset', 'uploads');
+
     try {
-      const res = await axios.post(`http://localhost:3000/api/products`, {
+      // The post method to upload an image to Cloudinary
+      const uploadRes = await axios.post(
+        // csabbah is our Cloud name (Can be found in the Cloudinary/Dashboard)
+        'https://api.cloudinary.com/v1_1/csabbah/image/upload',
+        data
+      );
+
+      // Extract the cloud link (that was generated above)
+      const { url } = uploadRes.url;
+
+      const newProduct = {
         title,
-        img: '/img/pizza.png',
         desc,
         prices,
         extraOptions,
-      });
-      router.push('/admin');
+        img: url,
+      };
+
+      await axios.post(`http://localhost:3000/api/products`, newProduct);
+
+      setClose(true);
     } catch (err) {
       console.log(err);
     }
