@@ -11,7 +11,7 @@ const TrackOrder = () => {
   const handleSubmit = async () => {
     // If there is not inputted id, set error to true with a specific label
     if (!inputtedId) {
-      return setError([true, 'Input needs to be filled']);
+      return setError([true, 'Field needs to be filled']);
     }
     // Fetch the data to first check if it exists
     try {
@@ -29,11 +29,6 @@ const TrackOrder = () => {
     }
   };
 
-  const handleChange = (e) => {
-    setError([false, '']);
-    setInputtedId(e.target.value);
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -41,7 +36,10 @@ const TrackOrder = () => {
         <input
           id="input"
           style={{ border: error[0] ? '1px solid red' : '' }}
-          onChange={(e) => handleChange(e)}
+          onChange={(e) => {
+            setError([false, '']);
+            setInputtedId(e);
+          }}
           className={styles.input}
           type="text"
           placeholder="Tracking ID"

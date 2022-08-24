@@ -32,7 +32,3 @@
   cursor: pointer;
   padding: 10px 0;
 }
-
-#test::placeholder {
-  color: red;
-}
