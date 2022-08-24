@@ -1,0 +1,34 @@
+.container {
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  margin-top: 0;
+}
+
+.input {
+  padding: 7px 15px;
+  width: 400px;
+}
+
+.button {
+  margin-top: 15px;
+  width: 35%;
+  border: none;
+  background-color: teal;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 10px 0;
+}

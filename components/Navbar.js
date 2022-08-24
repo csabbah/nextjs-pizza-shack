@@ -36,7 +36,9 @@ const Navbar = () => {
               height="69px"
             />
           </Link>
-          <li className={styles.listItem}>Blog</li>
+          <Link href="/trackorder" passHref>
+            <li className={styles.listItem}>Track order</li>
+          </Link>
           <li className={styles.listItem}>Contact</li>
         </ul>
       </div>
