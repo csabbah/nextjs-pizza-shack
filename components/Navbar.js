@@ -25,8 +25,12 @@ const Navbar = () => {
       </div>
       <div className={styles.item}>
         <ul className={styles.list}>
-          <li className={styles.listItem}>Products</li>
-          <li className={styles.listItem}>Menu</li>
+          <Link href="/" passHref>
+            <li className={styles.listItem}>Products</li>
+          </Link>
+          <Link href="/admin" passHref>
+            <li className={styles.listItem}>Admin</li>
+          </Link>
           <Link href="/" passHref>
             <Image
               style={{ cursor: 'pointer' }}

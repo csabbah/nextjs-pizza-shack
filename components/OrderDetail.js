@@ -29,6 +29,7 @@ const OrderDetail = ({ total, createOrder }) => {
           <label className={styles.label}>Name Surname:</label>
           <input
             placeholder="John Doe"
+            style={{ border: error[0] ? '1px solid red' : '' }}
             type="text"
             className={styles.input}
             onChange={(e) => {
@@ -39,6 +40,7 @@ const OrderDetail = ({ total, createOrder }) => {
           <label className={styles.label}>Phone Number:</label>
           <input
             type="number"
+            style={{ border: error[0] ? '1px solid red' : '' }}
             onChange={(e) => {
               setPhone(e.target.value);
               setError([false, '']);
@@ -49,6 +51,7 @@ const OrderDetail = ({ total, createOrder }) => {
           <label className={styles.label}>Address:</label>
           <textarea
             rows={5}
+            style={{ border: error[0] ? '1px solid red' : '' }}
             placeholder="Elton st. 13 NY"
             type="text"
             className={styles.textarea}

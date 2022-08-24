@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../styles/Add.module.css';
 import axios from 'axios';
-import { useRouter } from 'next/router';
-import RenderResult from 'next/dist/server/render-result';
 
 const Add = ({ setClose }) => {
   const [file, setFile] = useState(null);
@@ -12,7 +10,8 @@ const Add = ({ setClose }) => {
   const [extraOptions, setExtraOptions] = useState([]);
   const [extra, setExtra] = useState(null);
 
-  const router = useRouter();
+  const [error, setError] = useState([false, '']);
+
   const handleExtraInput = (e) => {
     setExtra({ ...extra, [e.target.name]: e.target.value });
   };
@@ -30,35 +29,39 @@ const Add = ({ setClose }) => {
   };
 
   const handleCreate = async () => {
-    // For cloud hosting
-    const data = new FormData();
-    data.append('file', file);
-    data.append('upload_preset', 'uploads');
+    if (!file || !title || !desc || !prices) {
+      setError([true, 'Please fill all highlighted fields']);
+    } else {
+      // For cloud hosting
+      const data = new FormData();
+      data.append('file', file);
+      data.append('upload_preset', 'uploads');
 
-    try {
-      // The post method to upload an image to Cloudinary
-      const uploadRes = await axios.post(
-        // csabbah is our Cloud name (Can be found in the Cloudinary/Dashboard)
-        'https://api.cloudinary.com/v1_1/csabbah/image/upload',
-        data
-      );
+      try {
+        // The post method to upload an image to Cloudinary
+        const uploadRes = await axios.post(
+          // csabbah is our Cloud name (Can be found in the Cloudinary/Dashboard)
+          'https://api.cloudinary.com/v1_1/csabbah/image/upload',
+          data
+        );
 
-      // Extract the cloud link (that was generated above)
-      const { url } = uploadRes.data;
+        // Extract the cloud link (that was generated above)
+        const { url } = uploadRes.data;
 
-      const newProduct = {
-        title,
-        desc,
-        prices,
-        extraOptions,
-        img: url,
-      };
+        const newProduct = {
+          title,
+          desc,
+          prices,
+          extraOptions,
+          img: url,
+        };
 
-      await axios.post(`http://localhost:3000/api/products`, newProduct);
+        await axios.post(`http://localhost:3000/api/products`, newProduct);
 
-      setClose(true);
-    } catch (err) {
-      console.log(err);
+        setClose(true);
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
@@ -71,44 +74,72 @@ const Add = ({ setClose }) => {
         <h1>Add a new Pizza</h1>
         <div className={styles.item}>
           <label className={styles.label}>Choose an image</label>
-          <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+          <input
+            style={{ color: error[0] ? 'red' : '' }}
+            type="file"
+            onChange={(e) => {
+              setError([false, '']);
+              setFile(e.target.files[0]);
+            }}
+          />
         </div>
         <div className={styles.item}>
           <label className={styles.label}>Title</label>
           <input
             className={styles.input}
             type="text"
-            onChange={(e) => setTitle(e.target.value)}
+            style={{ border: error[0] ? '1px solid red' : '' }}
+            onChange={(e) => {
+              setError([false, '']);
+              setTitle(e.target.value);
+            }}
           />
         </div>
         <div className={styles.item}>
           <label className={styles.label}>Desc</label>
           <textarea
+            style={{ border: error[0] ? '1px solid red' : '' }}
+            className={styles.textarea}
             rows={4}
             type="text"
-            onChange={(e) => setDesc(e.target.value)}
+            onChange={(e) => {
+              setError([false, '']);
+              setDesc(e.target.value);
+            }}
           />
         </div>
         <div className={styles.item}>
           <label className={styles.label}>Prices</label>
           <div className={styles.priceContainer}>
             <input
+              style={{ borderBottom: error[0] ? '1px solid red' : '' }}
               className={`${styles.input} ${styles.inputSm}`}
               type="number"
               placeholder="Small"
-              onChange={(e) => changePrice(e, 0)}
+              onChange={(e) => {
+                setError([false, '']);
+                changePrice(e, 0);
+              }}
             />
             <input
+              style={{ borderBottom: error[0] ? '1px solid red' : '' }}
               className={`${styles.input} ${styles.inputSm}`}
               type="number"
               placeholder="Medium"
-              onChange={(e) => changePrice(e, 1)}
+              onChange={(e) => {
+                setError([false, '']);
+                changePrice(e, 1);
+              }}
             />
             <input
+              style={{ borderBottom: error[0] ? '1px solid red' : '' }}
               className={`${styles.input} ${styles.inputSm}`}
               type="number"
               placeholder="Large"
-              onChange={(e) => changePrice(e, 2)}
+              onChange={(e) => {
+                setError([false, '']);
+                changePrice(e, 2);
+              }}
             />
           </div>
         </div>
@@ -120,14 +151,14 @@ const Add = ({ setClose }) => {
               type="text"
               placeholder="Item"
               name="text"
-              onChange={handleExtraInput}
+              onChange={(e) => handleExtraInput(e)}
             />
             <input
               className={`${styles.input} ${styles.inputSm}`}
               type="number"
               placeholder="Price"
               name="price"
-              onChange={handleExtraInput}
+              onChange={(e) => handleExtraInput(e)}
             />
             <button className={styles.extraButton} onClick={handleExtra}>
               Add
@@ -144,6 +175,7 @@ const Add = ({ setClose }) => {
         <button className={styles.addButton} onClick={() => handleCreate()}>
           Create
         </button>
+        {error[0] && <p style={{ color: 'red' }}>{error[1]}</p>}
       </div>
     </div>
   );

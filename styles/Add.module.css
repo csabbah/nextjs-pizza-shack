@@ -65,6 +65,10 @@
   border-bottom: 1px solid gray;
   outline: none;
 }
+.textarea {
+  resize: none;
+  font-family: inherit;
+}
 
 .priceContainer {
   display: flex;
