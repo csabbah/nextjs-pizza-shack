@@ -4,11 +4,15 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 const TrackOrder = () => {
   const [inputtedId, setInputtedId] = useState('');
-  const [error, setError] = useState(false);
+  const [error, setError] = useState([false, '']);
   const router = useRouter();
 
   // Redirect to /orders/ with the submitted id
   const handleSubmit = async () => {
+    // If there is not inputted id, set error to true with a specific label
+    if (!inputtedId) {
+      return setError([true, 'Input needs to be filled']);
+    }
     // Fetch the data to first check if it exists
     try {
       const res = await axios.get(
@@ -21,12 +25,12 @@ const TrackOrder = () => {
       }
     } catch (err) {
       // Set error to true and display it
-      setError(true);
+      return setError([true, 'No order found with that ID']);
     }
   };
 
   const handleChange = (e) => {
-    setError(false);
+    setError([false, '']);
     setInputtedId(e.target.value);
   };
 
@@ -35,6 +39,8 @@ const TrackOrder = () => {
       <div className={styles.wrapper}>
         <h1 className={styles.title}>Track Order</h1>
         <input
+          id="input"
+          style={{ border: error[0] ? '1px solid red' : '' }}
           onChange={(e) => handleChange(e)}
           className={styles.input}
           type="text"
@@ -43,7 +49,7 @@ const TrackOrder = () => {
         <button onClick={() => handleSubmit()} className={styles.button}>
           Submit
         </button>
-        {error && <p style={{ color: 'red' }}>No order found with that ID</p>}
+        {error[0] && <p style={{ color: 'red' }}>{error[1]}</p>}
       </div>
     </div>
   );
