@@ -31,6 +31,7 @@ const Index = ({ orders, products }) => {
   };
 
   const handleNext = async (id, order) => {
+    console.log('true');
     // If order.status is 2, that means it's delivered so don't increment further
     if (order.status == 2) {
     } else {
@@ -118,7 +119,10 @@ const Index = ({ orders, products }) => {
             </tbody>
             {orderList.map((order) => {
               return (
-                <tbody key={order._id}>
+                <tbody
+                  key={order._id}
+                  style={{ opacity: order.status == 2 ? '0.4' : '' }}
+                >
                   <tr className={styles.trTitle}>
                     <td>{order._id.slice(0, 5)}...</td>
                     <td>{order.customer}</td>
@@ -127,6 +131,10 @@ const Index = ({ orders, products }) => {
                     <td>{status[order.status]}</td>
                     <td>
                       <button
+                        // Disable button if order status is 2 (2 == delivered)
+                        style={{
+                          pointerEvents: order.status == 2 ? 'none' : 'all',
+                        }}
                         className={styles.nextStageBtn}
                         onClick={() => handleNext(order._id, order)}
                       >

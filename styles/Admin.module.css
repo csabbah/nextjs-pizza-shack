@@ -13,12 +13,18 @@
   text-align: left;
 }
 
-.button {
+.button,
+.nextStageBtn {
   border: none;
   color: white;
-  padding: 5px;
+  padding: 6px 9px;
   border-radius: 5px;
   cursor: pointer;
+  user-select: none;
+}
+
+.nextStageBtn {
+  background-color: green;
 }
 
 .button:first-child {
