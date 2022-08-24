@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from '../../styles/Admin.module.css';
 import Image from 'next/image';
 import axios from 'axios';
+import Head from 'next/head';
 
 const Index = ({ orders, products }) => {
   // IMPORTANT TO NOTE, handleDelete() and handleNext() ALLOW US TO UPDATE THE DATA REALTIME (DOM)
@@ -54,87 +55,92 @@ const Index = ({ orders, products }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.item}>
-        <h1 className={styles.title}>Products</h1>
-        <table className={styles.table}>
-          <tbody>
-            <tr className={styles.trTitle}>
-              <th>Image</th>
-              <th>Id</th>
-              <th>Title</th>
-              <th>Price</th>
-              <th>Action</th>
-            </tr>
-          </tbody>
-          {pizzaList.map((product) => {
-            return (
-              <tbody key={product._id}>
-                <tr className={styles.trTitle}>
-                  <td>
-                    <Image
-                      src={product.img}
-                      width={50}
-                      height={50}
-                      objectFit="cover"
-                      alt=""
-                    />
-                  </td>
-                  <td>{product._id.slice(0, 5)}...</td>
-                  <td>{product.title}</td>
-                  <td>${product.prices[0]}</td>
-                  <td>
-                    <button className={styles.button}>Edit</button>
-                    <button
-                      className={styles.button}
-                      onClick={() => handleDelete(product._id)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            );
-          })}
-        </table>
+    <>
+      <Head>
+        <title>Admin</title>
+      </Head>
+      <div className={styles.container}>
+        <div className={styles.item}>
+          <h1 className={styles.title}>Products</h1>
+          <table className={styles.table}>
+            <tbody>
+              <tr className={styles.trTitle}>
+                <th>Image</th>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Action</th>
+              </tr>
+            </tbody>
+            {pizzaList.map((product) => {
+              return (
+                <tbody key={product._id}>
+                  <tr className={styles.trTitle}>
+                    <td>
+                      <Image
+                        src={product.img}
+                        width={50}
+                        height={50}
+                        objectFit="cover"
+                        alt=""
+                      />
+                    </td>
+                    <td>{product._id.slice(0, 5)}...</td>
+                    <td>{product.title}</td>
+                    <td>${product.prices[0]}</td>
+                    <td>
+                      <button className={styles.button}>Edit</button>
+                      <button
+                        className={styles.button}
+                        onClick={() => handleDelete(product._id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              );
+            })}
+          </table>
+        </div>
+        <div className={styles.item}>
+          <h1 className={styles.title}>Orders</h1>
+          <table className={styles.table}>
+            <tbody>
+              <tr className={styles.trTitle}>
+                <th>Id</th>
+                <th>Customer</th>
+                <th>Total</th>
+                <th>Payment</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </tbody>
+            {orderList.map((order) => {
+              return (
+                <tbody key={order._id}>
+                  <tr className={styles.trTitle}>
+                    <td>{order._id.slice(0, 5)}...</td>
+                    <td>{order.customer}</td>
+                    <td>${order.total}</td>
+                    <td>{order.method == 1 ? 'PayPal' : 'Cash'}</td>
+                    <td>{status[order.status]}</td>
+                    <td>
+                      <button
+                        className={styles.nextStageBtn}
+                        onClick={() => handleNext(order._id, order)}
+                      >
+                        Next Stage
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              );
+            })}
+          </table>
+        </div>
       </div>
-      <div className={styles.item}>
-        <h1 className={styles.title}>Orders</h1>
-        <table className={styles.table}>
-          <tbody>
-            <tr className={styles.trTitle}>
-              <th>Id</th>
-              <th>Customer</th>
-              <th>Total</th>
-              <th>Payment</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </tbody>
-          {orderList.map((order) => {
-            return (
-              <tbody key={order._id}>
-                <tr className={styles.trTitle}>
-                  <td>{order._id.slice(0, 5)}...</td>
-                  <td>{order.customer}</td>
-                  <td>${order.total}</td>
-                  <td>{order.method == 1 ? 'PayPal' : 'Cash'}</td>
-                  <td>{status[order.status]}</td>
-                  <td>
-                    <button
-                      className={styles.nextStageBtn}
-                      onClick={() => handleNext(order._id, order)}
-                    >
-                      Next Stage
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            );
-          })}
-        </table>
-      </div>
-    </div>
+    </>
   );
 };
 

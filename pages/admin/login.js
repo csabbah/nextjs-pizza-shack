@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import styles from '../../styles/Login.module.css';
+import Head from 'next/head';
 
 const Login = () => {
   const [username, setUsername] = useState(null);
@@ -27,32 +28,37 @@ const Login = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.wrapper}>
-        <h1>Admin Dashboard</h1>
-        <input
-          placeholder="username"
-          className={styles.input}
-          onChange={(e) => {
-            setError([false, '']);
-            setUsername(e.target.value);
-          }}
-        />
-        <input
-          placeholder="password"
-          type="password"
-          className={styles.input}
-          onChange={(e) => {
-            setError([false, '']);
-            setPassword(e.target.value);
-          }}
-        />
-        <button onClick={handleClick} className={styles.button}>
-          Sign In
-        </button>
-        {error[0] && <p style={{ color: 'red' }}>{error[1]}</p>}
+    <>
+      <Head>
+        <title>Admin Login</title>
+      </Head>
+      <div className={styles.container}>
+        <div className={styles.wrapper}>
+          <h1>Admin Dashboard</h1>
+          <input
+            placeholder="username"
+            className={styles.input}
+            onChange={(e) => {
+              setError([false, '']);
+              setUsername(e.target.value);
+            }}
+          />
+          <input
+            placeholder="password"
+            type="password"
+            className={styles.input}
+            onChange={(e) => {
+              setError([false, '']);
+              setPassword(e.target.value);
+            }}
+          />
+          <button onClick={handleClick} className={styles.button}>
+            Sign In
+          </button>
+          {error[0] && <p style={{ color: 'red' }}>{error[1]}</p>}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,5 +1,7 @@
 import styles from '../styles/Cart.module.css';
 import Image from 'next/image';
+import Head from 'next/head';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useEffect, useState } from 'react';
@@ -105,6 +107,9 @@ const Cart = () => {
 
   return (
     <>
+      <Head>
+        <title>Shopping Cart</title>
+      </Head>
       {cart.products.length == 0 ? (
         <div className={styles.container}>
           <h4 style={{ textAlign: 'center' }}>No pizzas in cart</h4>
