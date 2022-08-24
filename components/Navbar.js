@@ -3,7 +3,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 
+import { useRouter } from 'next/router';
+
 const Navbar = () => {
+  const router = useRouter();
+  let endpointName = router.pathname;
+
   // Initially this is 0
   const quantity = useSelector((state) => state.cart.quantity);
 
@@ -26,10 +31,20 @@ const Navbar = () => {
       <div className={styles.item}>
         <ul className={styles.list}>
           <Link href="/" passHref>
-            <li className={styles.listItem}>Home</li>
+            <li
+              style={{ color: endpointName == '/' ? 'black' : '' }}
+              className={`${styles.listItem}`}
+            >
+              Home
+            </li>
           </Link>
           <Link href="/admin" passHref>
-            <li className={styles.listItem}>Admin</li>
+            <li
+              style={{ color: endpointName == '/admin' ? 'black' : '' }}
+              className={`${styles.listItem}`}
+            >
+              Admin
+            </li>
           </Link>
           <Link href="/" passHref>
             <Image
@@ -41,7 +56,12 @@ const Navbar = () => {
             />
           </Link>
           <Link href="/trackorder" passHref>
-            <li className={styles.listItem}>Track order</li>
+            <li
+              style={{ color: endpointName == '/trackorder' ? 'black' : '' }}
+              className={styles.listItem}
+            >
+              Track order
+            </li>
           </Link>
           <li className={styles.listItem}>Contact</li>
         </ul>
@@ -49,8 +69,23 @@ const Navbar = () => {
       <Link href="/cart">
         <div className={styles.item}>
           <div className={styles.cart}>
-            <Image src="/img/cart.png" alt="" width="30px" height="30px" />
-            <div className={styles.counter}>{quantity}</div>
+            <Image
+              style={{
+                filter: endpointName == '/cart' ? 'invert(1)' : '',
+              }}
+              src="/img/cart.png"
+              alt=""
+              width="30px"
+              height="30px"
+            />
+            <div
+              style={{
+                backgroundColor: endpointName == '/cart' ? 'black' : '',
+              }}
+              className={styles.counter}
+            >
+              {quantity}
+            </div>
           </div>
         </div>
       </Link>
