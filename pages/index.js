@@ -9,6 +9,7 @@ import AddButton from '../components/AddButton';
 
 export default function Home({ pizzaList, admin }) {
   const [close, setClose] = useState(true);
+  const [activePizzas, setActivePizzas] = useState(pizzaList);
 
   return (
     <div className={styles.container}>
@@ -20,7 +21,7 @@ export default function Home({ pizzaList, admin }) {
       <Featured />
       {/* If logged in as admin, display the component */}
       {admin && <AddButton setClose={setClose} />}
-      <PizzaList pizzaList={pizzaList} />
+      <PizzaList activePizzas={activePizzas} />
       {!close && <Add setClose={setClose} />}
     </div>
   );

@@ -31,7 +31,6 @@ const Index = ({ orders, products }) => {
   };
 
   const handleNext = async (id, order) => {
-    console.log('true');
     // If order.status is 2, that means it's delivered so don't increment further
     if (order.status == 2) {
     } else {

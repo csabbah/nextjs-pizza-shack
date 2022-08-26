@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../styles/Add.module.css';
 import axios from 'axios';
+import Router from 'next/router';
 
 const Add = ({ setClose }) => {
   const [file, setFile] = useState(null);
@@ -20,6 +21,9 @@ const Add = ({ setClose }) => {
   };
 
   const handleExtra = (e) => {
+    if (extra == null) {
+      return setErrorExtra([true, 'Please fill Text and Price']);
+    }
     if (extra.price && extra.text) {
       document.getElementById('price').value = '';
       document.getElementById('text').value = '';
@@ -67,8 +71,8 @@ const Add = ({ setClose }) => {
         };
 
         await axios.post(`http://localhost:3000/api/products`, newProduct);
-
-        setClose(true);
+        // Reload current page
+        Router.reload(window.location.pathname);
       } catch (err) {
         console.log(err);
       }
@@ -212,3 +216,13 @@ const Add = ({ setClose }) => {
 };
 
 export default Add;
+
+export const getServerSideProps = async () => {
+  const products = await axios.get(`http://localhost:3000/api/products`);
+
+  return {
+    props: {
+      products: products.data,
+    },
+  };
+};

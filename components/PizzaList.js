@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '../styles/PizzaList.module.css';
 import PizzaCard from './PizzaCard';
 
-const PizzaList = ({ pizzaList }) => {
+const PizzaList = ({ activePizzas }) => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>THE BEST PIZZA IN TOWN!</h1>
@@ -12,9 +12,9 @@ const PizzaList = ({ pizzaList }) => {
         at.
       </p>
       <div className={styles.wrapper}>
-        {pizzaList.length == 0
+        {activePizzas.length == 0
           ? 'No Available Pizzas'
-          : pizzaList.map((pizza) => {
+          : activePizzas.map((pizza) => {
               return <PizzaCard pizza={pizza} key={pizza._id} />;
             })}
       </div>
