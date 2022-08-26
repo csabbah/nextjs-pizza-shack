@@ -5,9 +5,11 @@ import axios from 'axios';
 import Head from 'next/head';
 
 import Add from '../../components/Add';
-import AddButton from '../../components/AddButton';
+
+import { useRouter } from 'next/router';
 
 const Index = ({ orders, products }) => {
+  const router = useRouter();
   const [close, setClose] = useState(true);
 
   // Then reverse the order so it shows the the orders that are still most active
@@ -71,13 +73,26 @@ const Index = ({ orders, products }) => {
     }
   };
 
+  const logout = async () => {
+    document.cookie.split(';').forEach(function (c) {
+      document.cookie = c
+        .replace(/^ +/, '')
+        .replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/');
+    });
+    router.reload(window.location.pathname);
+  };
+
   return (
     <>
       <Head>
         <title>Admin</title>
       </Head>
-      {/* If logged in as admin, display the component */}
-      <AddButton setClose={setClose} />
+      <button onClick={() => setClose(false)} className={styles.addBtn}>
+        Add new Pizza
+      </button>
+      <button onClick={() => logout()} className={styles.logout}>
+        Logout
+      </button>
       {!close && (
         <Add
           setClose={setClose}
