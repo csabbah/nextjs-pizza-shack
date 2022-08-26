@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import styles from '../styles/Add.module.css';
 import axios from 'axios';
-import Router from 'next/router';
 
-const Add = ({ setClose }) => {
+const Add = ({ setClose, pizzaList, setPizzaList }) => {
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState(null);
   const [desc, setDesc] = useState(null);
@@ -70,9 +69,21 @@ const Add = ({ setClose }) => {
           img: url,
         };
 
-        await axios.post(`http://localhost:3000/api/products`, newProduct);
+        const res = await axios.post(
+          `http://localhost:3000/api/products`,
+          newProduct
+        );
+
+        setPizzaList([
+          // Push the the updated data
+          res.data,
+          // Keep the existing data but delete the previous version of the order we just modified
+          ...pizzaList.filter((order) => order._id !== res.data._id),
+        ]);
+
+        setClose(true);
         // Reload current page
-        Router.reload(window.location.pathname);
+        // Router.reload(window.location.pathname);
       } catch (err) {
         console.log(err);
       }

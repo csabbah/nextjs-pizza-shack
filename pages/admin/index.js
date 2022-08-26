@@ -7,7 +7,7 @@ import Head from 'next/head';
 import Add from '../../components/Add';
 import AddButton from '../../components/AddButton';
 
-const Index = ({ orders, products, admin }) => {
+const Index = ({ orders, products }) => {
   const [close, setClose] = useState(true);
 
   // IMPORTANT TO NOTE, handleDelete() and handleNext() ALLOW US TO UPDATE THE DATA REALTIME (DOM)
@@ -18,6 +18,18 @@ const Index = ({ orders, products, admin }) => {
   // have the virtual DOM reflect the real time changes
   const [pizzaList, setPizzaList] = useState(products);
   const [orderList, setOrderList] = useState(orders);
+
+  // Sort the pizzas and orders based on the date created
+  pizzaList.sort(function (a, b) {
+    return new Date(b.updatedAt) - new Date(a.updatedAt);
+  });
+
+  // First sort orders based on order status
+  orderList.sort(function (a, b) {
+    return b + a;
+  });
+  // Then reverse the order so it shows the the orders that are still most active
+  orderList.reverse();
 
   const status = ['Preparing', 'On the way', 'Delivered'];
 
@@ -65,8 +77,14 @@ const Index = ({ orders, products, admin }) => {
         <title>Admin</title>
       </Head>
       {/* If logged in as admin, display the component */}
-      {admin && <AddButton setClose={setClose} />}
-      {!close && <Add setClose={setClose} />}
+      <AddButton setClose={setClose} />
+      {!close && (
+        <Add
+          setClose={setClose}
+          pizzaList={pizzaList}
+          setPizzaList={setPizzaList}
+        />
+      )}
       <div className={styles.container}>
         <div className={styles.item}>
           <h1 className={styles.title}>Products</h1>
@@ -168,7 +186,6 @@ export const getServerSideProps = async (ctx) => {
   // If there is a request, we are going to take the cookie, else, make it an empty string
   const myCookie = ctx.res.req.cookies.token || '';
 
-  let admin = myCookie == process.env.TOKEN;
   // If token is not valid, redirect to login
   if (myCookie !== process.env.TOKEN) {
     return {
@@ -188,7 +205,6 @@ export const getServerSideProps = async (ctx) => {
     props: {
       orders: orders.data,
       products: products.data,
-      admin,
     },
   };
 };
