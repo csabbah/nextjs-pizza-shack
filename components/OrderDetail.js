@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../styles/orderDetail.module.css';
 
-const OrderDetail = ({ total, createOrder }) => {
+const OrderDetail = ({ total, createOrder, setCash, setOpen }) => {
   const [customer, setCustomer] = useState('');
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
@@ -21,10 +21,22 @@ const OrderDetail = ({ total, createOrder }) => {
     }
   };
 
+  const clickOutside = (e) => {
+    if (e == 'orderDetail_container__rUVxb') {
+      setCash(false);
+    }
+  };
+
   return (
-    <div className={styles.container}>
+    <div
+      onClick={(e) => clickOutside(e.target.className)}
+      className={styles.container}
+    >
       <div className={styles.wrapper}>
-        <h1 className={styles.title}>You will pay $12 after delivery</h1>
+        <span onClick={() => setCash(false)} className={styles.closeBtn}>
+          X
+        </span>
+        <h1 className={styles.title}>You will pay ${total} after delivery</h1>
         <div className={styles.item}>
           <label className={styles.label}>Name Surname:</label>
           <input

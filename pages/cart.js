@@ -191,7 +191,6 @@ const Cart = () => {
                   >
                     CASH ON DELIVERY
                   </button>
-
                   <PayPalScriptProvider
                     options={{
                       'client-id':
@@ -211,7 +210,14 @@ const Cart = () => {
               )}
             </div>
           </div>
-          {cash && <OrderDetail total={cart.total} createOrder={createOrder} />}
+          {cash && (
+            <OrderDetail
+              setOpen={setOpen}
+              setCash={setCash}
+              total={cart.total}
+              createOrder={createOrder}
+            />
+          )}
         </div>
       )}
     </>

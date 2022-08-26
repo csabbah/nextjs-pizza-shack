@@ -11,14 +11,24 @@ const Add = ({ setClose }) => {
   const [extra, setExtra] = useState(null);
 
   const [error, setError] = useState([false, '']);
+  const [errorExtra, setErrorExtra] = useState([false, '']);
 
   const handleExtraInput = (e) => {
+    setError([false, '']);
+    setErrorExtra([false, '']);
     setExtra({ ...extra, [e.target.name]: e.target.value });
   };
 
   const handleExtra = (e) => {
-    // Spread previous array and push the new extra
-    setExtraOptions((prev) => [...prev, extra]);
+    if (extra.price && extra.text) {
+      document.getElementById('price').value = '';
+      document.getElementById('text').value = '';
+
+      // Spread previous array and push the new extra
+      setExtraOptions((prev) => [...prev, extra]);
+    } else {
+      return setErrorExtra([true, 'Please fill Text and Price']);
+    }
   };
 
   const changePrice = (e, index) => {
@@ -65,8 +75,17 @@ const Add = ({ setClose }) => {
     }
   };
 
+  const clickOutside = (e) => {
+    if (e == 'Add_container__nehfK') {
+      setClose(true);
+    }
+  };
+
   return (
-    <div className={styles.container}>
+    <div
+      onClick={(e) => clickOutside(e.target.className)}
+      className={styles.container}
+    >
       <div className={styles.wrapper}>
         <span onClick={() => setClose(true)} className={styles.close}>
           X
@@ -79,6 +98,7 @@ const Add = ({ setClose }) => {
             type="file"
             onChange={(e) => {
               setError([false, '']);
+              setErrorExtra([false, '']);
               setFile(e.target.files[0]);
             }}
           />
@@ -91,6 +111,7 @@ const Add = ({ setClose }) => {
             style={{ border: error[0] ? '2px solid red' : '' }}
             onChange={(e) => {
               setError([false, '']);
+              setErrorExtra([false, '']);
               setTitle(e.target.value);
             }}
           />
@@ -104,6 +125,7 @@ const Add = ({ setClose }) => {
             type="text"
             onChange={(e) => {
               setError([false, '']);
+              setErrorExtra([false, '']);
               setDesc(e.target.value);
             }}
           />
@@ -118,6 +140,7 @@ const Add = ({ setClose }) => {
               placeholder="Small"
               onChange={(e) => {
                 setError([false, '']);
+                setErrorExtra([false, '']);
                 changePrice(e, 0);
               }}
             />
@@ -128,6 +151,7 @@ const Add = ({ setClose }) => {
               placeholder="Medium"
               onChange={(e) => {
                 setError([false, '']);
+                setErrorExtra([false, '']);
                 changePrice(e, 1);
               }}
             />
@@ -138,6 +162,7 @@ const Add = ({ setClose }) => {
               placeholder="Large"
               onChange={(e) => {
                 setError([false, '']);
+                setErrorExtra([false, '']);
                 changePrice(e, 2);
               }}
             />
@@ -147,6 +172,8 @@ const Add = ({ setClose }) => {
           <label className={styles.label}>Extra</label>
           <div className={styles.extra}>
             <input
+              id="text"
+              style={{ borderBottom: errorExtra[0] ? '2px solid red' : '' }}
               className={`${styles.input} ${styles.inputSm}`}
               type="text"
               placeholder="Item"
@@ -154,6 +181,8 @@ const Add = ({ setClose }) => {
               onChange={(e) => handleExtraInput(e)}
             />
             <input
+              id="price"
+              style={{ borderBottom: errorExtra[0] ? '2px solid red' : '' }}
               className={`${styles.input} ${styles.inputSm}`}
               type="number"
               placeholder="Price"
@@ -175,6 +204,7 @@ const Add = ({ setClose }) => {
         <button className={styles.addButton} onClick={() => handleCreate()}>
           Create
         </button>
+        {errorExtra[0] && <p style={{ color: 'red' }}>{errorExtra[1]}</p>}
         {error[0] && <p style={{ color: 'red' }}>{error[1]}</p>}
       </div>
     </div>
