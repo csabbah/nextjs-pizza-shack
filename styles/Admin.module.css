@@ -9,12 +9,17 @@
 
 .table {
   width: 100%;
-  border-spacing: 20px;
+  border-spacing: 10px;
   text-align: left;
+}
+
+.td {
+  font-size: 16px;
 }
 
 .button,
 .nextStageBtn {
+  font-size: 16px;
   border: none;
   color: white;
   padding: 6px 9px;

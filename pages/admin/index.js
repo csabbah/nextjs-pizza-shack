@@ -64,7 +64,7 @@ const Index = ({ orders, products }) => {
         <div className={styles.item}>
           <h1 className={styles.title}>Products</h1>
           <table className={styles.table}>
-            <tbody>
+            <thead>
               <tr className={styles.trTitle}>
                 <th>Image</th>
                 <th>Id</th>
@@ -72,12 +72,12 @@ const Index = ({ orders, products }) => {
                 <th>Price</th>
                 <th>Action</th>
               </tr>
-            </tbody>
+            </thead>
             {pizzaList.map((product) => {
               return (
-                <tbody key={product._id}>
+                <tbody className={styles.tbody} key={product._id}>
                   <tr className={styles.trTitle}>
-                    <td>
+                    <td className={styles.td}>
                       <Image
                         src={product.img}
                         width={50}
@@ -86,10 +86,10 @@ const Index = ({ orders, products }) => {
                         alt=""
                       />
                     </td>
-                    <td>{product._id.slice(0, 5)}...</td>
-                    <td>{product.title}</td>
-                    <td>${product.prices[0]}</td>
-                    <td>
+                    <td className={styles.td}>{product._id.slice(0, 5)}...</td>
+                    <td className={styles.td}>{product.title}</td>
+                    <td className={styles.td}>${product.prices[0]}</td>
+                    <td className={styles.td}>
                       <button className={styles.button}>Edit</button>
                       <button
                         className={styles.button}
@@ -107,7 +107,7 @@ const Index = ({ orders, products }) => {
         <div className={styles.item}>
           <h1 className={styles.title}>Orders</h1>
           <table className={styles.table}>
-            <tbody>
+            <thead>
               <tr className={styles.trTitle}>
                 <th>Id</th>
                 <th>Customer</th>
@@ -116,7 +116,7 @@ const Index = ({ orders, products }) => {
                 <th>Status</th>
                 <th>Action</th>
               </tr>
-            </tbody>
+            </thead>
             {orderList.map((order) => {
               return (
                 <tbody
@@ -124,12 +124,14 @@ const Index = ({ orders, products }) => {
                   style={{ opacity: order.status == 2 ? '0.4' : '' }}
                 >
                   <tr className={styles.trTitle}>
-                    <td>{order._id.slice(0, 5)}...</td>
-                    <td>{order.customer}</td>
-                    <td>${order.total}</td>
-                    <td>{order.method == 1 ? 'PayPal' : 'Cash'}</td>
-                    <td>{status[order.status]}</td>
-                    <td>
+                    <td className={styles.td}>{order._id.slice(0, 5)}...</td>
+                    <td className={styles.td}>{order.customer}</td>
+                    <td className={styles.td}>${order.total}</td>
+                    <td className={styles.td}>
+                      {order.method == 1 ? 'PayPal' : 'Cash'}
+                    </td>
+                    <td className={styles.td}>{status[order.status]}</td>
+                    <td className={styles.td}>
                       <button
                         // Disable button if order status is 2 (2 == delivered)
                         style={{

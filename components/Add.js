@@ -88,7 +88,7 @@ const Add = ({ setClose }) => {
           <input
             className={styles.input}
             type="text"
-            style={{ border: error[0] ? '1px solid red' : '' }}
+            style={{ border: error[0] ? '2px solid red' : '' }}
             onChange={(e) => {
               setError([false, '']);
               setTitle(e.target.value);
@@ -98,7 +98,7 @@ const Add = ({ setClose }) => {
         <div className={styles.item}>
           <label className={styles.label}>Desc</label>
           <textarea
-            style={{ border: error[0] ? '1px solid red' : '' }}
+            style={{ border: error[0] ? '2px solid red' : '' }}
             className={styles.textarea}
             rows={4}
             type="text"
@@ -112,7 +112,7 @@ const Add = ({ setClose }) => {
           <label className={styles.label}>Prices</label>
           <div className={styles.priceContainer}>
             <input
-              style={{ borderBottom: error[0] ? '1px solid red' : '' }}
+              style={{ borderBottom: error[0] ? '2px solid red' : '' }}
               className={`${styles.input} ${styles.inputSm}`}
               type="number"
               placeholder="Small"
@@ -122,7 +122,7 @@ const Add = ({ setClose }) => {
               }}
             />
             <input
-              style={{ borderBottom: error[0] ? '1px solid red' : '' }}
+              style={{ borderBottom: error[0] ? '2px solid red' : '' }}
               className={`${styles.input} ${styles.inputSm}`}
               type="number"
               placeholder="Medium"
@@ -132,7 +132,7 @@ const Add = ({ setClose }) => {
               }}
             />
             <input
-              style={{ borderBottom: error[0] ? '1px solid red' : '' }}
+              style={{ borderBottom: error[0] ? '2px solid red' : '' }}
               className={`${styles.input} ${styles.inputSm}`}
               type="number"
               placeholder="Large"

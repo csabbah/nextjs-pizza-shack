@@ -42,7 +42,7 @@ const TrackOrder = () => {
           <h1 className={styles.title}>Track Order</h1>
           <input
             id="input"
-            style={{ border: error[0] ? '1px solid red' : '' }}
+            style={{ border: error[0] ? '2px solid red' : '' }}
             onChange={(e) => {
               setError([false, '']);
               setInputtedId(e.target.value);

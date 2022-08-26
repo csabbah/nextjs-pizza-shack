@@ -38,6 +38,7 @@ const Login = () => {
           <input
             placeholder="username"
             className={styles.input}
+            style={{ border: error[0] ? '2px solid red' : '' }}
             onChange={(e) => {
               setError([false, '']);
               setUsername(e.target.value);
@@ -47,6 +48,7 @@ const Login = () => {
             placeholder="password"
             type="password"
             className={styles.input}
+            style={{ border: error[0] ? '2px solid red' : '' }}
             onChange={(e) => {
               setError([false, '']);
               setPassword(e.target.value);
