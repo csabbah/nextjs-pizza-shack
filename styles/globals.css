@@ -14,3 +14,68 @@ a {
 * {
   box-sizing: border-box;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+textarea,
+p,
+input,
+input::placeholder,
+textarea::placeholder {
+  color: #333;
+}
+
+h1 {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 0.5;
+}
+
+input,
+textarea {
+  font-size: 18px;
+  resize: none;
+  color: black;
+  padding-left: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+textarea {
+  padding-top: 8px;
+}
+
+input[type='file'] {
+  background-color: transparent;
+  padding-left: 0;
+  border-radius: 0;
+  margin-bottom: 10px;
+}
+
+input[type='file']::file-selector-button {
+  cursor: pointer;
+  border: none;
+  font-size: 17px;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.13);
+}
+
+input[type='file']::file-selector-button:hover {
+  background-color: rgba(0, 0, 0, 0.18);
+}
+
+button {
+  border: none;
+  border-radius: 8px;
+  color: white;
+  background-color: teal;
+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.1);
+}

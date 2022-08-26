@@ -92,6 +92,7 @@
 
 .button {
   height: 30px;
+  padding: 0 20px;
   margin-left: 10px;
   background-color: lightcoral;
   color: white;

@@ -1,0 +1,56 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper:first-child {
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.email {
+  margin-top: 40px;
+  margin-bottom: 0;
+}
+.phone {
+  font-size: 16px;
+  opacity: 0.6;
+  margin: 0;
+}
+
+.address {
+  margin-top: 40px;
+  font-size: 17px;
+  opacity: 0.7;
+}
+
+.textarea {
+  font-family: inherit;
+  height: 125px;
+}
+
+.input {
+  height: 30px;
+  margin-bottom: 10px;
+}
+.textarea,
+.input {
+  width: 100%;
+}
+
+.button {
+  margin-top: 10px;
+  padding: 5px 25px;
+  align-self: flex-start;
+}

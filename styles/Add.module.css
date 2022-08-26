@@ -25,12 +25,13 @@
 .wrapper {
   width: 500px;
   background-color: white;
-  padding: 10px 50px;
+  padding: 35px 50px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
 }
 
 .close {
@@ -64,10 +65,20 @@
   border: none;
   border-bottom: 1px solid gray;
   outline: none;
+  border-radius: 0 !important;
+  background-color: transparent;
 }
 .textarea {
   resize: none;
   font-family: inherit;
+  border: 1px solid black;
+  border-radius: 0 !important;
+  background-color: transparent;
+}
+
+.input,
+.textarea {
+  padding-left: 0;
 }
 
 .priceContainer {
@@ -82,6 +93,9 @@
 .extra {
   display: flex;
   justify-content: space-between;
+}
+.extraButton {
+  padding: 5px 20px;
 }
 
 .extraItems {

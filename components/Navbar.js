@@ -63,7 +63,14 @@ const Navbar = () => {
               Track order
             </li>
           </Link>
-          <li className={styles.listItem}>Contact</li>
+          <Link href="/contact" passHref>
+            <li
+              style={{ color: endpointName == '/contact' ? 'black' : '' }}
+              className={styles.listItem}
+            >
+              Contact
+            </li>
+          </Link>
         </ul>
       </div>
       <Link href="/cart">
