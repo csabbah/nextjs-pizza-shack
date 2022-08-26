@@ -107,14 +107,16 @@
   text-align: left;
 }
 
+.choose {
+  margin: 20px 0;
+}
+.additional {
+  margin-bottom: 5px;
+}
+
 @media screen and (max-width: 1024px) {
   .ingredients {
     flex-direction: column;
-  }
-
-  .choose {
-    margin-top: 20px;
-    margin-bottom: 10px;
   }
 
   .container {
@@ -127,6 +129,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-left: 0;
+    margin-bottom: 20px;
+  }
+
+  .left {
+    justify-content: center;
   }
   .title {
     text-align: center;
@@ -163,10 +171,6 @@
     font-size: 20px;
   }
 
-  .choose {
-    margin-top: 20px;
-    margin-bottom: 5px;
-  }
   .checkbox {
     margin-right: 10px;
     width: 25px;
@@ -216,9 +220,6 @@
     font-size: 20px;
   }
 
-  .choose {
-    margin: 15px 0;
-  }
   .checkbox {
     margin-right: 10px;
     width: 25px;

@@ -9,6 +9,8 @@ const Product = ({ pizza }) => {
   // This variable allows us to dispatch our action (update state)
   const dispatch = useDispatch();
 
+  const [pizzaSize, SetPizzaSize] = useState(0);
+
   // Remember, pizza.prices is an array of numbers
   const [price, setPrice] = useState(pizza.prices[0]);
   // Initial extras are an empty array
@@ -18,6 +20,7 @@ const Product = ({ pizza }) => {
 
   // This handles the chosen size of pizza (each size of the pizza is a different al)
   const handleSize = (sizeIndex) => {
+    SetPizzaSize(sizeIndex);
     setPrice(pizza.prices[sizeIndex]);
   };
 
@@ -57,20 +60,34 @@ const Product = ({ pizza }) => {
         <div className={styles.desc}>{pizza.desc}</div>
         <h3 className={styles.choose}>Choose your size:</h3>
         <div className={styles.sizes}>
-          <div onClick={() => handleSize(0)} className={styles.size}>
+          <div
+            onClick={() => handleSize(0)}
+            className={styles.size}
+            style={{ opacity: pizzaSize == 0 ? '1' : '0.4' }}
+          >
             <Image src="/img/size.png " layout="fill" alt="" />
             <span className={styles.sizeLabel}>Small</span>
           </div>
-          <div onClick={() => handleSize(1)} className={styles.size}>
+          <div
+            onClick={() => handleSize(1)}
+            className={styles.size}
+            style={{ opacity: pizzaSize == 1 ? '1' : '0.4' }}
+          >
             <Image src="/img/size.png " layout="fill" alt="" />
             <span className={styles.sizeLabel}>Medium</span>
           </div>
-          <div onClick={() => handleSize(2)} className={styles.size}>
+          <div
+            onClick={() => handleSize(2)}
+            className={styles.size}
+            style={{ opacity: pizzaSize == 2 ? '1' : '0.4' }}
+          >
             <Image src="/img/size.png " layout="fill" alt="" />
             <span className={styles.sizeLabel}>Large</span>
           </div>
         </div>
-        <h3 className={styles.choose}>Choose additional ingredients</h3>
+        <h3 className={`${styles.choose} ${styles.additional}`}>
+          Choose additional ingredients
+        </h3>
         <div className={styles.ingredients}>
           {pizza.extraOptions.map((option) => {
             return (
