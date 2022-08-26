@@ -10,6 +10,8 @@ import AddButton from '../../components/AddButton';
 const Index = ({ orders, products }) => {
   const [close, setClose] = useState(true);
 
+  // Then reverse the order so it shows the the orders that are still most active
+
   // IMPORTANT TO NOTE, handleDelete() and handleNext() ALLOW US TO UPDATE THE DATA REALTIME (DOM)
   // handleDelete() SHOWS US HOW TO DELETE AND REFLECT THAT REALTIME
   // handleNext9) SHOWS US HOW TO UPDATE A DATA IIN THE MODEL AND REFLECT IT REAL TIME
@@ -26,10 +28,8 @@ const Index = ({ orders, products }) => {
 
   // First sort orders based on order status
   orderList.sort(function (a, b) {
-    return b + a;
+    return a.status - b.status;
   });
-  // Then reverse the order so it shows the the orders that are still most active
-  orderList.reverse();
 
   const status = ['Preparing', 'On the way', 'Delivered'];
 
