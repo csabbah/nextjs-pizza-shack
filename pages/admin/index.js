@@ -4,7 +4,12 @@ import Image from 'next/image';
 import axios from 'axios';
 import Head from 'next/head';
 
-const Index = ({ orders, products }) => {
+import Add from '../../components/Add';
+import AddButton from '../../components/AddButton';
+
+const Index = ({ orders, products, admin }) => {
+  const [close, setClose] = useState(true);
+
   // IMPORTANT TO NOTE, handleDelete() and handleNext() ALLOW US TO UPDATE THE DATA REALTIME (DOM)
   // handleDelete() SHOWS US HOW TO DELETE AND REFLECT THAT REALTIME
   // handleNext9) SHOWS US HOW TO UPDATE A DATA IIN THE MODEL AND REFLECT IT REAL TIME
@@ -59,6 +64,9 @@ const Index = ({ orders, products }) => {
       <Head>
         <title>Admin</title>
       </Head>
+      {/* If logged in as admin, display the component */}
+      {admin && <AddButton setClose={setClose} />}
+      {!close && <Add setClose={setClose} />}
       <div className={styles.container}>
         <div className={styles.item}>
           <h1 className={styles.title}>Products</h1>
@@ -160,6 +168,7 @@ export const getServerSideProps = async (ctx) => {
   // If there is a request, we are going to take the cookie, else, make it an empty string
   const myCookie = ctx.res.req.cookies.token || '';
 
+  let admin = myCookie == process.env.TOKEN;
   // If token is not valid, redirect to login
   if (myCookie !== process.env.TOKEN) {
     return {
@@ -179,6 +188,7 @@ export const getServerSideProps = async (ctx) => {
     props: {
       orders: orders.data,
       products: products.data,
+      admin,
     },
   };
 };
