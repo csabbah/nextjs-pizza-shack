@@ -113,6 +113,7 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
           <input
             style={{ color: error[0] ? 'red' : '' }}
             type="file"
+            accept="image/png, image/jpeg"
             onChange={(e) => {
               setError([false, '']);
               setErrorExtra([false, '']);
