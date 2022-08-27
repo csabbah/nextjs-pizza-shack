@@ -73,6 +73,10 @@
   position: relative;
 }
 
+.default .counter {
+  display: none;
+}
+
 .counter {
   font-size: 15px;
   position: absolute;

@@ -22,12 +22,6 @@ const cartSlice = createSlice({
       state.total = 0;
     },
 
-    // deletePizza: (state, action) => {
-    //   state.products.filter((item) => item._id !== action.payload.pizzaId);
-    //   state.quantity -= 1;
-    //   state.total = 0;
-    // },
-
     deletePizza: (state, action) => ({
       ...state,
       products: state.products.filter(
@@ -35,13 +29,12 @@ const cartSlice = createSlice({
       ),
     }),
 
-    updateQuantity: (state, action) => {
+    updateCart: (state, action) => {
       state.quantity -= 1;
       state.total -= action.payload.price * action.payload.quantity;
     },
   },
 });
 
-export const { addProduct, reset, deletePizza, updateQuantity } =
-  cartSlice.actions;
+export const { addProduct, reset, deletePizza, updateCart } = cartSlice.actions;
 export default cartSlice.reducer;

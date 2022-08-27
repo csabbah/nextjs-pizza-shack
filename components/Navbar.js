@@ -75,7 +75,7 @@ const Navbar = () => {
       </div>
       <Link href="/cart">
         <div className={styles.item}>
-          <div className={styles.cart}>
+          <div className={quantity == 0 ? styles.default : styles.cart}>
             <Image
               style={{
                 filter: endpointName == '/cart' ? 'invert(1)' : '',
@@ -91,7 +91,13 @@ const Navbar = () => {
               }}
               className={styles.counter}
             >
-              {quantity}
+              <span
+                style={{
+                  color: endpointName == '/cart' ? 'white' : 'lightcoral',
+                }}
+              >
+                {quantity == 0 ? '' : quantity}
+              </span>
             </div>
           </div>
         </div>

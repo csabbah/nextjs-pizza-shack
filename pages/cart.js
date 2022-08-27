@@ -13,7 +13,7 @@ import {
 
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { reset, deletePizza, updateQuantity } from '../redux/cartSlice';
+import { reset, deletePizza, updateCart } from '../redux/cartSlice';
 
 import OrderDetail from '../components/OrderDetail';
 
@@ -51,7 +51,7 @@ const Cart = () => {
       if (product._id == pizzaId) {
         dispatch(deletePizza({ pizzaId: product._id }));
         dispatch(
-          updateQuantity({ price: product.price, quantity: product.quantity })
+          updateCart({ price: product.price, quantity: product.quantity })
         );
       }
     });
