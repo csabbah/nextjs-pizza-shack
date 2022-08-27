@@ -1,7 +1,6 @@
 .addBtn,
 .logout {
   padding: 10px;
-  background-color: #d1411e;
   width: 150px;
   border-radius: 10px;
   color: white;
@@ -10,6 +9,13 @@
   cursor: pointer;
 }
 
+.logout {
+  background-color: #d1411e;
+}
+
+.addBtn {
+  background-color: green;
+}
 .addBtn {
   margin-top: 50px;
   margin-left: 50px;

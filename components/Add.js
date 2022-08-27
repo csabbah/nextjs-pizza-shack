@@ -23,12 +23,14 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
     if (extra == null) {
       return setErrorExtra([true, 'Please fill Text and Price']);
     }
+
     if (extra.price && extra.text) {
       document.getElementById('price').value = '';
       document.getElementById('text').value = '';
 
       // Spread previous array and push the new extra
       setExtraOptions((prev) => [...prev, extra]);
+      setExtra(null);
     } else {
       return setErrorExtra([true, 'Please fill Text and Price']);
     }
@@ -132,7 +134,7 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
           />
         </div>
         <div className={styles.item}>
-          <label className={styles.label}>Desc</label>
+          <label className={styles.label}>Description</label>
           <textarea
             style={{ border: error[0] ? '2px solid red' : '' }}
             className={styles.textarea}
@@ -204,7 +206,10 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
               name="price"
               onChange={(e) => handleExtraInput(e)}
             />
-            <button className={styles.extraButton} onClick={handleExtra}>
+            <button
+              className={styles.extraButton}
+              onClick={() => handleExtra()}
+            >
               Add
             </button>
           </div>

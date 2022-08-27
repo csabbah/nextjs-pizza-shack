@@ -73,6 +73,10 @@
   position: relative;
 }
 
+.default {
+  cursor: pointer;
+}
+
 .default .counter {
   display: none;
 }

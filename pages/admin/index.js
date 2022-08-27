@@ -12,8 +12,6 @@ const Index = ({ orders, products }) => {
   const router = useRouter();
   const [close, setClose] = useState(true);
 
-  // Then reverse the order so it shows the the orders that are still most active
-
   // IMPORTANT TO NOTE, handleDelete() and handleNext() ALLOW US TO UPDATE THE DATA REALTIME (DOM)
   // handleDelete() SHOWS US HOW TO DELETE AND REFLECT THAT REALTIME
   // handleNext9) SHOWS US HOW TO UPDATE A DATA IIN THE MODEL AND REFLECT IT REAL TIME
@@ -100,6 +98,7 @@ const Index = ({ orders, products }) => {
           setPizzaList={setPizzaList}
         />
       )}
+
       <div className={styles.container}>
         <div className={styles.item}>
           <h1 className={styles.title}>Products</h1>
@@ -130,7 +129,6 @@ const Index = ({ orders, products }) => {
                     <td className={styles.td}>{product.title}</td>
                     <td className={styles.td}>${product.prices[0]}</td>
                     <td className={styles.td}>
-                      <button className={styles.button}>Edit</button>
                       <button
                         className={styles.button}
                         onClick={() => handleDelete(product._id)}
