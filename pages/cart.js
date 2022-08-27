@@ -13,7 +13,7 @@ import {
 
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { reset } from '../redux/cartSlice';
+import { reset, deletePizza, updateQuantity } from '../redux/cartSlice';
 
 import OrderDetail from '../components/OrderDetail';
 
@@ -44,6 +44,17 @@ const Cart = () => {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const handleDelete = async (pizzaId) => {
+    cart.products.forEach((product) => {
+      if (product._id == pizzaId) {
+        dispatch(deletePizza({ pizzaId: product._id }));
+        dispatch(
+          updateQuantity({ price: product.price, quantity: product.quantity })
+        );
+      }
+    });
   };
 
   // Custom component to wrap the PayPalButtons and handle currency changes
@@ -126,6 +137,7 @@ const Cart = () => {
                   <th>Price</th>
                   <th>Quantity</th>
                   <th>Total</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -164,6 +176,14 @@ const Cart = () => {
                         <span className={styles.total}>
                           ${pizza.price * pizza.quantity}
                         </span>
+                      </td>
+                      <td>
+                        <button
+                          className={styles.btn}
+                          onClick={() => handleDelete(pizza._id)}
+                        >
+                          X
+                        </button>
                       </td>
                     </tr>
                   );
