@@ -16,6 +16,8 @@ const cartSlice = createSlice({
       // Add to payload the price and the quantity selected
       state.total += action.payload.price * parseInt(action.payload.quantity);
     },
+
+    // Increment quantity
     updateProductQuantity: (state, action) => {
       state.products.forEach((product) => {
         if (product._id == action.payload.pizzaId) {
@@ -24,6 +26,17 @@ const cartSlice = createSlice({
       });
 
       state.total += action.payload.price * parseInt(action.payload.quantity);
+    },
+
+    // Decrement quantity
+    updateProductQuantityDec: (state, action) => {
+      state.products.forEach((product) => {
+        if (product._id == action.payload.pizzaId) {
+          product.quantity -= parseInt(action.payload.quantity);
+        }
+      });
+
+      state.total -= action.payload.price * parseInt(action.payload.quantity);
     },
 
     reset: (state) => {
@@ -52,5 +65,6 @@ export const {
   deletePizza,
   updateCart,
   updateProductQuantity,
+  updateProductQuantityDec,
 } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -3,11 +3,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  addProduct,
-  updateProductQuantity,
-  updateCart2,
-} from '../../redux/cartSlice';
+import { addProduct, updateProductQuantity } from '../../redux/cartSlice';
 
 const Product = ({ pizza }) => {
   const cart = useSelector((state) => state.cart);

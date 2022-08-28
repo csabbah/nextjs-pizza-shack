@@ -13,7 +13,13 @@ import {
 
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { reset, deletePizza, updateCart } from '../redux/cartSlice';
+import {
+  reset,
+  deletePizza,
+  updateCart,
+  updateProductQuantity,
+  updateProductQuantityDec,
+} from '../redux/cartSlice';
 
 import OrderDetail from '../components/OrderDetail';
 
@@ -55,6 +61,28 @@ const Cart = () => {
         );
       }
     });
+  };
+
+  const handleUpdate = (pizza, pizzaId, price) => {
+    dispatch(
+      updateProductQuantity({
+        ...pizza,
+        pizzaId: pizzaId,
+        quantity: 1,
+        price,
+      })
+    );
+  };
+
+  const handleUpdateDec = (pizza, pizzaId, price) => {
+    dispatch(
+      updateProductQuantityDec({
+        ...pizza,
+        pizzaId: pizzaId,
+        quantity: 1,
+        price,
+      })
+    );
   };
 
   // Custom component to wrap the PayPalButtons and handle currency changes
@@ -170,6 +198,25 @@ const Cart = () => {
                       <td>
                         <span className={styles.quantity}>
                           {pizza.quantity}
+                          <Image
+                            src={'/img/arrow.webp'}
+                            width={30}
+                            height={30}
+                            alt="Up Arrow"
+                            onClick={() =>
+                              handleUpdate(pizza, pizza._id, pizza.price)
+                            }
+                          />
+                          <Image
+                            className={styles.downArrow}
+                            src={'/img/arrow.webp'}
+                            width={30}
+                            height={30}
+                            alt="Down Arrow"
+                            onClick={() =>
+                              handleUpdateDec(pizza, pizza._id, pizza.price)
+                            }
+                          />
                         </span>
                       </td>
                       <td>

@@ -70,6 +70,19 @@
   text-align: center;
   cursor: pointer;
 }
+
+.quantity {
+  display: flex;
+  align-items: center;
+}
+
+.quantity {
+  cursor: pointer;
+}
+
+.downArrow {
+  transform: scaleY(-1);
+}
 @media screen and (max-width: 1142px) {
   .container {
     flex-direction: column;
