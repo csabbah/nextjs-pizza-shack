@@ -71,12 +71,19 @@ const Product = ({ pizza }) => {
         updateProductQuantity({
           ...pizza,
           pizzaId: pizza._id,
-          quantity,
-          price,
+          quantity: parseInt(quantity),
+          price: parseInt(price),
         })
       );
     } else {
-      dispatch(addProduct({ ...pizza, chosenExtras, price, quantity }));
+      dispatch(
+        addProduct({
+          ...pizza,
+          chosenExtras,
+          quantity: parseInt(quantity),
+          price: parseInt(price),
+        })
+      );
     }
   };
 

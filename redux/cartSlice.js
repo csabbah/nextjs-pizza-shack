@@ -14,7 +14,7 @@ const cartSlice = createSlice({
       state.products.push(action.payload);
       state.quantity += 1;
       // Add to payload the price and the quantity selected
-      state.total += action.payload.price * action.payload.quantity;
+      state.total += action.payload.price * parseInt(action.payload.quantity);
     },
     updateProductQuantity: (state, action) => {
       state.products.forEach((product) => {
@@ -22,7 +22,8 @@ const cartSlice = createSlice({
           product.quantity += parseInt(action.payload.quantity);
         }
       });
-      state.total += action.payload.price * action.payload.quantity;
+
+      state.total += action.payload.price * parseInt(action.payload.quantity);
     },
 
     reset: (state) => {
