@@ -65,6 +65,7 @@ const Product = ({ pizza }) => {
   });
 
   const handleClick = () => {
+    // If the product already exists in the cart, then update the quantity instead of adding the entire product again
     if (existingProd) {
       dispatch(
         updateProductQuantity({

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../styles/Add.module.css';
 import axios from 'axios';
 
@@ -13,26 +13,43 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
   const [error, setError] = useState([false, '']);
   const [errorExtra, setErrorExtra] = useState([false, '']);
 
+  const [existingExtra, setExistingExtra] = useState(false);
+
   const handleExtraInput = (e) => {
     setError([false, '']);
     setErrorExtra([false, '']);
     setExtra({ ...extra, [e.target.name]: e.target.value });
   };
 
-  const handleExtra = (e) => {
-    if (extra == null) {
-      return setErrorExtra([true, 'Please fill Text and Price']);
+  useEffect(() => {
+    if (!extraOptions.length == 0 && extra !== null) {
+      extraOptions.forEach((item) => {
+        if (item.text == extra.text && item.price == extra.price) {
+          return setExistingExtra(true);
+        }
+        setExistingExtra(false);
+      });
     }
+  });
 
-    if (extra.price && extra.text) {
-      document.getElementById('price').value = '';
-      document.getElementById('text').value = '';
-
-      // Spread previous array and push the new extra
-      setExtraOptions((prev) => [...prev, extra]);
-      setExtra(null);
+  const handleExtra = (e) => {
+    if (existingExtra) {
+      setErrorExtra([true, 'Extra already exist!']);
     } else {
-      return setErrorExtra([true, 'Please fill Text and Price']);
+      if (extra == null) {
+        return setErrorExtra([true, 'Please fill Text and Price']);
+      }
+
+      if (extra.price && extra.text) {
+        document.getElementById('price').value = '';
+        document.getElementById('text').value = '';
+
+        // Spread previous array and push the new extra
+        setExtraOptions((prev) => [...prev, extra]);
+        setExtra(null);
+      } else {
+        return setErrorExtra([true, 'Please fill Text and Price']);
+      }
     }
   };
 
