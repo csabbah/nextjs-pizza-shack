@@ -1,11 +1,17 @@
 import styles from '../../styles/Product.module.css';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { addProduct } from '../../redux/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addProduct,
+  updateProductQuantity,
+  updateCart2,
+} from '../../redux/cartSlice';
 
 const Product = ({ pizza }) => {
+  const cart = useSelector((state) => state.cart);
+
   // This variable allows us to dispatch our action (update state)
   const dispatch = useDispatch();
 
@@ -43,8 +49,34 @@ const Product = ({ pizza }) => {
     }
   };
 
+  const [existingProd, setExistingProd] = useState(false);
+
+  // On page load, check the cart and make sure that the product the user is viewing (via component)
+  // Is not already in their cart, if it is, simply update the quantity of it instead (as seen in handleClick)
+  useEffect(() => {
+    if (!cart.products.length == 0) {
+      cart.products.forEach((product) => {
+        if (product._id == pizza._id) {
+          return setExistingProd(true);
+        }
+        setExistingProd(false);
+      });
+    }
+  });
+
   const handleClick = () => {
-    dispatch(addProduct({ ...pizza, chosenExtras, price, quantity }));
+    if (existingProd) {
+      dispatch(
+        updateProductQuantity({
+          ...pizza,
+          pizzaId: pizza._id,
+          quantity,
+          price,
+        })
+      );
+    } else {
+      dispatch(addProduct({ ...pizza, chosenExtras, price, quantity }));
+    }
   };
 
   return (

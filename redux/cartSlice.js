@@ -16,6 +16,15 @@ const cartSlice = createSlice({
       // Add to payload the price and the quantity selected
       state.total += action.payload.price * action.payload.quantity;
     },
+    updateProductQuantity: (state, action) => {
+      state.products.forEach((product) => {
+        if (product._id == action.payload.pizzaId) {
+          product.quantity += parseInt(action.payload.quantity);
+        }
+      });
+      state.total += action.payload.price * action.payload.quantity;
+    },
+
     reset: (state) => {
       state.products = [];
       state.quantity = 0;
@@ -36,5 +45,11 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addProduct, reset, deletePizza, updateCart } = cartSlice.actions;
+export const {
+  addProduct,
+  reset,
+  deletePizza,
+  updateCart,
+  updateProductQuantity,
+} = cartSlice.actions;
 export default cartSlice.reducer;
