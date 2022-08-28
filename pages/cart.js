@@ -74,15 +74,26 @@ const Cart = () => {
     );
   };
 
-  const handleUpdateDec = (pizza, pizzaId, price) => {
-    dispatch(
-      updateProductQuantityDec({
-        ...pizza,
-        pizzaId: pizzaId,
-        quantity: 1,
-        price,
-      })
-    );
+  const handleUpdateDec = (pizza, pizzaId, price, quantity) => {
+    if (quantity == 1) {
+      cart.products.forEach((product) => {
+        if (product._id == pizzaId) {
+          dispatch(deletePizza({ pizzaId: product._id }));
+          dispatch(
+            updateCart({ price: product.price, quantity: product.quantity })
+          );
+        }
+      });
+    } else {
+      dispatch(
+        updateProductQuantityDec({
+          ...pizza,
+          pizzaId: pizzaId,
+          quantity: 1,
+          price,
+        })
+      );
+    }
   };
 
   // Custom component to wrap the PayPalButtons and handle currency changes
@@ -196,7 +207,7 @@ const Cart = () => {
                         <span className={styles.price}>${pizza.price}</span>
                       </td>
                       <td>
-                        <span className={styles.quantity}>
+                        <span id="prodQuantity" className={styles.quantity}>
                           {pizza.quantity}
                           <Image
                             src={'/img/arrow.webp'}
@@ -214,7 +225,12 @@ const Cart = () => {
                             height={30}
                             alt="Down Arrow"
                             onClick={() =>
-                              handleUpdateDec(pizza, pizza._id, pizza.price)
+                              handleUpdateDec(
+                                pizza,
+                                pizza._id,
+                                pizza.price,
+                                pizza.quantity
+                              )
                             }
                           />
                         </span>
