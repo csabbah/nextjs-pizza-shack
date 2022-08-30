@@ -19,6 +19,8 @@ const Product = ({ pizza }) => {
   // Initial quantity is set to 1
   const [quantity, setQuantity] = useState(1);
 
+  const [error, setError] = useState(false);
+
   const changePrice = (number) => {
     setPrice(price + number);
   };
@@ -60,28 +62,36 @@ const Product = ({ pizza }) => {
   });
 
   const handleClick = () => {
-    // If the product already exists in the cart, then update the quantity instead of adding the entire product again
-    if (existingProd) {
-      dispatch(
-        updateProductQuantity({
-          ...pizza,
-          pizzaSize,
-          pizzaId: pizza._id,
-          quantity: parseInt(quantity),
-          price: parseInt(price),
-        })
-      );
+    if (quantity < 1) {
+      setError(true);
     } else {
-      dispatch(
-        addProduct({
-          ...pizza,
-          chosenExtras,
-          pizzaSize,
-          quantity: parseInt(quantity),
-          price: parseInt(price),
-        })
-      );
+      // If the product already exists in the cart, then update the quantity instead of adding the entire product again
+      if (existingProd) {
+        dispatch(
+          updateProductQuantity({
+            ...pizza,
+            pizzaSize,
+            pizzaId: pizza._id,
+            quantity: parseInt(quantity),
+            price: parseInt(price),
+          })
+        );
+      } else {
+        dispatch(
+          addProduct({
+            ...pizza,
+            chosenExtras,
+            pizzaSize,
+            quantity: parseInt(quantity),
+            price: parseInt(price),
+          })
+        );
+      }
     }
+  };
+
+  const handleChange = () => {
+    setError(false);
   };
 
   return (
@@ -98,7 +108,10 @@ const Product = ({ pizza }) => {
         <h3 className={styles.choose}>Choose your size:</h3>
         <div className={styles.sizes}>
           <div
-            onClick={() => handleSize(0)}
+            onClick={() => {
+              handleSize(0);
+              handleChange();
+            }}
             className={styles.size}
             style={{ opacity: pizzaSize == 0 ? '1' : '0.4' }}
           >
@@ -106,7 +119,10 @@ const Product = ({ pizza }) => {
             <span className={styles.sizeLabel}>Small</span>
           </div>
           <div
-            onClick={() => handleSize(1)}
+            onClick={() => {
+              handleSize(1);
+              handleChange();
+            }}
             className={styles.size}
             style={{ opacity: pizzaSize == 1 ? '1' : '0.4' }}
           >
@@ -114,7 +130,10 @@ const Product = ({ pizza }) => {
             <span className={styles.sizeLabel}>Medium</span>
           </div>
           <div
-            onClick={() => handleSize(2)}
+            onClick={() => {
+              handleSize(2);
+              handleChange();
+            }}
             className={styles.size}
             style={{ opacity: pizzaSize == 2 ? '1' : '0.4' }}
           >
@@ -130,7 +149,10 @@ const Product = ({ pizza }) => {
             return (
               <div key={option._id} className={styles.option}>
                 <input
-                  onChange={(e) => handleExtras(e, option)}
+                  onChange={(e) => {
+                    handleExtras(e, option);
+                    handleChange();
+                  }}
                   type="checkbox"
                   id={option.text}
                   name={option.text}
@@ -152,6 +174,7 @@ const Product = ({ pizza }) => {
           <button className={styles.button} onClick={() => handleClick()}>
             Add to Cart
           </button>
+          {error && 'Please add a quantity of 1 or higher'}
         </div>
       </div>
     </div>

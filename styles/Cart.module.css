@@ -75,9 +75,12 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  position: relative;
 }
 
 .arrowWrapper {
+  position: absolute;
+  left: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -104,6 +107,11 @@
 }
 
 @media screen and (max-width: 655px) {
+  .arrowWrapper {
+    position: relative;
+    left: 10px;
+  }
+
   .container {
     padding: 0;
   }
@@ -122,24 +130,40 @@
     margin-top: 20px;
   }
 
+  .size::before {
+    content: 'Size: ';
+    font-weight: bold;
+    margin-right: 4px;
+  }
+
+  .name::before {
+    content: 'Pizza: ';
+    font-weight: bold;
+    margin-right: 4px;
+  }
+
   .total::before {
     content: 'Total: ';
     font-weight: bold;
+    margin-right: 4px;
   }
 
   .quantity::before {
     content: 'Quantity: ';
     font-weight: bold;
+    margin-right: 4px;
   }
 
   .price::before {
     content: 'Price: ';
     font-weight: bold;
+    margin-right: 4px;
   }
 
   .extras::before {
     content: 'Extras: ';
     font-weight: bold;
+    margin-right: 4px;
   }
 
   .tr {
