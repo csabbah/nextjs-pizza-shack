@@ -7,8 +7,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(128, 128, 128, 0.45);
+  background-color: rgba(245, 240, 240, 0.52);
   z-index: 999;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .wrapper {
@@ -21,7 +23,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.2);
 }
 
 .closeBtn {

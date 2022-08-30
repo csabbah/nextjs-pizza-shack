@@ -41,8 +41,7 @@
   font-size: 16px;
 }
 
-.button,
-.nextStageBtn {
+.button {
   font-size: 16px;
   border: none;
   color: white;
@@ -54,6 +53,10 @@
 
 .nextStageBtn {
   background-color: green;
+}
+
+.deleteBtn {
+  background-color: red;
 }
 
 .button:first-child {

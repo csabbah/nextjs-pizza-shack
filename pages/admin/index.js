@@ -31,7 +31,7 @@ const Index = ({ orders, products }) => {
     return a.status - b.status;
   });
 
-  const status = ['Preparing', 'On the way', 'Delivered'];
+  const status = ['Preparing', 'On the way', 'Delivered', 'Completed'];
 
   const handleDelete = async (id) => {
     try {
@@ -47,9 +47,19 @@ const Index = ({ orders, products }) => {
     }
   };
 
+  const handleOrderDelete = async (id) => {
+    try {
+      const res = await axios.delete(`http://localhost:3000/api/orders/${id}`);
+
+      setOrderList(orderList.filter((order) => order._id !== id));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handleNext = async (id, order) => {
     // If order.status is 2, that means it's delivered so don't increment further
-    if (order.status == 2) {
+    if (order.status == 3) {
     } else {
       // Extract the current status from the order
       const currentStatus = order.status;
@@ -178,28 +188,55 @@ const Index = ({ orders, products }) => {
             ) : (
               orderList.map((order) => {
                 return (
-                  <tbody
-                    key={order._id}
-                    style={{ opacity: order.status == 2 ? '0.4' : '' }}
-                  >
+                  <tbody key={order._id}>
                     <tr className={styles.trTitle}>
-                      <td className={styles.td}>{order._id.slice(0, 5)}...</td>
-                      <td className={styles.td}>{order.customer}</td>
-                      <td className={styles.td}>${order.total}</td>
-                      <td className={styles.td}>
+                      <td
+                        style={{ opacity: order.status == 3 ? '0.4' : '' }}
+                        className={styles.td}
+                      >
+                        {order._id.slice(0, 5)}...
+                      </td>
+                      <td
+                        style={{ opacity: order.status == 3 ? '0.4' : '' }}
+                        className={styles.td}
+                      >
+                        {order.customer}
+                      </td>
+                      <td
+                        style={{ opacity: order.status == 3 ? '0.4' : '' }}
+                        className={styles.td}
+                      >
+                        ${order.total}
+                      </td>
+                      <td
+                        style={{ opacity: order.status == 3 ? '0.4' : '' }}
+                        className={styles.td}
+                      >
                         {order.method == 1 ? 'PayPal' : 'Cash'}
                       </td>
-                      <td className={styles.td}>{status[order.status]}</td>
+                      <td
+                        style={{ opacity: order.status == 3 ? '0.4' : '' }}
+                        className={styles.td}
+                      >
+                        {status[order.status]}
+                      </td>
                       <td className={styles.td}>
                         <button
-                          // Disable button if order status is 2 (2 == delivered)
+                          // Disable button if order status is 3 (2 == delivered)
                           style={{
-                            pointerEvents: order.status == 2 ? 'none' : 'all',
+                            pointerEvents: order.status == 3 ? 'none' : 'all',
+                            display: order.status == 3 ? 'none' : '',
                           }}
-                          className={styles.nextStageBtn}
+                          className={`${styles.nextStageBtn} ${styles.button}`}
                           onClick={() => handleNext(order._id, order)}
                         >
                           Next Stage
+                        </button>
+                        <button
+                          className={`${styles.deleteBtn} ${styles.button}`}
+                          onClick={() => handleOrderDelete(order._id)}
+                        >
+                          Delete
                         </button>
                       </td>
                     </tr>

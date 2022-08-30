@@ -9,7 +9,9 @@ const handler = async (req, res) => {
   const {
     method,
     query: { id },
+    cookies,
   } = req;
+  const token = cookies.token;
 
   if (method === 'GET') {
     try {
@@ -33,6 +35,16 @@ const handler = async (req, res) => {
     }
   }
   if (method == 'DELETE') {
+    if (!token || token !== process.env.TOKEN) {
+      return res.status(401).json('Not authenticated');
+    }
+
+    try {
+      await Order.findByIdAndDelete(id);
+      res.status(201).json('The product has been deleted!');
+    } catch (err) {
+      res.status(500).json(err);
+    }
   }
 };
 

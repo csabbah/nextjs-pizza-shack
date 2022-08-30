@@ -41,7 +41,7 @@ const Order = ({ order }) => {
   return (
     <>
       <Head>
-        <title>Active Order</title>
+        <title></title>
       </Head>
       <div className={styles.container}>
         <div className={styles.left}>

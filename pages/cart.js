@@ -332,7 +332,6 @@ const Cart = () => {
           </div>
           {cash && (
             <OrderDetail
-              size={size}
               setOpen={setOpen}
               setCash={setCash}
               total={cart.total}

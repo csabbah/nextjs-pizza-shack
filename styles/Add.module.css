@@ -8,6 +8,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .wrapper {
@@ -19,7 +21,7 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.2);
 }
 
 .close {
