@@ -216,21 +216,24 @@ const Cart = () => {
                       </td>
                       <td>
                         <span className={styles.extras}>
-                          {pizza.extraOptions.length == 0
+                          {pizza.chosenExtras.length == 0
                             ? 'No Extras'
-                            : pizza.extraOptions.map((extra) => {
+                            : pizza.chosenExtras.map((extra) => {
                                 return (
                                   <span key={extra._id}>
                                     {extra.text}
+                                    <span className={styles.extraPrice}>
+                                      (+${extra.price})
+                                    </span>
                                     {
                                       // Only include 'and' to the 2nd last name
-                                      pizza.extraOptions.length > 1
-                                        ? pizza.extraOptions.indexOf(extra) ==
-                                          pizza.extraOptions.length - 2
+                                      pizza.chosenExtras.length > 1
+                                        ? pizza.chosenExtras.indexOf(extra) ==
+                                          pizza.chosenExtras.length - 2
                                           ? ` and `
                                           : // add a comma in between names (starting at when a 3rd user is added and beyond)
-                                          pizza.extraOptions.indexOf(extra) !==
-                                            pizza.extraOptions.length - 1
+                                          pizza.chosenExtras.indexOf(extra) !==
+                                            pizza.chosenExtras.length - 1
                                           ? `, `
                                           : ''
                                         : ''

@@ -91,13 +91,7 @@ const Navbar = () => {
               }}
               className={styles.counter}
             >
-              <span
-                style={{
-                  color: endpointName == '/cart' ? 'white' : 'lightcoral',
-                }}
-              >
-                {quantity == 0 ? '' : quantity}
-              </span>
+              <span>{quantity == 0 ? '' : quantity}</span>
             </div>
           </div>
         </div>

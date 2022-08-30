@@ -19,27 +19,27 @@ const Product = ({ pizza }) => {
   // Initial quantity is set to 1
   const [quantity, setQuantity] = useState(1);
 
+  const changePrice = (number) => {
+    setPrice(price + number);
+  };
+
   // This handles the chosen size of pizza (each size of the pizza is a different al)
   const handleSize = (sizeIndex) => {
+    const difference = pizza.prices[sizeIndex] - pizza.prices[pizzaSize];
     SetPizzaSize(sizeIndex);
-    setPrice(pizza.prices[sizeIndex]);
+    changePrice(difference);
   };
 
   // This function handles the extras options
   // Adding/subtracting from price and adding/removing chosen options to an array
   const handleExtras = (e, option) => {
     const checked = e.target.checked;
+
     if (checked) {
-      // If extra is checked, add it to the active price value
-      setPrice(price + option.price);
-
-      // Add the chosen extras to the state array
-      setChosenExtras([...chosenExtras, option]);
+      changePrice(option.price);
+      setChosenExtras((prev) => [...prev, option]);
     } else {
-      // If extra is unchecked, minus it from the active price value
-      setPrice(price - option.price);
-
-      // Remove the extra that was unchecked
+      changePrice(-option.price);
       setChosenExtras(chosenExtras.filter((extra) => extra._id !== option._id));
     }
   };
