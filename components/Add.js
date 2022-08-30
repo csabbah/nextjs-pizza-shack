@@ -6,6 +6,7 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState(null);
   const [desc, setDesc] = useState(null);
+  const [sizes, setSizes] = useState([0, 1, 2]);
   const [prices, setPrices] = useState([0, 0, 0]);
   const [extraOptions, setExtraOptions] = useState([]);
   const [extra, setExtra] = useState(null);
@@ -81,6 +82,7 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
         const { url } = uploadRes.data;
 
         const newProduct = {
+          sizes,
           title,
           desc,
           prices,

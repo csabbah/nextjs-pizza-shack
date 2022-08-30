@@ -155,6 +155,18 @@ const Cart = () => {
     );
   };
 
+  const returnSize = (index) => {
+    if (index == 0) {
+      return 'Small';
+    }
+    if (index == 1) {
+      return 'Medium';
+    }
+    if (index == 2) {
+      return 'Large';
+    }
+  };
+
   return (
     <>
       <Head>
@@ -171,6 +183,7 @@ const Cart = () => {
               <thead>
                 <tr className={styles.trTitle}>
                   <th>Product</th>
+                  <th>Size</th>
                   <th>Name</th>
                   <th>Extras</th>
                   <th>Price</th>
@@ -194,13 +207,37 @@ const Cart = () => {
                         </div>
                       </td>
                       <td>
+                        <span className={styles.size}>
+                          {returnSize(pizza.pizzaSize)}
+                        </span>
+                      </td>
+                      <td>
                         <span className={styles.name}>{pizza.title}</span>
                       </td>
                       <td>
                         <span className={styles.extras}>
-                          {pizza.extraOptions.map((extra) => {
-                            return <span key={extra._id}>{extra.text}, </span>;
-                          })}
+                          {pizza.extraOptions.length == 0
+                            ? 'No Extras'
+                            : pizza.extraOptions.map((extra) => {
+                                return (
+                                  <span key={extra._id}>
+                                    {extra.text}
+                                    {
+                                      // Only include 'and' to the 2nd last name
+                                      pizza.extraOptions.length > 1
+                                        ? pizza.extraOptions.indexOf(extra) ==
+                                          pizza.extraOptions.length - 2
+                                          ? ` and `
+                                          : // add a comma in between names (starting at when a 3rd user is added and beyond)
+                                          pizza.extraOptions.indexOf(extra) !==
+                                            pizza.extraOptions.length - 1
+                                          ? `, `
+                                          : ''
+                                        : ''
+                                    }
+                                  </span>
+                                );
+                              })}
                         </span>
                       </td>
                       <td>
@@ -295,6 +332,7 @@ const Cart = () => {
           </div>
           {cash && (
             <OrderDetail
+              size={size}
               setOpen={setOpen}
               setCash={setCash}
               total={cart.total}

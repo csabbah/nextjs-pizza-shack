@@ -12,7 +12,6 @@ const Product = ({ pizza }) => {
   const dispatch = useDispatch();
 
   const [pizzaSize, SetPizzaSize] = useState(0);
-
   // Remember, pizza.prices is an array of numbers
   const [price, setPrice] = useState(pizza.prices[0]);
   // Initial extras are an empty array
@@ -66,6 +65,7 @@ const Product = ({ pizza }) => {
       dispatch(
         updateProductQuantity({
           ...pizza,
+          pizzaSize,
           pizzaId: pizza._id,
           quantity: parseInt(quantity),
           price: parseInt(price),
@@ -76,6 +76,7 @@ const Product = ({ pizza }) => {
         addProduct({
           ...pizza,
           chosenExtras,
+          pizzaSize,
           quantity: parseInt(quantity),
           price: parseInt(price),
         })
