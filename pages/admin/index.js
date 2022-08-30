@@ -112,34 +112,46 @@ const Index = ({ orders, products }) => {
                 <th>Action</th>
               </tr>
             </thead>
-            {pizzaList.map((product) => {
-              return (
-                <tbody className={styles.tbody} key={product._id}>
-                  <tr className={styles.trTitle}>
-                    <td className={styles.td}>
-                      <Image
-                        src={product.img}
-                        width={50}
-                        height={50}
-                        objectFit="cover"
-                        alt=""
-                      />
-                    </td>
-                    <td className={styles.td}>{product._id.slice(0, 5)}...</td>
-                    <td className={styles.td}>{product.title}</td>
-                    <td className={styles.td}>${product.prices[0]}</td>
-                    <td className={styles.td}>
-                      <button
-                        className={styles.button}
-                        onClick={() => handleDelete(product._id)}
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              );
-            })}
+            {pizzaList.length == 0 ? (
+              <tbody>
+                <td>#</td>
+                <td>No Data</td>
+                <td>No Data</td>
+                <td>No Data</td>
+                <td>No Data</td>
+              </tbody>
+            ) : (
+              pizzaList.map((product) => {
+                return (
+                  <tbody className={styles.tbody} key={product._id}>
+                    <tr className={styles.trTitle}>
+                      <td className={styles.td}>
+                        <Image
+                          src={product.img}
+                          width={50}
+                          height={50}
+                          objectFit="cover"
+                          alt=""
+                        />
+                      </td>
+                      <td className={styles.td}>
+                        {product._id.slice(0, 5)}...
+                      </td>
+                      <td className={styles.td}>{product.title}</td>
+                      <td className={styles.td}>${product.prices[0]}</td>
+                      <td className={styles.td}>
+                        <button
+                          className={styles.button}
+                          onClick={() => handleDelete(product._id)}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                );
+              })
+            )}
           </table>
         </div>
         <div className={styles.item}>
@@ -155,36 +167,46 @@ const Index = ({ orders, products }) => {
                 <th>Action</th>
               </tr>
             </thead>
-            {orderList.map((order) => {
-              return (
-                <tbody
-                  key={order._id}
-                  style={{ opacity: order.status == 2 ? '0.4' : '' }}
-                >
-                  <tr className={styles.trTitle}>
-                    <td className={styles.td}>{order._id.slice(0, 5)}...</td>
-                    <td className={styles.td}>{order.customer}</td>
-                    <td className={styles.td}>${order.total}</td>
-                    <td className={styles.td}>
-                      {order.method == 1 ? 'PayPal' : 'Cash'}
-                    </td>
-                    <td className={styles.td}>{status[order.status]}</td>
-                    <td className={styles.td}>
-                      <button
-                        // Disable button if order status is 2 (2 == delivered)
-                        style={{
-                          pointerEvents: order.status == 2 ? 'none' : 'all',
-                        }}
-                        className={styles.nextStageBtn}
-                        onClick={() => handleNext(order._id, order)}
-                      >
-                        Next Stage
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              );
-            })}
+            {orderList.length == 0 ? (
+              <tbody>
+                <td>#</td>
+                <td>No Data</td>
+                <td>No Data</td>
+                <td>No Data</td>
+                <td>No Data</td>
+              </tbody>
+            ) : (
+              orderList.map((order) => {
+                return (
+                  <tbody
+                    key={order._id}
+                    style={{ opacity: order.status == 2 ? '0.4' : '' }}
+                  >
+                    <tr className={styles.trTitle}>
+                      <td className={styles.td}>{order._id.slice(0, 5)}...</td>
+                      <td className={styles.td}>{order.customer}</td>
+                      <td className={styles.td}>${order.total}</td>
+                      <td className={styles.td}>
+                        {order.method == 1 ? 'PayPal' : 'Cash'}
+                      </td>
+                      <td className={styles.td}>{status[order.status]}</td>
+                      <td className={styles.td}>
+                        <button
+                          // Disable button if order status is 2 (2 == delivered)
+                          style={{
+                            pointerEvents: order.status == 2 ? 'none' : 'all',
+                          }}
+                          className={styles.nextStageBtn}
+                          onClick={() => handleNext(order._id, order)}
+                        >
+                          Next Stage
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                );
+              })
+            )}
           </table>
         </div>
       </div>
