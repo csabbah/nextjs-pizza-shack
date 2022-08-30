@@ -14,9 +14,6 @@
 }
 
 .addBtn {
-  background-color: green;
-}
-.addBtn {
   margin-top: 50px;
   margin-left: 50px;
   margin-right: 20px;
@@ -51,19 +48,10 @@
   user-select: none;
 }
 
-.nextStageBtn {
-  background-color: green;
-}
-
 .deleteBtn {
-  background-color: red;
+  background-color: crimson;
 }
 
 .button:first-child {
-  background-color: teal;
   margin-right: 10px;
-}
-
-.button:last-child {
-  background-color: crimson;
 }

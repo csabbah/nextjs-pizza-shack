@@ -3,6 +3,7 @@ import styles from '../../styles/Admin.module.css';
 import Image from 'next/image';
 import axios from 'axios';
 import Head from 'next/head';
+import Link from 'next/link';
 
 import Add from '../../components/Add';
 
@@ -150,12 +151,17 @@ const Index = ({ orders, products }) => {
                       <td className={styles.td}>{product.title}</td>
                       <td className={styles.td}>${product.prices[0]}</td>
                       <td className={styles.td}>
-                        <button
-                          className={styles.button}
-                          onClick={() => handleDelete(product._id)}
-                        >
-                          Delete
-                        </button>
+                        <span>
+                          <button
+                            className={`${styles.deleteBtn} ${styles.button}`}
+                            onClick={() => handleDelete(product._id)}
+                          >
+                            Delete
+                          </button>
+                          <Link href={`/product/${product._id}`} passHref>
+                            <button className={`${styles.button}`}>view</button>
+                          </Link>
+                        </span>
                       </td>
                     </tr>
                   </tbody>

@@ -74,14 +74,16 @@
 .quantity {
   display: flex;
   align-items: center;
-}
-
-.quantity {
   cursor: pointer;
 }
 
-.downArrow {
-  transform: scaleY(-1);
+.arrowWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin-left: 10px;
 }
 
 .extraPrice {

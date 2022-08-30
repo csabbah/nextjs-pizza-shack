@@ -249,30 +249,35 @@ const Cart = () => {
                       <td>
                         <span id="prodQuantity" className={styles.quantity}>
                           {pizza.quantity}
-                          <Image
-                            src={'/img/arrow.webp'}
-                            width={30}
-                            height={30}
-                            alt="Up Arrow"
-                            onClick={() =>
-                              handleUpdate(pizza, pizza._id, pizza.price)
-                            }
-                          />
-                          <Image
-                            className={styles.downArrow}
-                            src={'/img/arrow.webp'}
-                            width={30}
-                            height={30}
-                            alt="Down Arrow"
-                            onClick={() =>
-                              handleUpdateDec(
-                                pizza,
-                                pizza._id,
-                                pizza.price,
-                                pizza.quantity
-                              )
-                            }
-                          />
+                          <span className={styles.arrowWrapper}>
+                            <Image
+                              className={styles.upArrow}
+                              src={'/img/uArrow.png'}
+                              width={17}
+                              height={17}
+                              alt="Up Arrow"
+                              objectFit="contain"
+                              onClick={() =>
+                                handleUpdate(pizza, pizza._id, pizza.price)
+                              }
+                            />
+                            <Image
+                              className={styles.downArrow}
+                              src={'/img/dArrow.png'}
+                              width={17}
+                              height={17}
+                              alt="Down Arrow"
+                              objectFit="contain"
+                              onClick={() =>
+                                handleUpdateDec(
+                                  pizza,
+                                  pizza._id,
+                                  pizza.price,
+                                  pizza.quantity
+                                )
+                              }
+                            />
+                          </span>
                         </span>
                       </td>
                       <td>
