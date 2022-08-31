@@ -20,7 +20,7 @@ const cartSlice = createSlice({
     // Increment quantity
     updateProductQuantity: (state, action) => {
       state.products.forEach((product) => {
-        if (product._id == action.payload.pizzaId) {
+        if (product.customId == action.payload.pizzaId) {
           product.quantity += parseInt(action.payload.quantity);
         }
       });
@@ -31,7 +31,7 @@ const cartSlice = createSlice({
     // Decrement quantity
     updateProductQuantityDec: (state, action) => {
       state.products.forEach((product) => {
-        if (product._id == action.payload.pizzaId) {
+        if (product.customId == action.payload.pizzaId) {
           product.quantity -= parseInt(action.payload.quantity);
         }
       });
@@ -48,7 +48,7 @@ const cartSlice = createSlice({
     deletePizza: (state, action) => ({
       ...state,
       products: state.products.filter(
-        (item) => item._id !== action.payload.pizzaId
+        (item) => item.customId !== action.payload.pizzaId
       ),
     }),
 

@@ -21,6 +21,9 @@ const Product = ({ pizza }) => {
 
   const [error, setError] = useState(false);
 
+  const [customId, setCustomId] = useState();
+  const [randomNum, setRandomNum] = useState(Math.floor(Math.random() * 1000));
+
   const changePrice = (number) => {
     setPrice(price + number);
   };
@@ -46,47 +49,63 @@ const Product = ({ pizza }) => {
     }
   };
 
-  const [existingProd, setExistingProd] = useState(false);
+  // const [existingProd, setExistingProd] = useState(false);
 
-  // On page load, check the cart and make sure that the product the user is viewing (via component)
-  // Is not already in their cart, if it is, simply update the quantity of it instead (as seen in handleClick)
+  // // On page load, check the cart and make sure that the product the user is viewing (via component)
+  // // Is not already in their cart, if it is, simply update the quantity of it instead (as seen in handleClick)
   useEffect(() => {
-    if (!cart.products.length == 0) {
-      cart.products.forEach((product) => {
-        if (product._id == pizza._id) {
-          return setExistingProd(true);
-        }
-        setExistingProd(false);
-      });
-    }
-  });
+    setCustomId(`${pizza._id}${pizzaSize}${randomNum}`);
+
+    // if (!cart.products.length == 0) {
+    //   cart.products.forEach((product) => {
+    //     if (product.customId == customId) {
+    //       return setExistingProd(true);
+    //     }
+    //     setExistingProd(false);
+    //   });
+    // }
+  }, [pizzaSize, pizza._id, randomNum]);
+  // }, [cart, cart.products, pizza._id, pizzaSize, customId, setCustomId]);
 
   const handleClick = () => {
+    setRandomNum(Math.floor(Math.random() * 10000));
+    console.log(customId);
+
     if (quantity < 1) {
       setError(true);
     } else {
-      // If the product already exists in the cart, then update the quantity instead of adding the entire product again
-      if (existingProd) {
-        dispatch(
-          updateProductQuantity({
-            ...pizza,
-            pizzaSize,
-            pizzaId: pizza._id,
-            quantity: parseInt(quantity),
-            price: parseInt(price),
-          })
-        );
-      } else {
-        dispatch(
-          addProduct({
-            ...pizza,
-            chosenExtras,
-            pizzaSize,
-            quantity: parseInt(quantity),
-            price: parseInt(price),
-          })
-        );
-      }
+      dispatch(
+        addProduct({
+          ...pizza,
+          chosenExtras,
+          pizzaSize,
+          quantity: parseInt(quantity),
+          price: parseInt(price),
+          customId,
+        })
+      );
+      // // If the product already exists in the cart, then update the quantity instead of adding the entire product again
+      // if (existingProd) {
+      //   dispatch(
+      //     updateProductQuantity({
+      //       ...pizza,
+      //       customId,
+      //       pizzaId: pizza._id,
+      //       quantity: parseInt(quantity),
+      //       price: parseInt(price),
+      //     })
+      //   );
+      // } else {
+      //   dispatch(
+      //     addProduct({
+      //       ...pizza,
+      //       chosenExtras,
+      //       customId,
+      //       quantity: parseInt(quantity),
+      //       price: parseInt(price),
+      //     })
+      //   );
+      // }
     }
   };
 

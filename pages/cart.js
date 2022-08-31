@@ -54,8 +54,8 @@ const Cart = () => {
 
   const handleDelete = async (pizzaId) => {
     cart.products.forEach((product) => {
-      if (product._id == pizzaId) {
-        dispatch(deletePizza({ pizzaId: product._id }));
+      if (product.customId == pizzaId) {
+        dispatch(deletePizza({ pizzaId: product.customId }));
         dispatch(
           updateCart({ price: product.price, quantity: product.quantity })
         );
@@ -77,8 +77,8 @@ const Cart = () => {
   const handleUpdateDec = (pizza, pizzaId, price, quantity) => {
     if (quantity == 1) {
       cart.products.forEach((product) => {
-        if (product._id == pizzaId) {
-          dispatch(deletePizza({ pizzaId: product._id }));
+        if (product.customId == pizzaId) {
+          dispatch(deletePizza({ pizzaId: product.customId }));
           dispatch(
             updateCart({ price: product.price, quantity: product.quantity })
           );
@@ -178,6 +178,8 @@ const Cart = () => {
         </div>
       ) : (
         <div className={styles.container}>
+          {console.log(cart)}
+
           <div className={styles.left}>
             <table className={styles.table}>
               <thead>
@@ -195,7 +197,7 @@ const Cart = () => {
               <tbody>
                 {cart.products.map((pizza) => {
                   return (
-                    <tr className={styles.tr} key={pizza._id}>
+                    <tr className={styles.tr} key={pizza.customId}>
                       <td>
                         <div className={styles.imgContainer}>
                           <Image
@@ -258,7 +260,7 @@ const Cart = () => {
                               alt="Up Arrow"
                               objectFit="contain"
                               onClick={() =>
-                                handleUpdate(pizza, pizza._id, pizza.price)
+                                handleUpdate(pizza, pizza.customId, pizza.price)
                               }
                             />
                             <Image
@@ -271,7 +273,7 @@ const Cart = () => {
                               onClick={() =>
                                 handleUpdateDec(
                                   pizza,
-                                  pizza._id,
+                                  pizza.customId,
                                   pizza.price,
                                   pizza.quantity
                                 )
@@ -288,7 +290,7 @@ const Cart = () => {
                       <td>
                         <button
                           className={styles.btn}
-                          onClick={() => handleDelete(pizza._id)}
+                          onClick={() => handleDelete(pizza.customId)}
                         >
                           X
                         </button>
