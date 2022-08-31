@@ -1,5 +1,5 @@
 .container {
-  height: calc(70vh - 100px);
+  height: calc(80vh - 100px);
   background-color: lightcoral;
   overflow: hidden;
   position: relative;
@@ -40,12 +40,10 @@
 .imgContainer img,
 .arrowContainer img {
   object-fit: contain;
-  width: 80px !important;
-  height: 80px !important;
 }
 
 .arrowContainer:hover {
-  transform: scale(1.02);
+  transform: scale(1.03);
 }
 .arrowContainer:active {
   transform: scale(1);
@@ -70,18 +68,25 @@
 
 @media screen and (max-width: 1024px) {
   .container {
-    height: 70vh;
+    height: 90vh;
   }
 }
 
 @media screen and (max-width: 768px) {
   .container {
-    height: 60vh;
+    height: 80vh;
   }
 }
 
 @media screen and (max-width: 480px) {
   .container {
-    height: 50vh;
+    height: 60vh;
+  }
+
+  .arrowContainer {
+    width: 20%;
+    height: 15%;
+
+    bottom: -250px;
   }
 }

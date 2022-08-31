@@ -135,37 +135,37 @@
   .size::before {
     content: 'Size: ';
     font-weight: bold;
-    margin-right: 4px;
+    margin-right: 6px;
   }
 
   .name::before {
     content: 'Pizza: ';
     font-weight: bold;
-    margin-right: 4px;
+    margin-right: 6px;
   }
 
   .total::before {
     content: 'Total: ';
     font-weight: bold;
-    margin-right: 4px;
+    margin-right: 6px;
   }
 
   .quantity::before {
     content: 'Quantity: ';
     font-weight: bold;
-    margin-right: 4px;
+    margin-right: 6px;
   }
 
   .price::before {
     content: 'Price: ';
     font-weight: bold;
-    margin-right: 4px;
+    margin-right: 6px;
   }
 
   .extras::before {
     content: 'Extras: ';
     font-weight: bold;
-    margin-right: 4px;
+    margin-right: 6px;
   }
 
   .tr {

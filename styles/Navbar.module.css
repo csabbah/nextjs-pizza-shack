@@ -130,4 +130,8 @@
   .container {
     padding: 0px 30px;
   }
+
+  .container {
+    height: 70px;
+  }
 }

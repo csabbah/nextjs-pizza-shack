@@ -26,8 +26,7 @@ const Featured = () => {
       <div className={styles.container}>
         <div className={styles.arrowContainer}>
           <Image
-            width={30}
-            height={30}
+            layout="fill"
             src="/img/LeftA.png"
             alt="Left arrow"
             onClick={() => handleArrow('l')}
@@ -48,8 +47,7 @@ const Featured = () => {
 
         <div className={styles.arrowContainer}>
           <Image
-            width={30}
-            height={30}
+            layout="fill"
             src="/img/RightA.png"
             alt="Right arrow"
             onClick={() => handleArrow('r')}

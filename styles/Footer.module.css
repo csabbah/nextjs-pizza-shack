@@ -49,12 +49,16 @@
     text-align: center;
   }
 
-  .title {
+  .motto {
     font-size: 25px;
   }
 
+  .title {
+    font-size: 23px;
+  }
+
   .text {
-    font-size: 18px;
+    font-size: 17px;
   }
 }
 
@@ -71,12 +75,16 @@
     text-align: center;
   }
 
+  .motto {
+    font-size: 24px;
+  }
+
   .title {
-    font-size: 30px;
+    font-size: 22px;
   }
 
   .text {
-    font-size: 20px;
+    font-size: 16px;
   }
 }
 
@@ -93,11 +101,15 @@
     text-align: center;
   }
 
+  .motto {
+    font-size: 23px;
+  }
+
   .title {
-    font-size: 30px;
+    font-size: 21px;
   }
 
   .text {
-    font-size: 20px;
+    font-size: 15px;
   }
 }

@@ -20,12 +20,12 @@ const Footer = () => {
             <br /> NewYork, 85022
             <br /> (602) 867-1010
           </p>
-          <br></br>
           <p className={styles.text}>
             2356 K. Laquie Rd #235.
             <br /> NewYork, 85022
             <br /> (602) 867-1011
           </p>
+          <br></br>
         </div>
         <div className={styles.card}>
           <h1 className={styles.title}>WORKING HOURS</h1>
@@ -33,7 +33,6 @@ const Footer = () => {
             MONDAY UNTIL FRIDAY
             <br /> 9:00 – 22:00
           </p>
-          <br></br>
           <p className={styles.text}>
             SATURDAY - SUNDAY
             <br /> 12:00 – 24:00
