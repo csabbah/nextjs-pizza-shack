@@ -1,6 +1,6 @@
 import styles from '../styles/Featured.module.css';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Featured = () => {
   const image = [
@@ -11,15 +11,29 @@ const Featured = () => {
 
   const [index, setIndex] = useState(0);
 
+  const [autoScroll, setAutoScroll] = useState(true);
+
   const handleArrow = (direction) => {
     if (direction === 'l') {
       setIndex(index !== 0 ? index - 1 : 2);
+      setAutoScroll(false);
     }
 
     if (direction === 'r') {
       setIndex(index !== 2 ? index + 1 : 0);
+      setAutoScroll(false);
     }
   };
+
+  useEffect(() => {
+    if (autoScroll) {
+      const interval = setInterval(() => {
+        setIndex(index !== 2 ? index + 1 : 0);
+      }, 3000);
+
+      return () => clearInterval(interval);
+    }
+  });
 
   return (
     <div style={{ position: 'relative' }}>
@@ -63,6 +77,7 @@ const Featured = () => {
               className={styles.indexes}
               onClick={() => {
                 setIndex(i);
+                setAutoScroll(false);
               }}
             ></div>
           );
