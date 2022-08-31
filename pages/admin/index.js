@@ -92,12 +92,37 @@ const Index = ({ orders, products }) => {
   };
 
   const [sorted, setSorted] = useState(true);
-  const handleSort = (e) => {
-    if (e == 'Id') {
+  const handleSort = (e, name) => {
+    if (name == 'productsId') {
+      var newList = [...pizzaList].sort((a, b) =>
+        sorted ? (a._id > b._id ? 1 : -1) : a._id < b._id ? 1 : -1
+      );
+      setSorted(!sorted);
+      setPizzaList(newList);
+    }
+
+    if (e == 'Title') {
+      var newList = [...pizzaList].sort((a, b) =>
+        sorted ? (a.title > b.title ? 1 : -1) : a.title < b.title ? 1 : -1
+      );
+      setSorted(!sorted);
+      setPizzaList(newList);
+    }
+
+    if (e == 'Price') {
+      var newList = [...pizzaList].sort((a, b) =>
+        sorted ? (a.price > b.price ? 1 : -1) : a.price < b.price ? 1 : -1
+      );
+      setSorted(!sorted);
+      setPizzaList(newList);
+    }
+
+    if (name == 'ordersId') {
       var newList = [...orderList].sort((a, b) =>
         sorted ? (a._id > b._id ? 1 : -1) : a._id < b._id ? 1 : -1
       );
       setSorted(!sorted);
+      setOrderList(newList);
     }
 
     if (e == 'Customer') {
@@ -111,27 +136,29 @@ const Index = ({ orders, products }) => {
           : -1
       );
       setSorted(!sorted);
+      setOrderList(newList);
     }
     if (e == 'Total') {
       var newList = [...orderList].sort((a, b) =>
         sorted ? (a.total > b.total ? 1 : -1) : a.total < b.total ? 1 : -1
       );
       setSorted(!sorted);
+      setOrderList(newList);
     }
     if (e == 'Payment') {
       var newList = [...orderList].sort((a, b) =>
         sorted ? (a.method > b.method ? 1 : -1) : a.method < b.method ? 1 : -1
       );
       setSorted(!sorted);
+      setOrderList(newList);
     }
     if (e == 'Status') {
       var newList = [...orderList].sort((a, b) =>
         sorted ? (a.status > b.status ? 1 : -1) : a.status < b.status ? 1 : -1
       );
       setSorted(!sorted);
+      setOrderList(newList);
     }
-    console.log(newList);
-    setOrderList(newList);
   };
 
   return (
@@ -164,13 +191,27 @@ const Index = ({ orders, products }) => {
               <tr className={styles.trTitle}>
                 <th>Image</th>
                 <th>
-                  <span>Id</span>
+                  <span
+                    name="productsId"
+                    onClick={(e) =>
+                      handleSort(
+                        e.target.innerText,
+                        e.target.getAttribute('name')
+                      )
+                    }
+                  >
+                    Id
+                  </span>
                 </th>
                 <th>
-                  <span>Title</span>
+                  <span onClick={(e) => handleSort(e.target.innerText)}>
+                    Title
+                  </span>
                 </th>
                 <th>
-                  <span>Price</span>
+                  <span onClick={(e) => handleSort(e.target.innerText)}>
+                    Price
+                  </span>
                 </th>
                 <th>Action</th>
               </tr>
@@ -232,41 +273,34 @@ const Index = ({ orders, products }) => {
               <tr className={styles.trTitle}>
                 <th>
                   <span
-                    name="_id"
-                    onClick={(e) => handleSort(e.target.innerText)}
+                    name="ordersId"
+                    onClick={(e) =>
+                      handleSort(
+                        e.target.innerText,
+                        e.target.getAttribute('name')
+                      )
+                    }
                   >
                     Id
                   </span>
                 </th>
                 <th>
-                  <span
-                    name="customer"
-                    onClick={(e) => handleSort(e.target.innerText)}
-                  >
+                  <span onClick={(e) => handleSort(e.target.innerText)}>
                     Customer
                   </span>
                 </th>
                 <th>
-                  <span
-                    name="total"
-                    onClick={(e) => handleSort(e.target.innerText)}
-                  >
+                  <span onClick={(e) => handleSort(e.target.innerText)}>
                     Total
                   </span>
                 </th>
                 <th>
-                  <span
-                    name="method"
-                    onClick={(e) => handleSort(e.target.innerText)}
-                  >
+                  <span onClick={(e) => handleSort(e.target.innerText)}>
                     Payment
                   </span>
                 </th>
                 <th>
-                  <span
-                    name="status"
-                    onClick={(e) => handleSort(e.target.innerText)}
-                  >
+                  <span onClick={(e) => handleSort(e.target.innerText)}>
                     Status
                   </span>
                 </th>
