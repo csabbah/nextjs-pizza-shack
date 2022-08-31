@@ -50,6 +50,7 @@
 }
 
 .trTitle th span {
+  user-select: none;
   cursor: pointer;
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }

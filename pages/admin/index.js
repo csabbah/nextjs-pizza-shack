@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../../styles/Admin.module.css';
 import Image from 'next/image';
 import axios from 'axios';
@@ -19,18 +19,18 @@ const Index = ({ orders, products }) => {
 
   // By assigning state objects to contain our database data, we can update them to
   // have the virtual DOM reflect the real time changes
-  const [pizzaList, setPizzaList] = useState(products);
-  const [orderList, setOrderList] = useState(orders);
-
-  // Sort the pizzas and orders based on the date created
-  pizzaList.sort(function (a, b) {
-    return new Date(b.updatedAt) - new Date(a.updatedAt);
-  });
-
-  // First sort orders based on order status
-  orderList.sort(function (a, b) {
-    return a.status - b.status;
-  });
+  const [pizzaList, setPizzaList] = useState(
+    // When you assign the data to the useState object, initially, sort it so it shows the most recent data
+    products.sort(function (a, b) {
+      return new Date(b.updatedAt) - new Date(a.updatedAt);
+    })
+  );
+  const [orderList, setOrderList] = useState(
+    // Upon first assigning data to the use state object, sort the orders based on order status
+    orders.sort(function (a, b) {
+      return a.status - b.status;
+    })
+  );
 
   const status = ['Preparing', 'On the way', 'Delivered', 'Completed'];
 
@@ -91,6 +91,49 @@ const Index = ({ orders, products }) => {
     router.reload(window.location.pathname);
   };
 
+  const [sorted, setSorted] = useState(true);
+  const handleSort = (e) => {
+    if (e == 'Id') {
+      var newList = [...orderList].sort((a, b) =>
+        sorted ? (a._id > b._id ? 1 : -1) : a._id < b._id ? 1 : -1
+      );
+      setSorted(!sorted);
+    }
+
+    if (e == 'Customer') {
+      var newList = [...orderList].sort((a, b) =>
+        sorted
+          ? a.customer > b.customer
+            ? 1
+            : -1
+          : a.customer < b.customer
+          ? 1
+          : -1
+      );
+      setSorted(!sorted);
+    }
+    if (e == 'Total') {
+      var newList = [...orderList].sort((a, b) =>
+        sorted ? (a.total > b.total ? 1 : -1) : a.total < b.total ? 1 : -1
+      );
+      setSorted(!sorted);
+    }
+    if (e == 'Payment') {
+      var newList = [...orderList].sort((a, b) =>
+        sorted ? (a.method > b.method ? 1 : -1) : a.method < b.method ? 1 : -1
+      );
+      setSorted(!sorted);
+    }
+    if (e == 'Status') {
+      var newList = [...orderList].sort((a, b) =>
+        sorted ? (a.status > b.status ? 1 : -1) : a.status < b.status ? 1 : -1
+      );
+      setSorted(!sorted);
+    }
+    console.log(newList);
+    setOrderList(newList);
+  };
+
   return (
     <>
       <Head>
@@ -132,7 +175,7 @@ const Index = ({ orders, products }) => {
                 <th>Action</th>
               </tr>
             </thead>
-            {pizzaList.length == 0 ? (
+            {pizzaList.length == 0 || pizzaList == undefined ? (
               <tbody>
                 <td>#</td>
                 <td>No Data</td>
@@ -188,24 +231,49 @@ const Index = ({ orders, products }) => {
             <thead>
               <tr className={styles.trTitle}>
                 <th>
-                  <span>Id</span>
+                  <span
+                    name="_id"
+                    onClick={(e) => handleSort(e.target.innerText)}
+                  >
+                    Id
+                  </span>
                 </th>
                 <th>
-                  <span>Customer</span>
+                  <span
+                    name="customer"
+                    onClick={(e) => handleSort(e.target.innerText)}
+                  >
+                    Customer
+                  </span>
                 </th>
                 <th>
-                  <span>Total</span>
+                  <span
+                    name="total"
+                    onClick={(e) => handleSort(e.target.innerText)}
+                  >
+                    Total
+                  </span>
                 </th>
                 <th>
-                  <span>Payment</span>
+                  <span
+                    name="method"
+                    onClick={(e) => handleSort(e.target.innerText)}
+                  >
+                    Payment
+                  </span>
                 </th>
                 <th>
-                  <span>Status</span>
+                  <span
+                    name="status"
+                    onClick={(e) => handleSort(e.target.innerText)}
+                  >
+                    Status
+                  </span>
                 </th>
                 <th>Action</th>
               </tr>
             </thead>
-            {orderList.length == 0 ? (
+            {orderList == undefined || orderList.length == 0 ? (
               <tbody>
                 <td>#</td>
                 <td>No Data</td>
