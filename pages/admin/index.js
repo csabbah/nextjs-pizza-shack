@@ -263,6 +263,7 @@ const Index = ({ orders, products }) => {
             )}
           </table>
         </div>
+        <hr className={styles.hr}></hr>
         <div className={styles.item}>
           <div className={styles.itemWrapper}>
             <h1 className={styles.title}>Orders</h1>

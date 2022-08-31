@@ -36,6 +36,7 @@
 }
 
 .itemWrapper h1 {
+  user-select: none;
   margin-bottom: 0;
 }
 .itemWrapper input {
@@ -49,8 +50,10 @@
   text-align: left;
 }
 
-.trTitle th span {
+.trTitle th {
   user-select: none;
+}
+.trTitle th span {
   cursor: pointer;
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
@@ -77,6 +80,9 @@
   margin-right: 10px;
 }
 
+.hr {
+  display: none;
+}
 @media (max-width: 1375px) {
   .container {
     flex-direction: column;
@@ -84,5 +90,18 @@
 
   .item {
     width: 80vw;
+  }
+
+  .item:first-child {
+    margin-bottom: 35px;
+  }
+
+  .item:last-child {
+    margin-top: 35px;
+  }
+  .hr {
+    display: flex;
+    width: 80vw;
+    opacity: 0.4;
   }
 }

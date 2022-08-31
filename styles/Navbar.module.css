@@ -1,13 +1,22 @@
-.container {
+.desktopContainer {
   height: 100px;
   padding: 0 50px;
   background-color: lightcoral;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 999;
+}
+
+.navStack {
+  display: none;
+}
+
+.mobileContainer {
+  display: none;
 }
 
 .item {
@@ -47,12 +56,19 @@
 }
 
 .listItem {
-  font-size: 16px;
+  font-size: 19px;
   cursor: pointer;
-  margin: 20px;
+  margin: 10px;
   font-weight: 500;
 }
 
+.listItem:nth-child(2) {
+  margin-right: 0;
+}
+
+.listItem:nth-child(4) {
+  margin-left: 0;
+}
 .cart {
   cursor: pointer;
   position: relative;
@@ -83,40 +99,72 @@
   color: lightcoral;
 }
 
-@media screen and (max-width: 1024px) {
-  .item:nth-child(2) {
+@media screen and (max-width: 830px) {
+  .navStack {
+    position: fixed;
+    right: 160px;
+    z-index: 99999;
+    filter: invert(1);
+    display: flex;
+  }
+
+  .desktopContainer {
     display: none;
   }
 
-  .item:nth-child(1) {
-    flex: 3;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .item:nth-child(2) {
-    display: none;
-  }
-
-  .item:nth-child(1) {
-    flex: 3;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .item:nth-child(2) {
-    display: none;
+  .mobileContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 100vh;
+    width: 140px;
+    padding-right: 15px;
+    background-color: rgba(240, 128, 128, 0.853);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    position: fixed;
+    z-index: 999;
   }
 
-  .item:nth-child(1) {
-    flex: 3;
+  .activeNav {
+    position: absolute;
+    right: 138px;
+    transition: 0.4s all ease-in-out;
   }
 
-  .container {
-    padding: 0px 30px;
+  .inactiveNav {
+    position: absolute;
+    right: 0;
+    transition: 0.4s all ease-in-out;
   }
 
-  .container {
-    height: 70px;
+  .inactiveStack {
+    right: 15px;
+    top: 6px;
+
+    transition: 0.4s all ease-in-out;
+  }
+  .activeStack {
+    right: 154px;
+    top: 6px;
+    transition: 0.4s all ease-in-out;
+  }
+
+  .counter {
+    font-size: 15px;
+    position: relative;
+    top: -25px;
+    right: 25px;
+  }
+
+  .item .list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .listItem {
+    margin: 6px 0;
   }
 }
