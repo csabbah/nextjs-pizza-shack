@@ -122,7 +122,7 @@ const Product = ({ pizza }) => {
       </div>
       <div className={styles.right}>
         <div className={styles.title}>{pizza.title}</div>
-        <span className={styles.price}>${price}</span>
+        <span className={styles.price}>${price * quantity}</span>
         <div className={styles.desc}>{pizza.desc}</div>
         <h3 className={styles.choose}>Choose your size:</h3>
         <div className={styles.sizes}>
