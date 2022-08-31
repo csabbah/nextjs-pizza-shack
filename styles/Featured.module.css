@@ -1,5 +1,5 @@
 .container {
-  height: calc(100vh - 150px);
+  height: calc(70vh - 100px);
   background-color: lightcoral;
   overflow: hidden;
   position: relative;
@@ -40,17 +40,43 @@
 .imgContainer img,
 .arrowContainer img {
   object-fit: contain;
+  width: 80px !important;
+  height: 80px !important;
+}
+
+.arrowContainer:hover {
+  transform: scale(1.02);
+}
+.arrowContainer:active {
+  transform: scale(1);
+}
+
+.indexesContainer {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+}
+.indexes {
+  margin: 0 5px;
+  width: 18px;
+  height: 18px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 100px;
+  cursor: pointer;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 
 @media screen and (max-width: 1024px) {
   .container {
-    height: 90vh;
+    height: 70vh;
   }
 }
 
 @media screen and (max-width: 768px) {
   .container {
-    height: 70vh;
+    height: 60vh;
   }
 }
 

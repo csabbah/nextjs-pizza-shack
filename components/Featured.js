@@ -22,34 +22,53 @@ const Featured = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.arrowContainer}>
-        <Image
-          layout="fill"
-          src="/img/arrowl.png"
-          alt="Left arrow"
-          onClick={() => handleArrow('l')}
-        />
+    <div style={{ position: 'relative' }}>
+      <div className={styles.container}>
+        <div className={styles.arrowContainer}>
+          <Image
+            width={30}
+            height={30}
+            src="/img/LeftA.png"
+            alt="Left arrow"
+            onClick={() => handleArrow('l')}
+          />
+        </div>
+        <div
+          className={styles.wrapper}
+          style={{ transform: `translateX(${-100 * index}vw)` }}
+        >
+          {image.map((image, key) => {
+            return (
+              <div key={key} className={styles.imgContainer}>
+                <Image layout="fill" src={image} alt={`FeaturedImage-${key}`} />
+              </div>
+            );
+          })}
+        </div>
+
+        <div className={styles.arrowContainer}>
+          <Image
+            width={30}
+            height={30}
+            src="/img/RightA.png"
+            alt="Right arrow"
+            onClick={() => handleArrow('r')}
+          />
+        </div>
       </div>
-      <div
-        className={styles.wrapper}
-        style={{ transform: `translateX(${-100 * index}vw)` }}
-      >
-        {image.map((image, key) => {
+      <div className={styles.indexesContainer}>
+        {image.map((image, i) => {
           return (
-            <div key={key} className={styles.imgContainer}>
-              <Image layout="fill" src={image} alt={`FeaturedImage-${key}`} />
-            </div>
+            <div
+              key={i}
+              style={{ opacity: i == index ? '1' : '0.4' }}
+              className={styles.indexes}
+              onClick={() => {
+                setIndex(i);
+              }}
+            ></div>
           );
         })}
-      </div>
-      <div className={styles.arrowContainer}>
-        <Image
-          layout="fill"
-          src="/img/arrowr.png"
-          alt="Right arrow"
-          onClick={() => handleArrow('r')}
-        />
       </div>
     </div>
   );

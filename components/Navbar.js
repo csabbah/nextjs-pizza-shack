@@ -40,7 +40,14 @@ const Navbar = () => {
           </Link>
           <Link href="/admin" passHref>
             <li
-              style={{ color: endpointName == '/admin' ? 'black' : '' }}
+              style={{
+                color:
+                  endpointName == '/admin'
+                    ? 'black'
+                    : endpointName == '/admin/login'
+                    ? 'black'
+                    : '',
+              }}
               className={`${styles.listItem}`}
             >
               Admin

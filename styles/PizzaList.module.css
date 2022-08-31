@@ -22,32 +22,45 @@
 @media screen and (max-width: 1024px) {
   .title {
     text-align: center;
+    font-size: 35px;
   }
 
   .desc {
     width: 90%;
     text-align: center;
+    color: #444;
+    font-size: 25px;
   }
 }
 
 @media screen and (max-width: 768px) {
   .title {
     text-align: center;
+    font-size: 33px;
   }
 
   .desc {
     width: 90%;
     text-align: center;
+    color: #444;
+    font-size: 19px;
   }
 }
 
 @media screen and (max-width: 480px) {
   .title {
     text-align: center;
+    font-size: 30px;
   }
 
   .desc {
     width: 90%;
     text-align: center;
+  }
+
+  .desc {
+    font-size: 17px;
+    color: #444;
+    width: 70%;
   }
 }
