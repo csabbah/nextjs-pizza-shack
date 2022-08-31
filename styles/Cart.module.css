@@ -76,7 +76,6 @@
 .quantity {
   display: flex;
   align-items: center;
-  cursor: pointer;
   position: relative;
 }
 
@@ -89,10 +88,15 @@
   justify-content: center;
   box-sizing: border-box;
   margin-left: 10px;
+  cursor: pointer;
 }
 
 .extraPrice {
   font-size: 16px;
+}
+
+.extraPrice::before {
+  content: ' ';
 }
 @media screen and (max-width: 1142px) {
   .container {

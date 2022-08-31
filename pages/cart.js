@@ -178,8 +178,6 @@ const Cart = () => {
         </div>
       ) : (
         <div className={styles.container}>
-          {console.log(cart)}
-
           <div className={styles.left}>
             <table className={styles.table}>
               <thead>
@@ -232,7 +230,7 @@ const Cart = () => {
                                       pizza.chosenExtras.length > 1
                                         ? pizza.chosenExtras.indexOf(extra) ==
                                           pizza.chosenExtras.length - 2
-                                          ? ` and `
+                                          ? ` & `
                                           : // add a comma in between names (starting at when a 3rd user is added and beyond)
                                           pizza.chosenExtras.indexOf(extra) !==
                                             pizza.chosenExtras.length - 1
@@ -255,8 +253,8 @@ const Cart = () => {
                             <Image
                               className={styles.upArrow}
                               src={'/img/uArrow.png'}
-                              width={17}
-                              height={17}
+                              width={18}
+                              height={18}
                               alt="Up Arrow"
                               objectFit="contain"
                               onClick={() =>
@@ -266,8 +264,8 @@ const Cart = () => {
                             <Image
                               className={styles.downArrow}
                               src={'/img/dArrow.png'}
-                              width={17}
-                              height={17}
+                              width={18}
+                              height={18}
                               alt="Down Arrow"
                               objectFit="contain"
                               onClick={() =>

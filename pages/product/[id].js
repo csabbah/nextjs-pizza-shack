@@ -69,7 +69,6 @@ const Product = ({ pizza }) => {
 
   const handleClick = () => {
     setRandomNum(Math.floor(Math.random() * 10000));
-    console.log(customId);
 
     if (quantity < 1) {
       setError(true);

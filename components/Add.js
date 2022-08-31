@@ -136,6 +136,7 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
             onChange={(e) => {
               setError([false, '']);
               setErrorExtra([false, '']);
+              // Choose the first [0] file
               setFile(e.target.files[0]);
             }}
           />

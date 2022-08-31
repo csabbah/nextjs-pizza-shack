@@ -112,14 +112,23 @@ const Index = ({ orders, products }) => {
 
       <div className={styles.container}>
         <div className={styles.item}>
-          <h1 className={styles.title}>Products</h1>
+          <div className={styles.itemWrapper}>
+            <h1 className={styles.title}>Products</h1>
+            <input type="text" placeholder="Search"></input>
+          </div>
           <table className={styles.table}>
             <thead>
               <tr className={styles.trTitle}>
                 <th>Image</th>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Price</th>
+                <th>
+                  <span>Id</span>
+                </th>
+                <th>
+                  <span>Title</span>
+                </th>
+                <th>
+                  <span>Price</span>
+                </th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -171,15 +180,28 @@ const Index = ({ orders, products }) => {
           </table>
         </div>
         <div className={styles.item}>
-          <h1 className={styles.title}>Orders</h1>
+          <div className={styles.itemWrapper}>
+            <h1 className={styles.title}>Orders</h1>
+            <input type="text" placeholder="Search"></input>
+          </div>
           <table className={styles.table}>
             <thead>
               <tr className={styles.trTitle}>
-                <th>Id</th>
-                <th>Customer</th>
-                <th>Total</th>
-                <th>Payment</th>
-                <th>Status</th>
+                <th>
+                  <span>Id</span>
+                </th>
+                <th>
+                  <span>Customer</span>
+                </th>
+                <th>
+                  <span>Total</span>
+                </th>
+                <th>
+                  <span>Payment</span>
+                </th>
+                <th>
+                  <span>Status</span>
+                </th>
                 <th>Action</th>
               </tr>
             </thead>
