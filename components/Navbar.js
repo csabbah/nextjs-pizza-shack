@@ -7,16 +7,13 @@ import { useRouter } from 'next/router';
 
 import MobileNav from '../components/MobileNav';
 
-import { useState } from 'react';
-
-const Navbar = () => {
+const Navbar = ({ mobile, setMobile }) => {
   const router = useRouter();
   let endpointName = router.pathname;
 
   // Initially this is 0
   const quantity = useSelector((state) => state.cart.quantity);
 
-  const [mobile, setMobile] = useState(false);
   return (
     <div>
       <div
@@ -26,7 +23,6 @@ const Navbar = () => {
       >
         <Image
           className={mobile ? styles.activeStack : styles.inactiveStack}
-          onClick={() => setMobile(!mobile)}
           style={{
             filter: 'invert(1)',
           }}

@@ -121,6 +121,7 @@
     width: 140px;
     padding-right: 15px;
     background-color: rgba(240, 128, 128, 0.853);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     position: fixed;
@@ -129,20 +130,19 @@
 
   .activeNav {
     position: absolute;
-    right: 138px;
+    right: 139px;
     transition: 0.4s all ease-in-out;
   }
 
   .inactiveNav {
     position: absolute;
-    right: 0;
+    right: -10px;
     transition: 0.4s all ease-in-out;
   }
 
   .inactiveStack {
     right: 15px;
     top: 6px;
-
     transition: 0.4s all ease-in-out;
   }
   .activeStack {
