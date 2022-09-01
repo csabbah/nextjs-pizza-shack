@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { addProduct, updateProductQuantity } from '../../redux/cartSlice';
+import { addProduct } from '../../redux/cartSlice';
 
 const Product = ({ pizza }) => {
   const cart = useSelector((state) => state.cart);
@@ -22,7 +22,9 @@ const Product = ({ pizza }) => {
   const [error, setError] = useState(false);
 
   const [customId, setCustomId] = useState();
-  const [randomNum, setRandomNum] = useState(Math.floor(Math.random() * 1000));
+  const [randomNum, setRandomNum] = useState(
+    Math.floor(Math.random() * 10000000)
+  );
 
   const changePrice = (number) => {
     setPrice(price + number);
@@ -51,6 +53,40 @@ const Product = ({ pizza }) => {
 
   // const [existingProd, setExistingProd] = useState(false);
 
+  // Function to save the cart Items to local storage
+  function saveCartItem() {
+    var localCartItems = localStorage.getItem('cartItems');
+    let parsedCartItems = JSON.parse(localCartItems);
+
+    if (parsedCartItems) {
+      let tempVal = {
+        ...pizza,
+        chosenExtras,
+        pizzaSize,
+        quantity: parseInt(quantity),
+        price: parseInt(price),
+        customId: randomNum,
+      };
+      parsedCartItems.push(tempVal);
+
+      localStorage.setItem('cartItems', JSON.stringify(parsedCartItems));
+    } else {
+      var tempArr = [];
+
+      let tempVal = {
+        ...pizza,
+        chosenExtras,
+        pizzaSize,
+        quantity: parseInt(quantity),
+        price: parseInt(price),
+        customId: randomNum,
+      };
+      tempArr.push(tempVal);
+
+      localStorage.setItem('cartItems', JSON.stringify(tempArr));
+    }
+  }
+
   // // On page load, check the cart and make sure that the product the user is viewing (via component)
   // // Is not already in their cart, if it is, simply update the quantity of it instead (as seen in handleClick)
   useEffect(() => {
@@ -64,11 +100,13 @@ const Product = ({ pizza }) => {
     //     setExistingProd(false);
     //   });
     // }
-  }, [pizzaSize, pizza._id, randomNum]);
+  }, []);
   // }, [cart, cart.products, pizza._id, pizzaSize, customId, setCustomId]);
 
   const handleClick = () => {
-    setRandomNum(Math.floor(Math.random() * 10000));
+    setRandomNum(Math.floor(Math.random() * 1000000));
+
+    saveCartItem();
 
     if (quantity < 1) {
       setError(true);
@@ -80,7 +118,7 @@ const Product = ({ pizza }) => {
           pizzaSize,
           quantity: parseInt(quantity),
           price: parseInt(price),
-          customId,
+          customId: randomNum,
         })
       );
       // // If the product already exists in the cart, then update the quantity instead of adding the entire product again
@@ -108,10 +146,6 @@ const Product = ({ pizza }) => {
     }
   };
 
-  const handleChange = () => {
-    setError(false);
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.left}>
@@ -128,7 +162,7 @@ const Product = ({ pizza }) => {
           <div
             onClick={() => {
               handleSize(0);
-              handleChange();
+              setError(false);
             }}
             className={styles.size}
             style={{ opacity: pizzaSize == 0 ? '1' : '0.4' }}
@@ -139,7 +173,7 @@ const Product = ({ pizza }) => {
           <div
             onClick={() => {
               handleSize(1);
-              handleChange();
+              setError(false);
             }}
             className={styles.size}
             style={{ opacity: pizzaSize == 1 ? '1' : '0.4' }}
@@ -150,7 +184,7 @@ const Product = ({ pizza }) => {
           <div
             onClick={() => {
               handleSize(2);
-              handleChange();
+              setError(false);
             }}
             className={styles.size}
             style={{ opacity: pizzaSize == 2 ? '1' : '0.4' }}
@@ -169,7 +203,7 @@ const Product = ({ pizza }) => {
                 <input
                   onChange={(e) => {
                     handleExtras(e, option);
-                    handleChange();
+                    setError(false);
                   }}
                   type="checkbox"
                   id={option.text}

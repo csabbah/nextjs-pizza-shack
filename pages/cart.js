@@ -26,7 +26,6 @@ import OrderDetail from '../components/OrderDetail';
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-
   const [open, setOpen] = useState(false);
   const [cash, setCash] = useState(false);
 
@@ -52,47 +51,67 @@ const Cart = () => {
     }
   };
 
-  const handleDelete = async (pizzaId) => {
+  const handleDelete = async (customId) => {
     cart.products.forEach((product) => {
-      if (product.customId == pizzaId) {
-        dispatch(deletePizza({ pizzaId: product.customId }));
+      if (product.customId == customId) {
+        dispatch(deletePizza({ customId: product.customId }));
         dispatch(
           updateCart({ price: product.price, quantity: product.quantity })
         );
+        deleteLocalCartItem(customId);
       }
     });
   };
 
-  const handleUpdate = (pizza, pizzaId, price) => {
+  const handleUpdate = (pizza, customId, price) => {
     dispatch(
       updateProductQuantity({
         ...pizza,
-        pizzaId: pizzaId,
+        customId: customId,
         quantity: 1,
         price,
       })
     );
   };
 
-  const handleUpdateDec = (pizza, pizzaId, price, quantity) => {
+  // If the user decrements when the quantity is at 1, then execute the deletePizza dispatch
+  // Otherwise, update Product Quantity Decrement by 1
+  const handleUpdateDec = (pizza, customId, price, quantity) => {
     if (quantity == 1) {
       cart.products.forEach((product) => {
-        if (product.customId == pizzaId) {
-          dispatch(deletePizza({ pizzaId: product.customId }));
+        if (product.customId == customId) {
+          dispatch(deletePizza({ customId: product.customId }));
           dispatch(
             updateCart({ price: product.price, quantity: product.quantity })
           );
+          deleteLocalCartItem(customId);
         }
       });
     } else {
       dispatch(
         updateProductQuantityDec({
           ...pizza,
-          pizzaId: pizzaId,
+          customId: customId,
           quantity: 1,
           price,
         })
       );
+    }
+  };
+
+  const deleteLocalCartItem = (chosenItem) => {
+    var localCartItems = localStorage.getItem('cartItems');
+    let parsedCartItems = JSON.parse(localCartItems);
+
+    if (parsedCartItems) {
+      parsedCartItems.forEach((localItem) => {
+        if (localItem.customId == chosenItem) {
+          var newArr = parsedCartItems.filter(
+            (item) => item.customId !== chosenItem
+          );
+          localStorage.setItem('cartItems', JSON.stringify(newArr));
+        }
+      });
     }
   };
 
