@@ -91,11 +91,31 @@ const Index = ({ orders, products }) => {
     router.reload(window.location.pathname);
   };
 
+  const [pizzaSize, setPizzaSize] = useState(0);
+
+  const returnSize = (index) => {
+    if (index == 0) {
+      return 'Sm';
+    }
+    if (index == 1) {
+      return 'Md';
+    }
+    if (index == 2) {
+      return 'Lg';
+    }
+  };
+
   const [sorted, setSorted] = useState(true);
   const handleSort = (e, name) => {
     if (name == 'productsId') {
       var newList = [...pizzaList].sort((a, b) =>
-        sorted ? (a._id > b._id ? 1 : -1) : a._id < b._id ? 1 : -1
+        sorted
+          ? a._id.toLowerCase() > b._id.toLowerCase()
+            ? 1
+            : -1
+          : a._id.toLowerCase() < b._id.toLowerCase()
+          ? 1
+          : -1
       );
       setSorted(!sorted);
       setPizzaList(newList);
@@ -103,7 +123,13 @@ const Index = ({ orders, products }) => {
 
     if (e == 'Title') {
       var newList = [...pizzaList].sort((a, b) =>
-        sorted ? (a.title > b.title ? 1 : -1) : a.title < b.title ? 1 : -1
+        sorted
+          ? a.title.toLowerCase() > b.title.toLowerCase()
+            ? 1
+            : -1
+          : a.title.toLowerCase() < b.title.toLowerCase()
+          ? 1
+          : -1
       );
       setSorted(!sorted);
       setPizzaList(newList);
@@ -111,7 +137,13 @@ const Index = ({ orders, products }) => {
 
     if (e == 'Price') {
       var newList = [...pizzaList].sort((a, b) =>
-        sorted ? (a.price > b.price ? 1 : -1) : a.price < b.price ? 1 : -1
+        sorted
+          ? a.prices[pizzaSize] > b.prices[pizzaSize]
+            ? 1
+            : -1
+          : a.prices[pizzaSize] < b.prices[pizzaSize]
+          ? 1
+          : -1
       );
       setSorted(!sorted);
       setPizzaList(newList);
@@ -119,7 +151,13 @@ const Index = ({ orders, products }) => {
 
     if (name == 'ordersId') {
       var newList = [...orderList].sort((a, b) =>
-        sorted ? (a._id > b._id ? 1 : -1) : a._id < b._id ? 1 : -1
+        sorted
+          ? a._id.toLowerCase() > b._id.toLowerCase()
+            ? 1
+            : -1
+          : a._id.toLowerCase() < b._id.toLowerCase()
+          ? 1
+          : -1
       );
       setSorted(!sorted);
       setOrderList(newList);
@@ -128,10 +166,10 @@ const Index = ({ orders, products }) => {
     if (e == 'Customer') {
       var newList = [...orderList].sort((a, b) =>
         sorted
-          ? a.customer > b.customer
+          ? a.customer.toLowerCase() > b.customer.toLowerCase()
             ? 1
             : -1
-          : a.customer < b.customer
+          : a.customer.toLowerCase() < b.customer.toLowerCase()
           ? 1
           : -1
       );
@@ -161,6 +199,32 @@ const Index = ({ orders, products }) => {
     }
   };
 
+  const [productQuery, setProductQuery] = useState('');
+  const [orderQuery, SetOrderQuery] = useState('');
+
+  const checkInputVal = () => {
+    var regex = /^[0-9]+$/;
+    if (productQuery.match(regex) || orderQuery.match(regex)) {
+      return true;
+      // console.log('Number was inputted');
+    } else {
+      return false;
+      // console.log('String was inputted');
+    }
+  };
+
+  const returnMethodStr = (value) => {
+    if (value == 1) {
+      return 'paypal';
+    } else {
+      return 'cash';
+    }
+  };
+
+  const returnStatusStr = (value) => {
+    return status[value];
+  };
+
   return (
     <>
       <Head>
@@ -184,7 +248,11 @@ const Index = ({ orders, products }) => {
         <div className={styles.item}>
           <div className={styles.itemWrapper}>
             <h1 className={styles.title}>Products</h1>
-            <input type="text" placeholder="Search"></input>
+            <input
+              type="text"
+              placeholder="Search Pizzas"
+              onChange={(e) => setProductQuery(e.target.value.trim())}
+            ></input>
           </div>
           <table className={styles.table}>
             <thead>
@@ -212,6 +280,14 @@ const Index = ({ orders, products }) => {
                   <span onClick={(e) => handleSort(e.target.innerText)}>
                     Price
                   </span>
+                  <span
+                    onClick={() =>
+                      setPizzaSize(pizzaSize !== 2 ? pizzaSize + 1 : 0)
+                    }
+                    style={{ marginLeft: '10px' }}
+                  >
+                    {returnSize(pizzaSize)}
+                  </span>
                 </th>
                 <th>Action</th>
               </tr>
@@ -225,51 +301,67 @@ const Index = ({ orders, products }) => {
                 <td>No Data</td>
               </tbody>
             ) : (
-              pizzaList.map((product) => {
-                return (
-                  <tbody className={styles.tbody} key={product._id}>
-                    <tr className={styles.trTitle}>
-                      <td className={styles.td}>
-                        <Image
-                          src={product.img}
-                          width={50}
-                          height={50}
-                          objectFit="cover"
-                          alt=""
-                        />
-                      </td>
-                      <td className={styles.td}>
-                        {/* Show the first 5 letters */}
-                        <span className={styles.init}>
-                          <span className={styles.initInner}>
-                            {product._id.slice(0, 5)}...
+              pizzaList
+                .filter((pizza) =>
+                  checkInputVal()
+                    ? // If no value exist then...
+                      !parseInt(productQuery)
+                      ? // return all prices
+                        pizza.prices[pizzaSize]
+                      : // else return the number that the user searched up (either equal to or less than)
+                        pizza.prices[pizzaSize] <= parseInt(productQuery)
+                    : pizza.title.toLowerCase().includes(productQuery) ||
+                      pizza._id.toLowerCase().includes(productQuery)
+                )
+                .map((product) => {
+                  return (
+                    <tbody className={styles.tbody} key={product._id}>
+                      <tr className={styles.trTitle}>
+                        <td className={styles.td}>
+                          <Image
+                            src={product.img}
+                            width={50}
+                            height={50}
+                            objectFit="cover"
+                            alt=""
+                          />
+                        </td>
+                        <td className={styles.td}>
+                          {/* Show the first 5 letters */}
+                          <span className={styles.init}>
+                            <span className={styles.initInner}>
+                              {product._id.slice(0, 5)}...
+                            </span>
+                            <span className={styles.id2}>
+                              {/* Show everything but the first 5 letters */}
+                              {/* {product._id.slice(5)} */}
+                              {product._id}
+                            </span>
                           </span>
-                          <span className={styles.id2}>
-                            {/* Show everything but the first 5 letters */}
-                            {/* {product._id.slice(5)} */}
-                            {product._id}
+                        </td>
+                        <td className={styles.td}>{product.title}</td>
+                        <td className={styles.td}>
+                          ${product.prices[pizzaSize]}
+                        </td>
+                        <td className={styles.td}>
+                          <span>
+                            <button
+                              className={`${styles.deleteBtn} ${styles.button}`}
+                              onClick={() => handleDelete(product._id)}
+                            >
+                              Delete
+                            </button>
+                            <Link href={`/product/${product._id}`} passHref>
+                              <button className={`${styles.button}`}>
+                                view
+                              </button>
+                            </Link>
                           </span>
-                        </span>
-                      </td>
-                      <td className={styles.td}>{product.title}</td>
-                      <td className={styles.td}>${product.prices[0]}</td>
-                      <td className={styles.td}>
-                        <span>
-                          <button
-                            className={`${styles.deleteBtn} ${styles.button}`}
-                            onClick={() => handleDelete(product._id)}
-                          >
-                            Delete
-                          </button>
-                          <Link href={`/product/${product._id}`} passHref>
-                            <button className={`${styles.button}`}>view</button>
-                          </Link>
-                        </span>
-                      </td>
-                    </tr>
-                  </tbody>
-                );
-              })
+                        </td>
+                      </tr>
+                    </tbody>
+                  );
+                })
             )}
           </table>
         </div>
@@ -277,7 +369,11 @@ const Index = ({ orders, products }) => {
         <div className={styles.item}>
           <div className={styles.itemWrapper}>
             <h1 className={styles.title}>Orders</h1>
-            <input type="text" placeholder="Search"></input>
+            <input
+              type="text"
+              placeholder="Search Orders"
+              onChange={(e) => SetOrderQuery(e.target.value)}
+            ></input>
           </div>
           <table className={styles.table}>
             <thead>
@@ -327,70 +423,86 @@ const Index = ({ orders, products }) => {
                 <td>No Data</td>
               </tbody>
             ) : (
-              orderList.map((order) => {
-                return (
-                  <tbody key={order._id}>
-                    <tr className={styles.trTitle}>
-                      <td className={styles.td}>
-                        {/* Show the first 5 letters */}
-                        <span className={styles.init}>
-                          <span className={styles.initInner}>
-                            {order._id.slice(0, 5)}...
+              orderList
+                .filter((order) =>
+                  checkInputVal()
+                    ? // If no value exist then...
+                      !parseInt(orderQuery)
+                      ? // return all prices
+                        order.total
+                      : // else return the number that the user searched up (either equal to or less than)
+                        order.total <= parseInt(orderQuery)
+                    : order._id.toLowerCase().includes(orderQuery) ||
+                      order.customer.toLowerCase().includes(orderQuery) ||
+                      returnMethodStr(order.method).includes(orderQuery) ||
+                      returnStatusStr(order.status)
+                        .toLowerCase()
+                        .includes(orderQuery)
+                )
+                .map((order) => {
+                  return (
+                    <tbody key={order._id}>
+                      <tr className={styles.trTitle}>
+                        <td className={styles.td}>
+                          {/* Show the first 5 letters */}
+                          <span className={styles.init}>
+                            <span className={styles.initInner}>
+                              {order._id.slice(0, 5)}...
+                            </span>
+                            <span className={styles.id}>
+                              {/* Show everything but the first 5 letters */}
+                              {/* {order._id.slice(5)} */}
+                              {order._id}
+                            </span>
                           </span>
-                          <span className={styles.id}>
-                            {/* Show everything but the first 5 letters */}
-                            {/* {order._id.slice(5)} */}
-                            {order._id}
-                          </span>
-                        </span>
-                      </td>
-                      <td
-                        style={{ opacity: order.status == 3 ? '0.4' : '' }}
-                        className={styles.td}
-                      >
-                        {order.customer}
-                      </td>
-                      <td
-                        style={{ opacity: order.status == 3 ? '0.4' : '' }}
-                        className={styles.td}
-                      >
-                        ${order.total}
-                      </td>
-                      <td
-                        style={{ opacity: order.status == 3 ? '0.4' : '' }}
-                        className={styles.td}
-                      >
-                        {order.method == 1 ? 'PayPal' : 'Cash'}
-                      </td>
-                      <td
-                        style={{ opacity: order.status == 3 ? '0.4' : '' }}
-                        className={styles.td}
-                      >
-                        {status[order.status]}
-                      </td>
-                      <td className={styles.td}>
-                        <button
-                          // Disable button if order status is 3 (2 == delivered)
-                          style={{
-                            pointerEvents: order.status == 3 ? 'none' : 'all',
-                            display: order.status == 3 ? 'none' : '',
-                          }}
-                          className={`${styles.nextStageBtn} ${styles.button}`}
-                          onClick={() => handleNext(order._id, order)}
+                        </td>
+                        <td
+                          style={{ opacity: order.status == 3 ? '0.4' : '' }}
+                          className={styles.td}
                         >
-                          Next Stage
-                        </button>
-                        <button
-                          className={`${styles.deleteBtn} ${styles.button}`}
-                          onClick={() => handleOrderDelete(order._id)}
+                          {order.customer}
+                        </td>
+                        <td
+                          style={{ opacity: order.status == 3 ? '0.4' : '' }}
+                          className={styles.td}
                         >
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                );
-              })
+                          ${order.total}
+                        </td>
+                        <td
+                          style={{ opacity: order.status == 3 ? '0.4' : '' }}
+                          className={styles.td}
+                        >
+                          {order.method == 1 ? 'PayPal' : 'Cash'}
+                        </td>
+                        <td
+                          style={{ opacity: order.status == 3 ? '0.4' : '' }}
+                          className={styles.td}
+                        >
+                          {status[order.status]}
+                        </td>
+                        <td className={styles.td}>
+                          <button
+                            // Disable button if order status is 3 (2 == delivered)
+                            style={{
+                              pointerEvents: order.status == 3 ? 'none' : 'all',
+                              display: order.status == 3 ? 'none' : '',
+                            }}
+                            className={`${styles.nextStageBtn} ${styles.button}`}
+                            onClick={() => handleNext(order._id, order)}
+                          >
+                            Next Stage
+                          </button>
+                          <button
+                            className={`${styles.deleteBtn} ${styles.button}`}
+                            onClick={() => handleOrderDelete(order._id)}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  );
+                })
             )}
           </table>
         </div>
