@@ -60,6 +60,39 @@
 
 .td {
   font-size: 16px;
+  position: relative;
+}
+
+.id,
+.id2 {
+  display: none;
+  position: absolute;
+  padding: 2px 9px;
+  border-radius: 15px;
+  position: absolute;
+  background: black;
+  color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  left: -11px;
+}
+
+.id {
+  top: 3px;
+}
+
+.id2 {
+  top: 13px;
+}
+
+.init:hover > .initInner {
+  display: none;
+}
+
+.init:hover > .id,
+.init:hover > .id2 {
+  display: unset;
 }
 
 .button {

@@ -239,7 +239,17 @@ const Index = ({ orders, products }) => {
                         />
                       </td>
                       <td className={styles.td}>
-                        {product._id.slice(0, 5)}...
+                        {/* Show the first 5 letters */}
+                        <span className={styles.init}>
+                          <span className={styles.initInner}>
+                            {product._id.slice(0, 5)}...
+                          </span>
+                          <span className={styles.id2}>
+                            {/* Show everything but the first 5 letters */}
+                            {/* {product._id.slice(5)} */}
+                            {product._id}
+                          </span>
+                        </span>
                       </td>
                       <td className={styles.td}>{product.title}</td>
                       <td className={styles.td}>${product.prices[0]}</td>
@@ -321,11 +331,18 @@ const Index = ({ orders, products }) => {
                 return (
                   <tbody key={order._id}>
                     <tr className={styles.trTitle}>
-                      <td
-                        style={{ opacity: order.status == 3 ? '0.4' : '' }}
-                        className={styles.td}
-                      >
-                        {order._id.slice(0, 5)}...
+                      <td className={styles.td}>
+                        {/* Show the first 5 letters */}
+                        <span className={styles.init}>
+                          <span className={styles.initInner}>
+                            {order._id.slice(0, 5)}...
+                          </span>
+                          <span className={styles.id}>
+                            {/* Show everything but the first 5 letters */}
+                            {/* {order._id.slice(5)} */}
+                            {order._id}
+                          </span>
+                        </span>
                       </td>
                       <td
                         style={{ opacity: order.status == 3 ? '0.4' : '' }}

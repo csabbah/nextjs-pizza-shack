@@ -44,7 +44,6 @@ const Layout = ({ children }) => {
   return (
     <div
       onClick={(e) => {
-        console.log(e.target.innerText);
         // If user clicks on navstack icon, open nav menu and take precedence over the other conditional
         if (
           e.target.src ==
@@ -52,7 +51,8 @@ const Layout = ({ children }) => {
         ) {
           return setMobile(!mobile);
         }
-        // If innerText is blank (which mean user clicks on anything BUT the nav menu)
+        // If innerText is blank or does not contain 'Home' which is a nav menu item
+        // That means user clicked outside the Nav so set mobile to false
         if (e.target.innerText == '' || !e.target.innerText.includes('Home')) {
           // Then close the nav menu
           setMobile(false);
