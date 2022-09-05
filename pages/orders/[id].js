@@ -67,7 +67,7 @@ const Order = ({ order }) => {
                     <span className={styles.address}>{order.address}</span>
                   </td>
                   <td>
-                    <span className={styles.total}>${order.total}</span>
+                    <span className={styles.total}>${order.total}.00</span>
                   </td>
                 </tr>
               </tbody>
@@ -82,8 +82,8 @@ const Order = ({ order }) => {
                 <Image
                   className={styles.checkedIcon}
                   src="/img/checked.png"
-                  width={20}
-                  height={20}
+                  width={25}
+                  height={25}
                   alt=""
                 />
               </div>
@@ -96,8 +96,8 @@ const Order = ({ order }) => {
                 <Image
                   className={styles.checkedIcon}
                   src="/img/checked.png"
-                  width={20}
-                  height={20}
+                  width={25}
+                  height={25}
                   alt=""
                 />
               </div>
@@ -110,8 +110,8 @@ const Order = ({ order }) => {
                 <Image
                   className={styles.checkedIcon}
                   src="/img/checked.png"
-                  width={20}
-                  height={20}
+                  width={25}
+                  height={25}
                   alt=""
                 />
               </div>
@@ -124,8 +124,8 @@ const Order = ({ order }) => {
                 <Image
                   className={styles.checkedIcon}
                   src="/img/checked.png"
-                  width={20}
-                  height={20}
+                  width={25}
+                  height={25}
                   alt=""
                 />
               </div>
@@ -137,12 +137,13 @@ const Order = ({ order }) => {
             <h2 className={styles.title}>CART TOTAL</h2>
             <div className={styles.totalText}>
               <b className={styles.totalTextTitle}>Subtotal:</b>${order.total}
+              .00
             </div>
             <div className={styles.totalText}>
               <b className={styles.totalTextTitle}>Discount:</b>$0.00
             </div>
             <div className={styles.totalText}>
-              <b className={styles.totalTextTitle}>Total:</b>${order.total}
+              <b className={styles.totalTextTitle}>Total:</b>${order.total}.00
             </div>
             <button disabled className={styles.button}>
               PAID

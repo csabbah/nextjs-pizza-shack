@@ -1,14 +1,17 @@
 .desktopContainer {
-  height: 100px;
-  padding: 0 50px;
-  background-color: lightcoral;
+  height: 90px;
+  padding: 0 25px;
+  background-color: rgba(238, 77, 52, 0.93);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: -webkit-sticky;
-  position: sticky;
+  position: -webkit-fixed;
+  position: fixed;
+  width: 100vw;
   top: 0;
   z-index: 999;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .navStack {
@@ -25,25 +28,26 @@
 }
 
 .callButton {
-  background-color: white;
+  background-color: #fcedda;
   border-radius: 50px;
   padding: 10px;
   width: 40px;
   height: 40px;
+  display: flex;
 }
 
 .texts {
-  margin-left: 10px;
-  color: white;
+  margin-left: 5px;
+  color: #fcedda;
 }
 
 .texts:first-child {
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: bold;
 }
 
 .texts:last-child {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: bold;
 }
 
@@ -52,23 +56,16 @@
   display: flex;
   align-items: center;
   list-style: none;
-  color: white;
+  color: #fcedda;
 }
 
 .listItem {
   font-size: 19px;
   cursor: pointer;
-  margin: 10px;
+  margin: 15px;
   font-weight: 500;
 }
 
-.listItem:nth-child(2) {
-  margin-right: 0;
-}
-
-.listItem:nth-child(4) {
-  margin-left: 0;
-}
 .cart {
   cursor: pointer;
   position: relative;
@@ -90,21 +87,28 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: white;
+  background-color: #fcedda;
   padding: 3px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  color: lightcoral;
+  color: #ee4e34;
 }
 
-@media screen and (max-width: 830px) {
+@media screen and (max-width: 730px) {
+  .customIcon {
+    color: #fcedda;
+    width: 50px;
+    height: 50px;
+    background-color: #ee4e34;
+    border-radius: 5px;
+  }
+
   .navStack {
     position: fixed;
     right: 160px;
     z-index: 99999;
-    filter: invert(1);
     display: flex;
   }
 
@@ -120,12 +124,18 @@
     height: 100vh;
     width: 140px;
     padding-right: 15px;
-    background-color: rgba(240, 128, 128, 0.853);
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+    background-color: #ee4d34e2;
+    color: #fcedda;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     position: fixed;
     z-index: 999;
+    text-transform: uppercase;
+  }
+
+  .listItem {
+    font-size: 16px;
   }
 
   .activeNav {
@@ -142,19 +152,19 @@
 
   .inactiveStack {
     right: 15px;
-    top: 6px;
+    top: 12px;
     transition: 0.4s all ease-in-out;
   }
   .activeStack {
     right: 154px;
-    top: 6px;
+    top: 12px;
     transition: 0.4s all ease-in-out;
   }
 
   .counter {
     font-size: 15px;
     position: relative;
-    top: -25px;
+    top: -23px;
     right: 25px;
   }
 
@@ -162,6 +172,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    margin-top: 5px;
   }
 
   .listItem {

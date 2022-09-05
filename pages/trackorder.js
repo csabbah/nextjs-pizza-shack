@@ -11,7 +11,7 @@ const TrackOrder = () => {
 
   // Redirect to /orders/ with the submitted id
   const handleSubmit = async () => {
-    // If there is not inputted id, set error to true with a specific label
+    // If there is no inputted id, set error to true with a specific label
     if (inputtedId) {
       // Fetch the data to first check if it exists
       try {
@@ -19,9 +19,11 @@ const TrackOrder = () => {
           `http://localhost:3000/api/orders/${inputtedId}`
         );
 
-        if (res.status == 200) {
+        if (res.data !== null && res.status == 200) {
           // If data exists, redirect to orders page with given id
           router.push(`/orders/${inputtedId}`);
+        } else {
+          return setError([true, 'No order found with that ID']);
         }
       } catch (err) {
         // Set error to true and display it
@@ -54,7 +56,9 @@ const TrackOrder = () => {
           <button onClick={() => handleSubmit()} className={styles.button}>
             Submit
           </button>
-          {error[0] && <p style={{ color: 'red' }}>{error[1]}</p>}
+          {error[0] && (
+            <p style={{ marginTop: '10px', color: 'red' }}>{error[1]}</p>
+          )}
         </div>
       </div>
     </>

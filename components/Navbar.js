@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 
+import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai';
 import { useRouter } from 'next/router';
 
 import MobileNav from '../components/MobileNav';
@@ -21,16 +22,21 @@ const Navbar = ({ mobile, setMobile }) => {
           mobile ? styles.activeStack : styles.inactiveStack
         } `}
       >
-        <Image
-          className={mobile ? styles.activeStack : styles.inactiveStack}
-          style={{
-            filter: 'invert(1)',
-          }}
-          src="/img/navIcon.png"
-          alt=""
-          width="50px"
-          height="50px"
-        />
+        {mobile ? (
+          <AiOutlineMenuUnfold
+            data-id="navStack"
+            className={`${mobile ? styles.activeStack : styles.inactiveStack} ${
+              styles.customIcon
+            }`}
+          />
+        ) : (
+          <AiOutlineMenuFold
+            data-id="navStack"
+            className={`${mobile ? styles.activeStack : styles.inactiveStack} ${
+              styles.customIcon
+            }`}
+          />
+        )}
       </div>
       <div className={mobile ? styles.activeNav : styles.inactiveNav}>
         <MobileNav setMobile={setMobile} />
@@ -60,6 +66,7 @@ const Navbar = ({ mobile, setMobile }) => {
                 Home
               </li>
             </Link>
+            <span style={{ fontSize: '16px', opacity: '0.4' }}>/</span>
             <Link href="/admin" passHref>
               <li
                 style={{
@@ -75,7 +82,8 @@ const Navbar = ({ mobile, setMobile }) => {
                 Admin
               </li>
             </Link>
-            <Link href="/" passHref>
+            <span style={{ fontSize: '16px', opacity: '0.4' }}>/</span>
+            {/* <Link href="/" passHref>
               <Image
                 style={{ cursor: 'pointer' }}
                 src="/img/logo.png"
@@ -83,7 +91,7 @@ const Navbar = ({ mobile, setMobile }) => {
                 width="160px"
                 height="69px"
               />
-            </Link>
+            </Link> */}
             <Link href="/trackorder" passHref>
               <li
                 style={{ color: endpointName == '/trackorder' ? 'black' : '' }}
@@ -92,6 +100,8 @@ const Navbar = ({ mobile, setMobile }) => {
                 Track order
               </li>
             </Link>
+            <span style={{ fontSize: '16px', opacity: '0.4' }}>/</span>
+
             <Link href="/contact" passHref>
               <li
                 style={{ color: endpointName == '/contact' ? 'black' : '' }}

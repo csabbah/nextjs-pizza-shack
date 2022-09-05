@@ -5,6 +5,7 @@ import axios from 'axios';
 import Head from 'next/head';
 import Link from 'next/link';
 
+import { BsFillTrashFill } from 'react-icons/bs';
 import Add from '../../components/Add';
 
 import { useRouter } from 'next/router';
@@ -226,7 +227,7 @@ const Index = ({ orders, products }) => {
   };
 
   return (
-    <>
+    <div className={styles.outerContainer}>
       <Head>
         <title>Admin</title>
       </Head>
@@ -257,7 +258,7 @@ const Index = ({ orders, products }) => {
           <table className={styles.table}>
             <thead>
               <tr className={styles.trTitle}>
-                <th>Image</th>
+                <th></th>
                 <th>
                   <span
                     name="productsId"
@@ -320,9 +321,9 @@ const Index = ({ orders, products }) => {
                         <td className={styles.td}>
                           <Image
                             src={product.img}
-                            width={50}
-                            height={50}
-                            objectFit="cover"
+                            width={80}
+                            height={80}
+                            objectFit="contain"
                             alt=""
                           />
                         </td>
@@ -344,18 +345,21 @@ const Index = ({ orders, products }) => {
                           ${product.prices[pizzaSize]}
                         </td>
                         <td className={styles.td}>
-                          <span>
-                            <button
-                              className={`${styles.deleteBtn} ${styles.button}`}
-                              onClick={() => handleDelete(product._id)}
-                            >
-                              Delete
-                            </button>
+                          <span
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                            }}
+                          >
                             <Link href={`/product/${product._id}`} passHref>
                               <button className={`${styles.button}`}>
                                 view
                               </button>
                             </Link>
+                            <BsFillTrashFill
+                              className={styles.deleteIcon}
+                              onClick={() => handleDelete(product._id)}
+                            />
                           </span>
                         </td>
                       </tr>
@@ -480,10 +484,15 @@ const Index = ({ orders, products }) => {
                         >
                           {status[order.status]}
                         </td>
-                        <td className={styles.td}>
+                        <td
+                          className={styles.td}
+                          style={{ display: 'flex', alignItems: 'center' }}
+                        >
                           <button
                             // Disable button if order status is 3 (2 == delivered)
                             style={{
+                              display: 'flex',
+                              alignItems: 'center',
                               pointerEvents: order.status == 3 ? 'none' : 'all',
                               display: order.status == 3 ? 'none' : '',
                             }}
@@ -492,12 +501,10 @@ const Index = ({ orders, products }) => {
                           >
                             Next Stage
                           </button>
-                          <button
-                            className={`${styles.deleteBtn} ${styles.button}`}
+                          <BsFillTrashFill
+                            className={styles.deleteIcon}
                             onClick={() => handleOrderDelete(order._id)}
-                          >
-                            Delete
-                          </button>
+                          />
                         </td>
                       </tr>
                     </tbody>
@@ -507,7 +514,7 @@ const Index = ({ orders, products }) => {
           </table>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

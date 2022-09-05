@@ -1,6 +1,7 @@
 .container {
-  height: calc(80vh - 100px);
-  background-color: lightcoral;
+  padding-top: 50px;
+  height: calc(90vh - 100px);
+  background-color: #ee4e34;
   overflow: hidden;
   position: relative;
 }
@@ -58,12 +59,11 @@
 }
 .indexes {
   margin: 0 5px;
-  width: 18px;
-  height: 18px;
-  background-color: rgb(255, 255, 255);
+  width: 16px;
+  height: 16px;
+  background-color: #fcedda;
   border-radius: 100px;
   cursor: pointer;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 
 @media screen and (max-width: 1024px) {
@@ -78,15 +78,14 @@
   }
 }
 
+@media screen and (max-width: 730px) {
+  .container {
+    padding-top: 0;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .container {
-    height: 60vh;
-  }
-
-  .arrowContainer {
-    width: 20%;
-    height: 15%;
-
-    bottom: -250px;
+    height: 50vh;
   }
 }

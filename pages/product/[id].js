@@ -200,17 +200,20 @@ const Product = ({ pizza }) => {
           {pizza.extraOptions.map((option) => {
             return (
               <div key={option._id} className={styles.option}>
-                <input
-                  onChange={(e) => {
-                    handleExtras(e, option);
-                    setError(false);
-                  }}
-                  type="checkbox"
-                  id={option.text}
-                  name={option.text}
-                  className={styles.checkbox}
-                />
-                <label htmlFor={option.text}>{option.text}</label>
+                <label className={styles.checkboxLabel} htmlFor={option.text}>
+                  <input
+                    onChange={(e) => {
+                      handleExtras(e, option);
+                      setError(false);
+                    }}
+                    type="checkbox"
+                    id={option.text}
+                    name={option.text}
+                    className={styles.checkbox}
+                  />
+                  <span></span>
+                  {option.text}
+                </label>
               </div>
             );
           })}

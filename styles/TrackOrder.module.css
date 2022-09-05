@@ -1,4 +1,5 @@
 .container {
+  padding-top: 75px;
   width: 100%;
   height: calc(100vh - 100px);
   display: flex;
@@ -26,9 +27,14 @@
   margin-top: 15px;
   width: 35%;
   border: none;
-  background-color: teal;
   color: white;
   font-weight: 500;
   cursor: pointer;
   padding: 10px 0;
+}
+
+@media screen and (max-width: 730px) {
+  .container {
+    padding-top: 0;
+  }
 }

@@ -6,8 +6,7 @@
 }
 
 .desc {
-  font-size: 24px;
-  color: #444;
+  font-size: 22px;
   width: 70%;
 }
 
@@ -28,8 +27,7 @@
   .desc {
     width: 90%;
     text-align: center;
-    color: #444;
-    font-size: 25px;
+    font-size: 22px;
   }
 }
 
@@ -42,7 +40,6 @@
   .desc {
     width: 90%;
     text-align: center;
-    color: #444;
     font-size: 19px;
   }
 }
@@ -54,13 +51,7 @@
   }
 
   .desc {
+    font-size: 16px;
     width: 90%;
-    text-align: center;
-  }
-
-  .desc {
-    font-size: 17px;
-    color: #444;
-    width: 70%;
   }
 }

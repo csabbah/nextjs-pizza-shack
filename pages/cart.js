@@ -11,6 +11,8 @@ import {
   usePayPalScriptReducer,
 } from '@paypal/react-paypal-js';
 
+import { BsFillTrashFill } from 'react-icons/bs';
+
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import {
@@ -192,16 +194,19 @@ const Cart = () => {
         <title>Shopping Cart</title>
       </Head>
       {cart.products.length == 0 ? (
-        <div className={styles.container}>
+        <div style={{ height: '100vh' }} className={styles.container}>
           <h4 style={{ textAlign: 'center' }}>No pizzas in cart</h4>
         </div>
       ) : (
-        <div className={styles.container}>
+        <div
+          style={cart.products.length > 3 ? {} : { height: '100vh' }}
+          className={styles.container}
+        >
           <div className={styles.left}>
             <table className={styles.table}>
               <thead>
                 <tr className={styles.trTitle}>
-                  <th>Product</th>
+                  <th></th>
                   <th>Size</th>
                   <th>Name</th>
                   <th>Extras</th>
@@ -305,12 +310,11 @@ const Cart = () => {
                         </span>
                       </td>
                       <td>
-                        <button
-                          className={styles.btn}
+                        <BsFillTrashFill
+                          style={{ display: 'flex' }}
+                          className={styles.deleteIcon}
                           onClick={() => handleDelete(pizza.customId)}
-                        >
-                          X
-                        </button>
+                        />
                       </td>
                     </tr>
                   );

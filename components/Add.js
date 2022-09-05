@@ -243,7 +243,7 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
           </div>
         </div>
         <button className={styles.addButton} onClick={() => handleCreate()}>
-          Create
+          Upload Pizza
         </button>
         {errorExtra[0] && <p style={{ color: 'red' }}>{errorExtra[1]}</p>}
         {error[0] && <p style={{ color: 'red' }}>{error[1]}</p>}

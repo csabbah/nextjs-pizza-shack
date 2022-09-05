@@ -45,15 +45,15 @@ const Layout = ({ children }) => {
     <div
       onClick={(e) => {
         // If user clicks on navstack icon, open nav menu and take precedence over the other conditional
-        if (
-          e.target.src ==
-          'http://localhost:3000/_next/image?url=%2Fimg%2FnavIcon.png&w=128&q=75'
-        ) {
+        if (e.target.getAttribute('data-id') == 'navStack') {
           return setMobile(!mobile);
         }
         // If innerText is blank or does not contain 'Home' which is a nav menu item
         // That means user clicked outside the Nav so set mobile to false
-        if (e.target.innerText == '' || !e.target.innerText.includes('Home')) {
+        if (e.target.innerText == undefined) {
+          return setMobile(!mobile);
+        }
+        if (e.target.innerText == '' || !e.target.innerText.includes('HOME')) {
           // Then close the nav menu
           setMobile(false);
         }

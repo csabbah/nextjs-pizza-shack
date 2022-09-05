@@ -1,7 +1,7 @@
 .container {
   width: 100vw;
   height: 100vh;
-  background-color: rgba(245, 240, 240, 0.52);
+  background-color: rgba(0, 0, 0, 0.605);
   position: fixed;
   top: 0;
   z-index: 999;
@@ -14,9 +14,9 @@
 
 .wrapper {
   width: 500px;
-  background-color: white;
+  background-color: #fcedda;
   padding: 35px 50px;
-  border-radius: 20px;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -27,8 +27,8 @@
 .close {
   width: 30px;
   height: 30px;
-  background-color: black;
-  color: white;
+  background-color: #ee4e34;
+  color: #fcedda;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -46,13 +46,14 @@
 }
 
 .label {
-  font-size: 14px;
+  color: #ee4e34;
+  font-size: 15px;
   font-weight: 500;
 }
 
 .input {
   border: none;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.441);
   outline: none;
   border-radius: 0 !important;
   background-color: transparent;
@@ -60,14 +61,17 @@
 .textarea {
   resize: none;
   font-family: inherit;
-  border: 1px solid black;
-  border-radius: 0 !important;
+  border: 1px solid rgba(128, 128, 128, 0.441);
+  border-radius: 3px !important;
   background-color: transparent;
 }
 
-.input,
+.input {
+  padding-left: 0;
+}
+
 .textarea {
-  padding-left: 5px;
+  padding-left: 10px;
 }
 
 .priceContainer {
@@ -106,9 +110,8 @@
 }
 
 .addButton {
-  width: 25%;
+  width: 40%;
   border: none;
-  background-color: teal;
   color: white;
   font-weight: 500;
   cursor: pointer;
