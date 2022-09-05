@@ -1,10 +1,20 @@
 .container {
-  padding-top: 75px;
+  padding-top: 89px;
   width: 100%;
   height: calc(100vh - 100px);
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.innerContainer {
+  display: flex;
+  align-items: center;
+  background-color: #ee4e34;
+  color: #fcedda;
+  border-radius: 15px;
+  box-shadow: 4px 4px 5px 0 rgba(0, 0, 0, 0.2);
+  padding: 25px;
 }
 
 .wrapper {
@@ -20,17 +30,23 @@
   align-items: flex-start;
 }
 
+.wrapper h1 {
+  color: #fcedda;
+}
 .email {
+  color: #fcedda;
   margin-top: 40px;
   margin-bottom: 0;
 }
 .phone {
+  color: #fcedda;
   font-size: 16px;
   opacity: 0.6;
   margin: 0;
 }
 
 .address {
+  color: #fcedda;
   margin-top: 40px;
   font-size: 17px;
   opacity: 0.7;
@@ -55,13 +71,20 @@
   margin-top: 10px;
   padding: 5px 25px;
   align-self: flex-start;
+  color: #ee4e34;
+  background-color: #fcedda;
 }
 
-@media screen and (max-width: 1058px) {
+@media screen and (max-width: 1090px) {
   .container {
+    padding-top: 100px;
     height: 100%;
     padding: 50px 0;
     display: flex;
+  }
+
+  .innerContainer {
+    margin-top: 90px;
     flex-direction: column;
   }
 
@@ -89,7 +112,27 @@
 }
 
 @media screen and (max-width: 730px) {
+  .wrapper h1,
+  .email,
+  .address {
+    width: 80vw;
+  }
   .container {
     padding-top: 0;
+  }
+
+  .innerContainer {
+    width: 90%;
+  }
+  .textarea,
+  .input {
+    width: 80vw;
+  }
+  .button {
+    align-self: center;
+  }
+
+  .wrapper {
+    width: 0;
   }
 }

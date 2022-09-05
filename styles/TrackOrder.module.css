@@ -12,9 +12,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #ee4e34;
+  border-radius: 15px;
+  color: #fcedda;
+  box-shadow: 4px 4px 5px 0 rgba(0, 0, 0, 0.2);
+  padding: 30px 125px;
 }
 
 .title {
+  color: #fcedda;
   margin-top: 0;
 }
 
@@ -27,14 +33,29 @@
   margin-top: 15px;
   width: 35%;
   border: none;
-  color: white;
+  color: #ee4e34;
+  background-color: #fcedda;
   font-weight: 500;
   cursor: pointer;
   padding: 10px 0;
 }
 
-@media screen and (max-width: 730px) {
+@media screen and (max-width: 700px) {
   .container {
     padding-top: 0;
+  }
+
+  .wrapper {
+    padding: 15px 15px;
+    width: 80vw;
+  }
+
+  .title {
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .input {
+    width: 100%;
   }
 }
