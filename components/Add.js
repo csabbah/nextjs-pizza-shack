@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/Add.module.css';
 import axios from 'axios';
+import { TiDelete } from 'react-icons/ti';
 
 const Add = ({ setClose, pizzaList, setPizzaList }) => {
   const [file, setFile] = useState(null);
@@ -10,6 +11,9 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
   const [prices, setPrices] = useState([0, 0, 0]);
   const [extraOptions, setExtraOptions] = useState([]);
   const [extra, setExtra] = useState(null);
+  const [randomNum, setRandomNum] = useState(
+    Math.floor(Math.random() * 10000000)
+  );
 
   const [error, setError] = useState([false, '']);
   const [errorExtra, setErrorExtra] = useState([false, '']);
@@ -19,7 +23,11 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
   const handleExtraInput = (e) => {
     setError([false, '']);
     setErrorExtra([false, '']);
-    setExtra({ ...extra, [e.target.name]: e.target.value });
+    setExtra({
+      ...extra,
+      [e.target.name]: e.target.value,
+      id: Math.floor(Math.random() * 1000000),
+    });
   };
 
   useEffect(() => {
@@ -52,6 +60,16 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
         return setErrorExtra([true, 'Please fill Text and Price']);
       }
     }
+  };
+
+  const deleteExtra = (extraId) => {
+    extraOptions.forEach((item) => {
+      if (item.id == extraId) {
+        console.log(true, item.id);
+        setExtraOptions(extraOptions.filter((item) => item.id !== extraId));
+        console.log(extraOptions);
+      }
+    });
   };
 
   const changePrice = (e, index) => {
@@ -126,12 +144,13 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
         <span onClick={() => setClose(true)} className={styles.close}>
           X
         </span>
-        <h1>Add a new Pizza</h1>
+        <h1 className={styles.title}>Add a new Pizza</h1>
         <div className={styles.item}>
           <label className={styles.label}>Choose an image</label>
           <input
-            style={{ color: error[0] ? 'red' : '' }}
+            style={{ color: error[0] ? 'white' : '' }}
             type="file"
+            className={styles.file}
             accept="image/png, image/jpeg"
             onChange={(e) => {
               setError([false, '']);
@@ -146,7 +165,7 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
           <input
             className={styles.input}
             type="text"
-            style={{ border: error[0] ? '2px solid red' : '' }}
+            style={{ border: error[0] ? '3px dotted white' : '' }}
             onChange={(e) => {
               setError([false, '']);
               setErrorExtra([false, '']);
@@ -157,7 +176,7 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
         <div className={styles.item}>
           <label className={styles.label}>Description</label>
           <textarea
-            style={{ border: error[0] ? '2px solid red' : '' }}
+            style={{ border: error[0] ? '3px dotted white' : '' }}
             className={styles.textarea}
             rows={4}
             type="text"
@@ -172,7 +191,7 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
           <label className={styles.label}>Prices</label>
           <div className={styles.priceContainer}>
             <input
-              style={{ borderBottom: error[0] ? '2px solid red' : '' }}
+              style={{ borderBottom: error[0] ? '3px dotted white' : '' }}
               className={`${styles.input} ${styles.inputSm}`}
               type="number"
               placeholder="Small"
@@ -183,7 +202,7 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
               }}
             />
             <input
-              style={{ borderBottom: error[0] ? '2px solid red' : '' }}
+              style={{ borderBottom: error[0] ? '3px dotted white' : '' }}
               className={`${styles.input} ${styles.inputSm}`}
               type="number"
               placeholder="Medium"
@@ -194,7 +213,7 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
               }}
             />
             <input
-              style={{ borderBottom: error[0] ? '2px solid red' : '' }}
+              style={{ borderBottom: error[0] ? '3px dotted white' : '' }}
               className={`${styles.input} ${styles.inputSm}`}
               type="number"
               placeholder="Large"
@@ -211,7 +230,9 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
           <div className={styles.extra}>
             <input
               id="text"
-              style={{ borderBottom: errorExtra[0] ? '2px solid red' : '' }}
+              style={{
+                borderBottom: errorExtra[0] ? '3px dotted white' : '',
+              }}
               className={`${styles.input} ${styles.inputSm}`}
               type="text"
               placeholder="Item"
@@ -220,7 +241,9 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
             />
             <input
               id="price"
-              style={{ borderBottom: errorExtra[0] ? '2px solid red' : '' }}
+              style={{
+                borderBottom: errorExtra[0] ? '3px dotted white' : '',
+              }}
               className={`${styles.input} ${styles.inputSm}`}
               type="number"
               placeholder="Price"
@@ -237,6 +260,12 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
           <div className={styles.extraItems}>
             {extraOptions.map((option) => (
               <span key={option.text} className={styles.extraItem}>
+                <TiDelete
+                  onClick={() => {
+                    deleteExtra(option.id);
+                  }}
+                  className={styles.optionDelete}
+                />
                 {option.text}
               </span>
             ))}
@@ -245,8 +274,10 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
         <button className={styles.addButton} onClick={() => handleCreate()}>
           Upload Pizza
         </button>
-        {errorExtra[0] && <p style={{ color: 'red' }}>{errorExtra[1]}</p>}
-        {error[0] && <p style={{ color: 'red' }}>{error[1]}</p>}
+        <span style={{ marginTop: '10px' }}>
+          {errorExtra[0] && <p style={{ color: '#fcedda' }}>{errorExtra[1]}</p>}
+          {error[0] && <p style={{ color: '#fcedda' }}>{error[1]}</p>}
+        </span>
       </div>
     </div>
   );

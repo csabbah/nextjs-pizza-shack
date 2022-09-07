@@ -8,35 +8,36 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .wrapper {
   width: 500px;
-  background-color: #fcedda;
+  background-color: #ee4e34;
+  color: #fcedda;
   padding: 35px 50px;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.2);
 }
 
 .close {
-  width: 30px;
-  height: 30px;
-  background-color: #ee4e34;
-  color: #fcedda;
+  width: 40px;
+  height: 40px;
+  background-color: #fcedda;
+  color: #ee4e34;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   position: absolute;
-  top: -10px;
-  right: -10px;
+  top: -17px;
+  right: -17px;
 }
 
 .item {
@@ -45,15 +46,27 @@
   margin-bottom: 10px;
 }
 
+.item input::placeholder {
+  color: #fcedda;
+}
+
+.item input,
+.item textarea {
+  color: #fcedda;
+}
+
+.title {
+  color: #fcedda;
+}
 .label {
-  color: #ee4e34;
+  color: #fcedda;
   font-size: 15px;
   font-weight: 500;
 }
 
 .input {
   border: none;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.441);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   outline: none;
   border-radius: 0 !important;
   background-color: transparent;
@@ -61,13 +74,17 @@
 .textarea {
   resize: none;
   font-family: inherit;
-  border: 1px solid rgba(128, 128, 128, 0.441);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 3px !important;
   background-color: transparent;
 }
 
 .input {
   padding-left: 0;
+}
+
+.input:nth-child(2) {
+  padding-left: 10px;
 }
 
 .textarea {
@@ -88,33 +105,76 @@
   justify-content: space-between;
 }
 .extraButton {
+  color: #ee4e34;
+  background-color: #fcedda;
   cursor: pointer;
   padding: 5px 20px;
 }
 
 .extraItems {
-  margin: 10px 0px;
+  margin: 15px 0px;
   display: flex;
   flex-wrap: wrap;
 }
 
 .extraItem {
-  padding: 5px;
+  user-select: none;
+  padding: 6px 12px;
   font-size: 14px;
-  border: 1px solid tomato;
-  background-color: white;
-  color: tomato;
-  margin-right: 10px;
-  border-radius: 10px;
+  border: 1px solid #fcedda;
+  background-color: #ee4e34;
+  color: #fcedda;
+  margin-right: 17px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.optionDelete {
+  font-size: 30px;
+  position: absolute;
   cursor: pointer;
+  right: -20px;
+  top: -8px;
+}
+
+.optionDelete:hover {
+  transform: scale(1.05);
+}
+
+.optionDelete:active {
+  transform: scale(1);
 }
 
 .addButton {
   width: 40%;
   border: none;
-  color: white;
+  color: #ee4e34;
+  background-color: #fcedda;
   font-weight: 500;
   cursor: pointer;
   padding: 5px 0;
   align-self: flex-end;
+}
+
+.file {
+  background-color: transparent;
+  padding-left: 0;
+  border-radius: 0;
+  margin-bottom: 10px;
+  color: #fcedda;
+}
+
+.file::file-selector-button {
+  cursor: pointer;
+  border: none;
+  font-size: 17px;
+  border-radius: 3px;
+  padding: 5px 10px;
+  color: #ee4e34;
+  background-color: #fcedda;
+}
+
+.file::file-selector-button:hover {
+  background-color: #fcedda;
 }
