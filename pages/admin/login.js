@@ -34,7 +34,7 @@ const Login = () => {
       </Head>
       <div className={styles.container}>
         <div className={styles.wrapper}>
-          <h1>Admin Dashboard</h1>
+          <h1 className={styles.title}>Admin Dashboard</h1>
           <input
             placeholder="username"
             className={styles.input}

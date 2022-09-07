@@ -30,9 +30,10 @@
   width: 48.5%;
   background-color: #ee4e34;
   box-shadow: 4px 4px 5px 0 rgba(0, 0, 0, 0.2);
-  padding: 18px;
   border-radius: 15px;
+  padding: 15px;
 }
+
 .container {
   padding: 21px;
   display: flex;
@@ -59,6 +60,7 @@
 .input input {
   width: 100%;
   height: 35px;
+  margin: 20px 0;
 }
 
 .itemWrapper span {
@@ -72,11 +74,29 @@
   opacity: 0.4;
 }
 
+.thead {
+  background-color: #fcedda;
+  color: #ee4e34;
+}
 .table {
   padding: 10px;
   width: 100%;
   border-spacing: 12.5px;
   text-align: left;
+  color: #fcedda;
+  border: 1px solid #fcedda;
+}
+.table:last-child {
+  margin-bottom: 10px;
+}
+
+.tbody:hover {
+  background-color: #fcedda;
+}
+
+.tbody:hover .button,
+.tbody:hover .viewIcon {
+  background-color: #ee4e34;
   color: #fcedda;
 }
 
@@ -85,7 +105,7 @@
 }
 .trTitle th span {
   cursor: pointer;
-  border-bottom: 1px solid #fcedda;
+  border-bottom: 1px solid #ee4e34;
 }
 
 .trTitle th span:hover {
@@ -96,8 +116,13 @@
 .td {
   font-size: 16px;
   position: relative;
+  box-shadow: none !important;
 }
 
+.tdImg {
+  align-items: center;
+  display: flex;
+}
 .id,
 .id2 {
   display: none;
@@ -105,20 +130,19 @@
   padding: 2px 9px;
   border-radius: 15px;
   position: absolute;
-  background-color: #fcedda;
+  background-color: #ee4e34;
   color: black;
   z-index: 999;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  left: 1px;
 }
 
 .id {
-  top: -2px;
-  left: -9px;
+  top: 8px;
 }
 
 .id2 {
-  top: 29.5px;
-  left: -9px;
+  top: 40px;
 }
 
 .init:hover > .id,
@@ -141,7 +165,12 @@
 
 .extraData {
   color: #fcedda;
-  margin-left: 22px;
+  margin-bottom: 0;
+  margin-left: 5px;
+}
+
+.extraData:last-child {
+  margin-left: 10px;
 }
 
 .button {
@@ -162,7 +191,19 @@
 .hr {
   display: none;
 }
+
+.addBtn,
+.logout {
+  font-size: 18px;
+  width: 150px;
+  height: 50px;
+}
+
 @media (max-width: 1375px) {
+  .buttonWrapper {
+    justify-content: center;
+    margin-left: 0;
+  }
   .container {
     flex-direction: column;
     align-items: center;
@@ -173,7 +214,7 @@
   }
 
   .item {
-    width: 80vw;
+    width: 90vw;
   }
 
   .item:first-child {
@@ -191,7 +232,25 @@
 }
 
 @media screen and (max-width: 730px) {
+  .itemWrapper {
+    justify-content: center;
+  }
+  .input {
+    width: 100%;
+  }
+
   .container {
     padding-top: 0;
+  }
+
+  .itemWrapper h1 {
+    display: none;
+  }
+
+  .addBtn,
+  .logout {
+    font-size: 16px;
+    width: 150px;
+    height: 50px;
   }
 }

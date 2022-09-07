@@ -70,7 +70,11 @@ const TrackOrder = () => {
             Check
           </button>
           {error[0] && (
-            <p style={{ marginTop: '10px', color: '#fcedda' }}>{error[1]}</p>
+            <p
+              style={{ marginTop: '10px', color: '#fcedda', marginBottom: '0' }}
+            >
+              {error[1]}
+            </p>
           )}
         </div>
       </div>
