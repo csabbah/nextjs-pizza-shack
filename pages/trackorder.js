@@ -3,6 +3,7 @@ import styles from '../styles/TrackOrder.module.css';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import { ImSearch } from 'react-icons/im';
 
 const TrackOrder = () => {
   const [inputtedId, setInputtedId] = useState(null);
@@ -53,8 +54,17 @@ const TrackOrder = () => {
             type="text"
             placeholder="Tracking ID"
           ></input>
-          <button onClick={() => handleSubmit()} className={styles.button}>
-            Submit
+          <button
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            onClick={() => handleSubmit()}
+            className={styles.button}
+          >
+            Check
+            <ImSearch style={{ marginLeft: '5px' }} />
           </button>
           {error[0] && (
             <p style={{ marginTop: '10px', color: 'red' }}>{error[1]}</p>

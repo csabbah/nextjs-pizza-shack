@@ -13,21 +13,28 @@
   cursor: pointer;
 }
 
-.addBtn {
-  margin-top: 50px;
+.buttonWrapper {
+  margin-top: 39px;
   margin-left: 33px;
+}
+
+.addBtn {
   margin-right: 20px;
 }
 
+.viewIcon {
+  color: #ee4e34;
+}
+
 .item {
-  width: 49%;
+  width: 48.5%;
   background-color: #ee4e34;
   box-shadow: 4px 4px 5px 0 rgba(0, 0, 0, 0.2);
   padding: 18px;
   border-radius: 15px;
 }
 .container {
-  padding: 25px;
+  padding: 21px;
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
@@ -81,18 +88,20 @@
   padding: 2px 9px;
   border-radius: 15px;
   position: absolute;
-  background-color: #ee4e34;
-  color: #fcedda;
+  background-color: #fcedda;
+  color: black;
   z-index: 999;
-  left: -11px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .id {
-  top: 3px;
+  top: 4px;
+  left: -9px;
 }
 
 .id2 {
-  top: 40px;
+  top: 29.5px;
+  left: -9px;
 }
 
 .init:hover > .initInner {

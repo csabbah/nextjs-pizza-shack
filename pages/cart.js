@@ -4,6 +4,7 @@ import Head from 'next/head';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import { IoMdArrowDropup, IoMdArrowDropdown } from 'react-icons/io';
 import { useEffect, useState } from 'react';
 import {
   PayPalScriptProvider,
@@ -274,33 +275,31 @@ const Cart = () => {
                         <span id="prodQuantity" className={styles.quantity}>
                           {pizza.quantity}
                           <span className={styles.arrowWrapper}>
-                            <Image
-                              className={styles.upArrow}
-                              src={'/img/uArrow.png'}
-                              width={18}
-                              height={18}
-                              alt="Up Arrow"
-                              objectFit="contain"
-                              onClick={() =>
-                                handleUpdate(pizza, pizza.customId, pizza.price)
-                              }
-                            />
-                            <Image
-                              className={styles.downArrow}
-                              src={'/img/dArrow.png'}
-                              width={18}
-                              height={18}
-                              alt="Down Arrow"
-                              objectFit="contain"
-                              onClick={() =>
-                                handleUpdateDec(
-                                  pizza,
-                                  pizza.customId,
-                                  pizza.price,
-                                  pizza.quantity
-                                )
-                              }
-                            />
+                            <span style={{ height: '20px', width: '20px' }}>
+                              <IoMdArrowDropup
+                                className={styles.arrows}
+                                onClick={() =>
+                                  handleUpdate(
+                                    pizza,
+                                    pizza.customId,
+                                    pizza.price
+                                  )
+                                }
+                              />
+                            </span>
+                            <span style={{ height: '20px', width: '20px' }}>
+                              <IoMdArrowDropdown
+                                className={styles.arrows}
+                                onClick={() =>
+                                  handleUpdateDec(
+                                    pizza,
+                                    pizza.customId,
+                                    pizza.price,
+                                    pizza.quantity
+                                  )
+                                }
+                              />
+                            </span>
                           </span>
                         </span>
                       </td>

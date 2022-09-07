@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { IoIosSend } from 'react-icons/io';
+
 import styles from '../styles/Contact.module.css';
 const contact = () => {
   return (
@@ -35,7 +37,21 @@ const contact = () => {
             type="text"
             placeholder="Message"
           ></textarea>
-          <button className={styles.button}>Send</button>
+          <button
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+            }}
+            className={styles.button}
+          >
+            Send
+            <IoIosSend
+              style={{
+                display: 'flex',
+                marginRight: '2px',
+              }}
+            />
+          </button>
         </div>
       </div>
     </div>

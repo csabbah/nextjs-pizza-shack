@@ -1,5 +1,5 @@
 .container {
-  padding-top: 90px;
+  padding-top: 75px;
   padding-left: 25px;
   padding-right: 25px;
   display: flex;
@@ -86,7 +86,8 @@
 
 .arrowWrapper {
   position: absolute;
-  left: 20px;
+  left: 5px;
+  top: -18px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -94,6 +95,14 @@
   box-sizing: border-box;
   margin-left: 10px;
   cursor: pointer;
+}
+
+.arrows {
+  font-size: 45px;
+}
+
+.arrows:hover {
+  transform: scale(1.1);
 }
 
 .deleteIcon {

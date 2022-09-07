@@ -6,6 +6,9 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 import { BsFillTrashFill } from 'react-icons/bs';
+import { AiFillEye } from 'react-icons/ai';
+import { BiLogOut } from 'react-icons/bi';
+
 import Add from '../../components/Add';
 
 import { useRouter } from 'next/router';
@@ -231,12 +234,26 @@ const Index = ({ orders, products }) => {
       <Head>
         <title>Admin</title>
       </Head>
-      <button onClick={() => setClose(false)} className={styles.addBtn}>
-        Add new Pizza
-      </button>
-      <button onClick={() => logout()} className={styles.logout}>
-        Logout
-      </button>
+      <span
+        className={styles.buttonWrapper}
+        style={{ display: 'flex', alignItems: 'center' }}
+      >
+        <button onClick={() => setClose(false)} className={styles.addBtn}>
+          + Add Pizza
+        </button>
+        <button
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          onClick={() => logout()}
+          className={styles.logout}
+        >
+          <BiLogOut style={{ display: 'flex', marginRight: '5px' }} />
+          Logout
+        </button>
+      </span>
       {!close && (
         <Add
           setClose={setClose}
@@ -352,7 +369,20 @@ const Index = ({ orders, products }) => {
                             }}
                           >
                             <Link href={`/product/${product._id}`} passHref>
-                              <button className={`${styles.button}`}>
+                              <button
+                                style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                }}
+                                className={`${styles.button}`}
+                              >
+                                <AiFillEye
+                                  className={styles.viewIcon}
+                                  style={{
+                                    display: 'flex',
+                                    marginRight: '2px',
+                                  }}
+                                />
                                 view
                               </button>
                             </Link>

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../redux/cartSlice';
+import { BsCartPlus } from 'react-icons/bs';
 
 const Product = ({ pizza }) => {
   const cart = useSelector((state) => state.cart);
@@ -218,7 +219,7 @@ const Product = ({ pizza }) => {
             );
           })}
         </div>
-        <div className={styles.add}>
+        <div style={{ display: 'flex' }} className={styles.add}>
           <input
             onChange={(e) => setQuantity(e.target.value)}
             type="number"
@@ -226,8 +227,13 @@ const Product = ({ pizza }) => {
             defaultValue={1}
             className={styles.quantity}
           />
-          <button className={styles.button} onClick={() => handleClick()}>
+          <button
+            style={{ display: 'flex', alignItems: 'center' }}
+            className={styles.button}
+            onClick={() => handleClick()}
+          >
             Add to Cart
+            <BsCartPlus style={{ marginLeft: '5px' }} />
           </button>
           {error && 'Please add a quantity of 1 or higher'}
         </div>
