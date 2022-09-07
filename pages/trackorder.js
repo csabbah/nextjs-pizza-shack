@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { ImSearch } from 'react-icons/im';
+import { FiSearch } from 'react-icons/fi';
 
 const TrackOrder = () => {
   const [inputtedId, setInputtedId] = useState(null);
@@ -43,17 +44,20 @@ const TrackOrder = () => {
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <h1 className={styles.title}>Track Order</h1>
-          <input
-            id="input"
-            style={{ border: error[0] ? '2px solid red' : '' }}
-            onChange={(e) => {
-              setError([false, '']);
-              setInputtedId(e.target.value);
-            }}
-            className={styles.input}
-            type="text"
-            placeholder="Tracking ID"
-          ></input>
+          <span className={styles.input}>
+            <input
+              id="input"
+              style={{ border: error[0] ? '2px solid red' : '' }}
+              onChange={(e) => {
+                setError([false, '']);
+                setInputtedId(e.target.value);
+              }}
+              className={styles.input}
+              type="text"
+              placeholder="Tracking ID"
+            ></input>
+            <FiSearch className={styles.icon} />
+          </span>
           <button
             style={{
               display: 'flex',
@@ -64,10 +68,9 @@ const TrackOrder = () => {
             className={styles.button}
           >
             Check
-            <ImSearch style={{ marginLeft: '5px' }} />
           </button>
           {error[0] && (
-            <p style={{ marginTop: '10px', color: 'red' }}>{error[1]}</p>
+            <p style={{ marginTop: '10px', color: '#fcedda' }}>{error[1]}</p>
           )}
         </div>
       </div>

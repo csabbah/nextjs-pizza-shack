@@ -27,6 +27,14 @@
 .input {
   padding: 7px 15px;
   width: 400px;
+  position: relative;
+}
+.icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .button {
@@ -57,5 +65,10 @@
 
   .input {
     width: 100%;
+    position: relative;
+  }
+
+  .icon {
+    right: 25px;
   }
 }

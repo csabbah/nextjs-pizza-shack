@@ -17,6 +17,14 @@
   justify-content: center;
 }
 
+.innerContainer:hover {
+  transform: scale(1.02);
+}
+
+.innerContainer:active {
+  transform: scale(1);
+}
+
 .title {
   text-align: center;
   font-size: 20px;
@@ -58,10 +66,13 @@
   }
 
   .title {
+    font-size: 24px;
+  }
+
+  .price {
     font-size: 20px;
   }
 
-  .price,
   .desc {
     font-size: 18px;
   }
@@ -69,15 +80,15 @@
 
 @media screen and (max-width: 480px) {
   .container {
-    width: 95%;
+    width: 90%;
   }
 
   .title {
-    font-size: 30px;
+    font-size: 24px;
   }
 
   .price {
-    font-size: 20px;
+    font-size: 19px;
   }
 
   .desc {

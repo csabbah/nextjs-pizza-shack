@@ -1,7 +1,7 @@
 import styles from '../styles/Featured.module.css';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 const Featured = () => {
   const image = [
     '/img/featured.png',
@@ -39,11 +39,9 @@ const Featured = () => {
     <div style={{ position: 'relative' }}>
       <div className={styles.container}>
         <div className={styles.arrowContainer}>
-          <Image
-            layout="fill"
-            src="/img/LeftA.png"
-            alt="Left arrow"
-            onClick={() => handleArrow('l')}
+          <IoIosArrowBack
+            className={styles.arrow}
+            onClick={() => handleArrow('r')}
           />
         </div>
         <div
@@ -60,10 +58,8 @@ const Featured = () => {
         </div>
 
         <div className={styles.arrowContainer}>
-          <Image
-            layout="fill"
-            src="/img/RightA.png"
-            alt="Right arrow"
+          <IoIosArrowForward
+            className={styles.arrow}
             onClick={() => handleArrow('r')}
           />
         </div>

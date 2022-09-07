@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { AiFillEye } from 'react-icons/ai';
 import { BiLogOut } from 'react-icons/bi';
-
+import { FiSearch } from 'react-icons/fi';
 import Add from '../../components/Add';
 
 import { useRouter } from 'next/router';
@@ -293,11 +293,14 @@ const Index = ({ orders, products }) => {
         <div className={styles.item}>
           <div className={styles.itemWrapper}>
             <h1 className={styles.title}>Products</h1>
-            <input
-              type="text"
-              placeholder="Search Pizzas"
-              onChange={(e) => setProductQuery(e.target.value.trim())}
-            ></input>
+            <span className={styles.input}>
+              <input
+                type="text"
+                placeholder="Search Pizzas"
+                onChange={(e) => setProductQuery(e.target.value.trim())}
+              ></input>
+              <FiSearch className={styles.icon} />
+            </span>
           </div>
           <table className={styles.table}>
             <thead>
@@ -430,11 +433,14 @@ const Index = ({ orders, products }) => {
         <div className={styles.item}>
           <div className={styles.itemWrapper}>
             <h1 className={styles.title}>Orders</h1>
-            <input
-              type="text"
-              placeholder="Search Orders"
-              onChange={(e) => SetOrderQuery(e.target.value)}
-            ></input>
+            <span className={styles.input}>
+              <input
+                type="text"
+                placeholder="Search Orders"
+                onChange={(e) => SetOrderQuery(e.target.value)}
+              ></input>
+              <FiSearch className={styles.icon} />
+            </span>
           </div>
           <table className={styles.table}>
             <thead>
