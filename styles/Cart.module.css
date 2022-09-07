@@ -1,4 +1,5 @@
 .container {
+  margin-top: 25px;
   padding-top: 75px;
   padding-left: 25px;
   padding-right: 25px;
@@ -124,6 +125,10 @@
 .extraPrice::before {
   content: ' ';
 }
+
+.trTitle {
+  border: transparent;
+}
 @media screen and (max-width: 1142px) {
   .container {
     flex-direction: column;
@@ -160,6 +165,7 @@
 
   .container {
     padding: 0;
+    height: unset !important;
   }
 
   .trTitle {
@@ -171,6 +177,7 @@
     flex-direction: column;
     align-items: center;
     margin: 15px 0;
+    border: transparent;
   }
 
   .imgContainer {

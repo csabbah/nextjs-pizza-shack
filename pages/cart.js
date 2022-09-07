@@ -215,115 +215,125 @@ const Cart = () => {
           className={styles.container}
         >
           <div className={styles.left}>
-            <table className={styles.table}>
-              <thead>
-                <tr className={styles.trTitle}>
-                  <th></th>
-                  <th>Size</th>
-                  <th>Name</th>
-                  <th>Extras</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>Total</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {cart.products.map((pizza) => {
-                  return (
-                    <tr className={styles.tr} key={pizza.customId}>
-                      <td>
-                        <div className={styles.imgContainer}>
-                          <Image
-                            src={pizza.img}
-                            layout="fill"
-                            objectFit="cover"
-                            alt=""
-                          />
-                        </div>
-                      </td>
-                      <td>
-                        <span className={styles.size}>
-                          {returnSize(pizza.pizzaSize)}
-                        </span>
-                      </td>
-                      <td>
-                        <span className={styles.name}>{pizza.title}</span>
-                      </td>
-                      <td>
-                        <span className={styles.extras}>
-                          {pizza.chosenExtras.length == 0
-                            ? 'No Extras'
-                            : pizza.chosenExtras.map((extra) => {
-                                return (
-                                  <span key={extra._id}>
-                                    {extra.text}
-                                    <span className={styles.extraPrice}>
-                                      (+${extra.price})
-                                    </span>
-                                    {
-                                      // Only include 'and' to the 2nd last name
-                                      pizza.chosenExtras.length > 1
-                                        ? pizza.chosenExtras.indexOf(extra) ==
-                                          pizza.chosenExtras.length - 2
-                                          ? ` & `
-                                          : // add a comma in between names (starting at when a 3rd user is added and beyond)
-                                          pizza.chosenExtras.indexOf(extra) !==
-                                            pizza.chosenExtras.length - 1
-                                          ? `, `
-                                          : ''
-                                        : ''
-                                    }
-                                  </span>
-                                );
-                              })}
-                        </span>
-                      </td>
-                      <td>
-                        <span className={styles.price}>${pizza.price}</span>
-                      </td>
-                      <td>
-                        <span id="prodQuantity" className={styles.quantity}>
-                          {pizza.quantity}
-                          <span className={styles.arrowWrapper}>
-                            <RiArrowUpSLine
-                              className={styles.arrows}
-                              onClick={() =>
-                                handleUpdate(pizza, pizza.customId, pizza.price)
-                              }
+            <div className="table-responsive-sm">
+              <table className={`${styles.table} table`}>
+                <thead>
+                  <tr className={styles.trTitle}>
+                    <th></th>
+                    <th>Size</th>
+                    <th>Name</th>
+                    <th>Extras</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody
+                  style={{ verticalAlign: 'revert', border: 'transparent' }}
+                >
+                  {cart.products.map((pizza) => {
+                    return (
+                      <tr className={styles.tr} key={pizza.customId}>
+                        <td>
+                          <div className={styles.imgContainer}>
+                            <Image
+                              src={pizza.img}
+                              layout="fill"
+                              objectFit="cover"
+                              alt=""
                             />
-
-                            <RiArrowDownSLine
-                              className={styles.arrows}
-                              onClick={() =>
-                                handleUpdateDec(
-                                  pizza,
-                                  pizza.customId,
-                                  pizza.price,
-                                  pizza.quantity
-                                )
-                              }
-                            />
+                          </div>
+                        </td>
+                        <td>
+                          <span className={styles.size}>
+                            {returnSize(pizza.pizzaSize)}
                           </span>
-                        </span>
-                      </td>
-                      <td>
-                        <span className={styles.total}>
-                          ${pizza.price * pizza.quantity}
-                        </span>
-                      </td>
-                      <td>
-                        <BsFillTrashFill
-                          style={{ display: 'flex' }}
-                          className={styles.deleteIcon}
-                          onClick={() => handleDelete(pizza.customId)}
-                        />
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+                        </td>
+                        <td>
+                          <span className={styles.name}>{pizza.title}</span>
+                        </td>
+                        <td>
+                          <span className={styles.extras}>
+                            {pizza.chosenExtras.length == 0
+                              ? 'No Extras'
+                              : pizza.chosenExtras.map((extra) => {
+                                  return (
+                                    <span key={extra._id}>
+                                      {extra.text}
+                                      <span className={styles.extraPrice}>
+                                        (+${extra.price})
+                                      </span>
+                                      {
+                                        // Only include 'and' to the 2nd last name
+                                        pizza.chosenExtras.length > 1
+                                          ? pizza.chosenExtras.indexOf(extra) ==
+                                            pizza.chosenExtras.length - 2
+                                            ? ` & `
+                                            : // add a comma in between names (starting at when a 3rd user is added and beyond)
+                                            pizza.chosenExtras.indexOf(
+                                                extra
+                                              ) !==
+                                              pizza.chosenExtras.length - 1
+                                            ? `, `
+                                            : ''
+                                          : ''
+                                      }
+                                    </span>
+                                  );
+                                })}
+                          </span>
+                        </td>
+                        <td>
+                          <span className={styles.price}>${pizza.price}</span>
+                        </td>
+                        <td>
+                          <span id="prodQuantity" className={styles.quantity}>
+                            {pizza.quantity}
+                            <span className={styles.arrowWrapper}>
+                              <RiArrowUpSLine
+                                className={styles.arrows}
+                                onClick={() =>
+                                  handleUpdate(
+                                    pizza,
+                                    pizza.customId,
+                                    pizza.price
+                                  )
+                                }
+                              />
+
+                              <RiArrowDownSLine
+                                className={styles.arrows}
+                                onClick={() =>
+                                  handleUpdateDec(
+                                    pizza,
+                                    pizza.customId,
+                                    pizza.price,
+                                    pizza.quantity
+                                  )
+                                }
+                              />
+                            </span>
+                          </span>
+                        </td>
+                        <td>
+                          <span className={styles.total}>
+                            ${pizza.price * pizza.quantity}
+                          </span>
+                        </td>
+                        <td>
+                          <BsFillTrashFill
+                            style={{ display: 'flex' }}
+                            className={styles.deleteIcon}
+                            onClick={() => handleDelete(pizza.customId)}
+                          />
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           </div>
           <div className={styles.right}>
             <div className={styles.wrapper}>
