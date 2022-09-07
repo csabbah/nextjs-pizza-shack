@@ -4,7 +4,7 @@ import Head from 'next/head';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { IoMdArrowDropup, IoMdArrowDropdown } from 'react-icons/io';
+import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 import { useEffect, useState } from 'react';
 import {
   PayPalScriptProvider,
@@ -54,7 +54,7 @@ const Cart = () => {
     }
   };
 
-  const handleDelete = async (customId) => {
+  const handleDelete = (customId) => {
     cart.products.forEach((product) => {
       if (product.customId == customId) {
         dispatch(deletePizza({ customId: product.customId }));
@@ -64,6 +64,12 @@ const Cart = () => {
         deleteLocalCartItem(customId);
       }
     });
+
+    // Fully reset the state manager if Cart is empty (for consistency)
+    // The state is one step behind so technically, if length - 1 == 0 then that means no products are in cart
+    if (cart.products.length - 1 == 0) {
+      dispatch(reset());
+    }
   };
 
   const handleUpdate = (pizza, customId, price) => {
@@ -90,6 +96,11 @@ const Cart = () => {
           deleteLocalCartItem(customId);
         }
       });
+      // Reset the state manager if length of products in cart is 0
+      // Length - 1 technically = 0 products since state is one step behind
+      if (cart.products.length - 1 == 0) {
+        dispatch(reset());
+      }
     } else {
       dispatch(
         updateProductQuantityDec({
@@ -275,31 +286,24 @@ const Cart = () => {
                         <span id="prodQuantity" className={styles.quantity}>
                           {pizza.quantity}
                           <span className={styles.arrowWrapper}>
-                            <span style={{ height: '20px', width: '20px' }}>
-                              <IoMdArrowDropup
-                                className={styles.arrows}
-                                onClick={() =>
-                                  handleUpdate(
-                                    pizza,
-                                    pizza.customId,
-                                    pizza.price
-                                  )
-                                }
-                              />
-                            </span>
-                            <span style={{ height: '20px', width: '20px' }}>
-                              <IoMdArrowDropdown
-                                className={styles.arrows}
-                                onClick={() =>
-                                  handleUpdateDec(
-                                    pizza,
-                                    pizza.customId,
-                                    pizza.price,
-                                    pizza.quantity
-                                  )
-                                }
-                              />
-                            </span>
+                            <RiArrowUpSLine
+                              className={styles.arrows}
+                              onClick={() =>
+                                handleUpdate(pizza, pizza.customId, pizza.price)
+                              }
+                            />
+
+                            <RiArrowDownSLine
+                              className={styles.arrows}
+                              onClick={() =>
+                                handleUpdateDec(
+                                  pizza,
+                                  pizza.customId,
+                                  pizza.price,
+                                  pizza.quantity
+                                )
+                              }
+                            />
                           </span>
                         </span>
                       </td>

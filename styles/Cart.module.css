@@ -87,7 +87,6 @@
 .arrowWrapper {
   position: absolute;
   left: 5px;
-  top: -18px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -98,7 +97,7 @@
 }
 
 .arrows {
-  font-size: 45px;
+  font-size: 25px;
 }
 
 .arrows:hover {
