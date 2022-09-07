@@ -36,6 +36,19 @@ const Index = ({ orders, products }) => {
     })
   );
 
+  const [totalSum, setTotalSum] = useState(
+    orderList.map((item) => item.total).reduce((a, b) => a + b)
+  );
+
+  function calculateAvg(total, price, index, array) {
+    total += price;
+    return index === array.length - 1 ? total / array.length : total;
+  }
+
+  const [averageTotal, setAverageTotal] = useState(
+    orderList.map((item) => item.total).reduce(calculateAvg)
+  );
+
   const status = ['Preparing', 'On the way', 'Delivered', 'Completed'];
 
   const handleDelete = async (id) => {
@@ -57,6 +70,20 @@ const Index = ({ orders, products }) => {
       const res = await axios.delete(`http://localhost:3000/api/orders/${id}`);
 
       setOrderList(orderList.filter((order) => order._id !== id));
+
+      // Update total sum and average upon deleting data
+      setTotalSum(
+        orderList
+          .filter((order) => order._id !== id)
+          .map((item) => item.total)
+          .reduce((a, b) => a + b)
+      );
+      setAverageTotal(
+        orderList
+          .filter((order) => order._id !== id)
+          .map((item) => item.total)
+          .reduce(calculateAvg)
+      );
     } catch (err) {
       console.log(err);
     }
@@ -542,6 +569,14 @@ const Index = ({ orders, products }) => {
                 })
             )}
           </table>
+          <span style={{ display: 'flex' }}>
+            <p className={styles.extraData}>
+              Total Sum: ${totalSum.toFixed(2)}
+            </p>
+            <p className={styles.extraData}>
+              Average Order total: ${averageTotal.toFixed(2)}
+            </p>
+          </span>
         </div>
       </div>
     </div>

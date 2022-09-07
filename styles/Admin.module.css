@@ -126,6 +126,11 @@
   transform: scale(1);
 }
 
+.extraData {
+  color: #fcedda;
+  margin-left: 22px;
+}
+
 .button {
   font-size: 16px;
   border: none;
