@@ -26,8 +26,8 @@
 }
 
 .close {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   background-color: #fcedda;
   color: #ee4e34;
   border-radius: 50%;
@@ -38,6 +38,14 @@
   position: absolute;
   top: -17px;
   right: -17px;
+}
+
+.close:hover {
+  transform: scale(1.05);
+}
+
+.close:active {
+  transform: scale(1);
 }
 
 .item {
