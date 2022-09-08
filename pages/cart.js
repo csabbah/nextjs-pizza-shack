@@ -211,7 +211,10 @@ const Cart = () => {
         </div>
       ) : (
         <div
-          style={cart.products.length > 3 ? {} : { height: '100vh' }}
+          style={
+            (cart.products.length > 3 ? {} : { height: '100vh' },
+            cart.products.length >= 1 ? { height: 'unset' } : {})
+          }
           className={styles.container}
         >
           <div className={styles.left}>
