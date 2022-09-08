@@ -585,7 +585,7 @@ const Index = ({ orders, products }) => {
               )}
             </table>
           </div>
-          <span style={{ display: 'flex' }}>
+          <span style={{ display: 'flex', marginTop: '5px' }}>
             <p className={styles.extraData}>
               Grand Total:
               <span className={styles.extraDataSingle}>
