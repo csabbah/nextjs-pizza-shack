@@ -587,10 +587,16 @@ const Index = ({ orders, products }) => {
           </div>
           <span style={{ display: 'flex' }}>
             <p className={styles.extraData}>
-              Total Sum: ${totalSum.toFixed(2)}
+              Grand Total:
+              <span className={styles.extraDataSingle}>
+                ${totalSum.toFixed(2)}
+              </span>
             </p>
             <p className={styles.extraData}>
-              Average Order total: ${averageTotal.toFixed(2)}
+              Average Order Total:
+              <span className={styles.extraDataSingle}>
+                ${averageTotal.toFixed(2)}
+              </span>
             </p>
           </span>
         </div>

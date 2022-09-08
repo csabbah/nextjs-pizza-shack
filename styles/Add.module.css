@@ -4,7 +4,7 @@
   background-color: rgba(0, 0, 0, 0.605);
   position: fixed;
   top: 0;
-  z-index: 999;
+  z-index: 99999;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,7 +13,7 @@
 }
 
 .wrapper {
-  width: 500px;
+  width: 525px;
   background-color: #ee4e34;
   color: #fcedda;
   padding: 35px 50px;
@@ -46,7 +46,8 @@
   margin-bottom: 10px;
 }
 
-.item input::placeholder {
+.item input::placeholder,
+.item textarea::placeholder {
   color: #fcedda;
 }
 
@@ -57,6 +58,7 @@
 
 .title {
   color: #fcedda;
+  font-size: 40px;
 }
 .label {
   color: #fcedda;
@@ -161,7 +163,7 @@
   background-color: transparent;
   padding-left: 0;
   border-radius: 0;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   color: #fcedda;
 }
 
@@ -177,4 +179,43 @@
 
 .file::file-selector-button:hover {
   background-color: #fcedda;
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 25px;
+  }
+
+  .item textarea {
+    height: 100px;
+    font-size: 15px;
+  }
+
+  .extra input {
+    font-size: 15px;
+  }
+
+  .wrapper {
+    width: 90vw;
+  }
+  .item input::placeholder {
+    font-size: 15px;
+  }
+
+  .item textarea::placeholder {
+    font-size: 15px;
+  }
+
+  .file {
+    font-size: 15px;
+  }
+
+  .file::file-selector-button {
+    font-size: 15px;
+    padding: 3px 7px;
+  }
+
+  .addButton {
+    width: 150px;
+  }
 }

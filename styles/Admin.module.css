@@ -169,8 +169,16 @@
   margin-left: 5px;
 }
 
+.extraDataSingle {
+  padding: 2.5px 5px;
+  background-color: #fcedda;
+  color: #ee4e34;
+  border-radius: 50px;
+  margin-left: 5px;
+}
+
 .extraData:last-child {
-  margin-left: 10px;
+  margin-left: 20px;
 }
 
 .button {

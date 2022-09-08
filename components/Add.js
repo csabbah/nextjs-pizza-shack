@@ -161,8 +161,8 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
           />
         </div>
         <div className={styles.item}>
-          <label className={styles.label}>Title</label>
           <input
+            placeholder="Title"
             className={styles.input}
             type="text"
             style={{ border: error[0] ? '3px dotted white' : '' }}
@@ -174,12 +174,12 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
           />
         </div>
         <div className={styles.item}>
-          <label className={styles.label}>Description</label>
           <textarea
             style={{ border: error[0] ? '3px dotted white' : '' }}
             className={styles.textarea}
             rows={4}
             type="text"
+            placeholder="Description"
             onChange={(e) => {
               setError([false, '']);
               setErrorExtra([false, '']);
@@ -274,7 +274,7 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
         <button className={styles.addButton} onClick={() => handleCreate()}>
           Upload Pizza
         </button>
-        <span style={{ marginTop: '10px' }}>
+        <span style={{ marginTop: errorExtra[0] || error[0] ? '10px' : '0' }}>
           {errorExtra[0] && <p style={{ color: '#fcedda' }}>{errorExtra[1]}</p>}
           {error[0] && <p style={{ color: '#fcedda' }}>{error[1]}</p>}
         </span>
