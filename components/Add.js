@@ -3,6 +3,8 @@ import styles from '../styles/Add.module.css';
 import axios from 'axios';
 import { TiDelete } from 'react-icons/ti';
 
+import { server } from '../utils/config.js';
+
 const Add = ({ setClose, pizzaList, setPizzaList }) => {
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState(null);
@@ -108,10 +110,7 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
           img: url,
         };
 
-        const res = await axios.post(
-          `http://localhost:3000/api/products`,
-          newProduct
-        );
+        const res = await axios.post(`${server}/api/products`, newProduct);
 
         setPizzaList([
           // Push the the updated data
@@ -286,7 +285,7 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
 export default Add;
 
 export const getServerSideProps = async () => {
-  const products = await axios.get(`http://localhost:3000/api/products`);
+  const products = await axios.get(`${server}/api/products`);
 
   return {
     props: {
