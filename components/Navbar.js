@@ -23,19 +23,22 @@ const Navbar = ({ mobile, setMobile }) => {
         } `}
       >
         {mobile ? (
-          <AiOutlineMenuUnfold
-            data-id="navStack"
-            className={`${mobile ? styles.activeStack : styles.inactiveStack} ${
-              styles.customIcon
-            }`}
-          />
+          <span data-id="navStack">
+            <AiOutlineMenuUnfold
+              className={`${
+                mobile ? styles.activeStack : styles.inactiveStack
+              } ${styles.customIcon}`}
+            />
+          </span>
         ) : (
-          <AiOutlineMenuFold
-            data-id="navStack"
-            className={`${mobile ? styles.activeStack : styles.inactiveStack} ${
-              styles.customIcon
-            }`}
-          />
+          <span data-id="navStack">
+            <AiOutlineMenuFold
+              data-id="navStack"
+              className={`${
+                mobile ? styles.activeStack : styles.inactiveStack
+              } ${styles.customIcon}`}
+            />
+          </span>
         )}
       </div>
       <div className={mobile ? styles.activeNav : styles.inactiveNav}>
