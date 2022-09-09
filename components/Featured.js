@@ -14,14 +14,13 @@ const Featured = () => {
   const [autoScroll, setAutoScroll] = useState(true);
 
   const handleArrow = (direction) => {
+    setAutoScroll(false);
     if (direction === 'l') {
-      setIndex(index !== 0 ? index - 1 : 2);
-      setAutoScroll(false);
+      setIndex(index !== 2 ? index + 1 : 0);
     }
 
     if (direction === 'r') {
-      setIndex(index !== 2 ? index + 1 : 0);
-      setAutoScroll(false);
+      setIndex(index !== 0 ? index - 1 : 2);
     }
   };
 
@@ -35,9 +34,40 @@ const Featured = () => {
     }
   });
 
+  const [touchPosition, setTouchPosition] = useState(null);
+  const handleTouchStart = (e) => {
+    const touchDown = e.touches[0].clientX;
+    setTouchPosition(touchDown);
+  };
+
+  const handleTouchMove = (e) => {
+    const touchDown = touchPosition;
+
+    if (touchDown === null) {
+      return;
+    }
+
+    const currentTouch = e.touches[0].clientX;
+    const diff = touchDown - currentTouch;
+
+    if (diff > 5) {
+      setIndex(index !== 2 ? index + 1 : 0);
+    }
+
+    if (diff < -5) {
+      setIndex(index !== 0 ? index - 1 : 2);
+    }
+
+    setTouchPosition(null);
+  };
+
   return (
     <div style={{ position: 'relative' }}>
-      <div className={styles.container}>
+      <div
+        className={styles.container}
+        onTouchStart={(e) => handleTouchStart(e)}
+        onTouchMove={(e) => handleTouchMove(e)}
+      >
         <div className={styles.arrowContainer}>
           <IoIosArrowBack
             className={styles.arrow}

@@ -41,6 +41,7 @@ const Layout = ({ children }) => {
       setRunOnce(false);
     }
   }, []);
+
   return (
     <div
       onClick={(e) => {
