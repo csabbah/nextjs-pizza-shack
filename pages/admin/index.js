@@ -67,7 +67,7 @@ const Index = ({ orders, products }) => {
 
   const handleOrderDelete = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:3000/api/orders/${id}`);
+      const res = await axios.delete(`${server}/api/orders/${id}`);
 
       setOrderList(orderList.filter((order) => order._id !== id));
 
@@ -96,7 +96,7 @@ const Index = ({ orders, products }) => {
       // Extract the current status from the order
       const currentStatus = order.status;
       try {
-        const res = await axios.put(`http://localhost:3000/api/orders/${id}`, {
+        const res = await axios.put(`${server}/api/orders/${id}`, {
           // Increment the Current status by 1
           status: currentStatus + 1,
         });
