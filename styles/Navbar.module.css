@@ -98,9 +98,8 @@
 }
 
 .hr {
-  width: 100%;
-  border: 1px solid #fcedda;
-  margin: 5px 0;
+  width: 115%;
+  margin: 3px 0;
 }
 @media screen and (max-width: 730px) {
   .customIcon {
@@ -141,7 +140,7 @@
     align-items: flex-end;
     justify-content: space-between;
     height: 100vh;
-    width: 200px;
+    width: 225px;
     padding-right: 18px;
     background-color: #ee4d34e7;
     color: #fcedda;
@@ -161,7 +160,7 @@
 
   .activeNav {
     position: absolute;
-    right: 200px;
+    right: 225px;
     transition: 0.4s all ease-in-out;
   }
 
@@ -176,7 +175,7 @@
     right: -5.5px;
     font-size: 35px;
     margin-top: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
   .navStack {
     position: fixed;
@@ -198,7 +197,7 @@
   .counter {
     font-size: 15px;
     position: relative;
-    top: -26px;
+    top: -26.5px;
     right: 25px;
   }
 
@@ -210,6 +209,6 @@
   }
 
   .listItem {
-    margin: 6px 0;
+    margin: 8px 0;
   }
 }

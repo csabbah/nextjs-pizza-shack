@@ -93,7 +93,7 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  margin-left: 10px;
+  margin-left: 7px;
   cursor: pointer;
 }
 
@@ -153,6 +153,9 @@
 }
 
 @media screen and (max-width: 730px) {
+  .arrowWrapper {
+    margin-left: -7px;
+  }
   .tr td {
     padding: 2.5px;
   }
@@ -188,7 +191,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 15px 0;
+    margin: 15px 25px;
     border: transparent;
   }
 

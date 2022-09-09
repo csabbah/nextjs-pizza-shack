@@ -49,9 +49,10 @@ const Layout = ({ children }) => {
           return setMobile(!mobile);
         }
 
-        // If innerText is blank or does not contain 'Home' which is a nav menu item
-        // That means user clicked outside the Nav so set mobile to false
+        // First check if the mobile nav is active then...
         if (mobile) {
+          // If innerText is blank or does not contain 'Home' which is a nav menu item
+          // That means user clicked outside the Nav so set mobile to false
           if (e.target.innerText == undefined) {
             return setMobile(!mobile);
           }
