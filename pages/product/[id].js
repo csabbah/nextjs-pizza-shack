@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../redux/cartSlice';
 import { BsCartPlus } from 'react-icons/bs';
 import { server } from '../../utils/config.js';
+import Head from 'next/head';
 
 const Product = ({ pizza }) => {
   const cart = useSelector((state) => state.cart);
@@ -149,97 +150,106 @@ const Product = ({ pizza }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.left}>
-        <div className={styles.imgContainer}>
-          <Image src={pizza.img} layout="fill" alt="" />
+    <>
+      <Head>
+        <title>Product</title>
+        <meta
+          name="viewport"
+          content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no;user-scalable=0;"
+        />
+      </Head>
+      <div className={styles.container}>
+        <div className={styles.left}>
+          <div className={styles.imgContainer}>
+            <Image src={pizza.img} layout="fill" alt="" />
+          </div>
+        </div>
+        <div className={styles.right}>
+          <div className={styles.title}>{pizza.title}</div>
+          <span className={styles.price}>${price * quantity}</span>
+          <div className={styles.desc}>{pizza.desc}</div>
+          <h3 className={styles.choose}>Choose your size:</h3>
+          <div className={styles.sizes}>
+            <div
+              onClick={() => {
+                handleSize(0);
+                setError(false);
+              }}
+              className={styles.size}
+              style={{ opacity: pizzaSize == 0 ? '1' : '0.4' }}
+            >
+              <Image src="/img/size.png " layout="fill" alt="" />
+              <span className={styles.sizeLabel}>Small</span>
+            </div>
+            <div
+              onClick={() => {
+                handleSize(1);
+                setError(false);
+              }}
+              className={styles.size}
+              style={{ opacity: pizzaSize == 1 ? '1' : '0.4' }}
+            >
+              <Image src="/img/size.png " layout="fill" alt="" />
+              <span className={styles.sizeLabel}>Medium</span>
+            </div>
+            <div
+              onClick={() => {
+                handleSize(2);
+                setError(false);
+              }}
+              className={styles.size}
+              style={{ opacity: pizzaSize == 2 ? '1' : '0.4' }}
+            >
+              <Image src="/img/size.png " layout="fill" alt="" />
+              <span className={styles.sizeLabel}>Large</span>
+            </div>
+          </div>
+          <h3 className={`${styles.choose} ${styles.additional}`}>
+            Choose additional ingredients
+          </h3>
+          <div className={styles.ingredients}>
+            {pizza.extraOptions.map((option) => {
+              return (
+                <div key={option._id} className={styles.option}>
+                  <label className={styles.checkboxLabel} htmlFor={option.text}>
+                    <input
+                      onChange={(e) => {
+                        handleExtras(e, option);
+                        setError(false);
+                      }}
+                      type="checkbox"
+                      id={option.text}
+                      name={option.text}
+                      className={styles.checkbox}
+                    />
+                    <span></span>
+                    {option.text}
+                  </label>
+                </div>
+              );
+            })}
+          </div>
+          <div style={{ display: 'flex' }} className={styles.add}>
+            <input
+              onChange={(e) => setQuantity(e.target.value)}
+              type="number"
+              min="1"
+              defaultValue={1}
+              className={styles.quantity}
+            />
+            <button
+              style={{ display: 'flex', alignItems: 'center' }}
+              className={styles.button}
+              onClick={() => handleClick()}
+            >
+              Add to Cart
+              <BsCartPlus style={{ marginLeft: '5px' }} />
+            </button>
+            {error && 'Please add a quantity of 1 or higher'}
+          </div>
         </div>
       </div>
-      <div className={styles.right}>
-        <div className={styles.title}>{pizza.title}</div>
-        <span className={styles.price}>${price * quantity}</span>
-        <div className={styles.desc}>{pizza.desc}</div>
-        <h3 className={styles.choose}>Choose your size:</h3>
-        <div className={styles.sizes}>
-          <div
-            onClick={() => {
-              handleSize(0);
-              setError(false);
-            }}
-            className={styles.size}
-            style={{ opacity: pizzaSize == 0 ? '1' : '0.4' }}
-          >
-            <Image src="/img/size.png " layout="fill" alt="" />
-            <span className={styles.sizeLabel}>Small</span>
-          </div>
-          <div
-            onClick={() => {
-              handleSize(1);
-              setError(false);
-            }}
-            className={styles.size}
-            style={{ opacity: pizzaSize == 1 ? '1' : '0.4' }}
-          >
-            <Image src="/img/size.png " layout="fill" alt="" />
-            <span className={styles.sizeLabel}>Medium</span>
-          </div>
-          <div
-            onClick={() => {
-              handleSize(2);
-              setError(false);
-            }}
-            className={styles.size}
-            style={{ opacity: pizzaSize == 2 ? '1' : '0.4' }}
-          >
-            <Image src="/img/size.png " layout="fill" alt="" />
-            <span className={styles.sizeLabel}>Large</span>
-          </div>
-        </div>
-        <h3 className={`${styles.choose} ${styles.additional}`}>
-          Choose additional ingredients
-        </h3>
-        <div className={styles.ingredients}>
-          {pizza.extraOptions.map((option) => {
-            return (
-              <div key={option._id} className={styles.option}>
-                <label className={styles.checkboxLabel} htmlFor={option.text}>
-                  <input
-                    onChange={(e) => {
-                      handleExtras(e, option);
-                      setError(false);
-                    }}
-                    type="checkbox"
-                    id={option.text}
-                    name={option.text}
-                    className={styles.checkbox}
-                  />
-                  <span></span>
-                  {option.text}
-                </label>
-              </div>
-            );
-          })}
-        </div>
-        <div style={{ display: 'flex' }} className={styles.add}>
-          <input
-            onChange={(e) => setQuantity(e.target.value)}
-            type="number"
-            min="1"
-            defaultValue={1}
-            className={styles.quantity}
-          />
-          <button
-            style={{ display: 'flex', alignItems: 'center' }}
-            className={styles.button}
-            onClick={() => handleClick()}
-          >
-            Add to Cart
-            <BsCartPlus style={{ marginLeft: '5px' }} />
-          </button>
-          {error && 'Please add a quantity of 1 or higher'}
-        </div>
-      </div>
-    </div>
+    </>
   );
 };
 

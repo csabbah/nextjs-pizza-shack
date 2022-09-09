@@ -153,6 +153,10 @@
 }
 
 @media screen and (max-width: 730px) {
+  .tr td {
+    padding: 2.5px;
+  }
+
   .container {
     padding-top: 0;
   }

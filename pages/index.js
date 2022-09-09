@@ -14,6 +14,10 @@ export default function Home({ pizzaList }) {
       <Head>
         <title>Home</title>
         <meta name="description" content="Best Pizza shop from the 6ix" />
+        <meta
+          name="viewport"
+          content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no;user-scalable=0;"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Featured />

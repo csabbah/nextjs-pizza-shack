@@ -28,8 +28,11 @@ body {
   margin: 0;
   background-color: #fcedda;
   background-image: url('/img/mainBg.png');
-
   background-size: contain;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 a {

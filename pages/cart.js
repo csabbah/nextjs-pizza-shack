@@ -204,7 +204,11 @@ const Cart = () => {
   return (
     <>
       <Head>
-        <title>Shopping Cart</title>
+        <title>Cart</title>
+        <meta
+          name="viewport"
+          content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no;user-scalable=0;"
+        />
       </Head>
       {cart.products.length == 0 ? (
         <div style={{ height: '100vh' }} className={styles.container}>

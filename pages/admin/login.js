@@ -33,6 +33,10 @@ const Login = () => {
     <>
       <Head>
         <title>Admin Login</title>
+        <meta
+          name="viewport"
+          content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no;user-scalable=0;"
+        />
       </Head>
       <div className={styles.container}>
         <div className={styles.wrapper}>

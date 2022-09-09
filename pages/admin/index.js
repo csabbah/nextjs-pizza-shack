@@ -260,6 +260,10 @@ const Index = ({ orders, products }) => {
     <div className={styles.outerContainer}>
       <Head>
         <title>Admin</title>
+        <meta
+          name="viewport"
+          content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no;user-scalable=0;"
+        />
       </Head>
       <span
         className={styles.buttonWrapper}
