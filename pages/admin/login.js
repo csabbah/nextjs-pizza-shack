@@ -59,7 +59,13 @@ const Login = () => {
           <button onClick={handleClick} className={styles.button}>
             Sign In
           </button>
-          {error[0] && <p style={{ color: 'red' }}>{error[1]}</p>}
+          {error[0] && (
+            <p
+              style={{ color: '#fcedda', marginTop: '10px', marginBottom: '0' }}
+            >
+              {error[1]}
+            </p>
+          )}
         </div>
       </div>
     </>

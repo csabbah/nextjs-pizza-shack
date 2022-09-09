@@ -1,6 +1,5 @@
 .container {
   padding-top: 75px;
-  width: 100%;
   height: calc(100vh - 100px);
   display: flex;
   justify-content: center;
@@ -48,16 +47,15 @@
   padding: 8px 0;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 730px) {
   .container {
     padding-top: 0;
   }
 
   .wrapper {
-    padding: 15px 15px;
-    width: 80vw;
+    padding: 25px 15px;
+    width: 90vw;
   }
-
   .title {
     font-size: 30px;
     text-align: center;

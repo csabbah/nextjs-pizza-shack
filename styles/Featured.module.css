@@ -34,7 +34,7 @@
 }
 
 .arrow:hover {
-  transform: scale(1.2);
+  transform: scale(1.15);
 }
 .arrow:active {
   transform: scale(1);
@@ -103,6 +103,10 @@
   .indexes {
     width: 13px;
     height: 13px;
+  }
+
+  .arrow:hover {
+    transform: scale(1);
   }
 }
 

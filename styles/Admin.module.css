@@ -129,7 +129,6 @@
   position: absolute;
   padding: 2px 9px;
   border-radius: 15px;
-  position: absolute;
   background-color: #ee4e34;
   color: black;
   z-index: 999;
@@ -207,6 +206,15 @@
   height: 50px;
 }
 
+.nextStageBtn {
+  width: 120px;
+}
+
+.nextStageWrapper {
+  display: flex;
+  align-items: center;
+}
+
 @media (max-width: 1375px) {
   .buttonWrapper {
     justify-content: center;
@@ -237,6 +245,15 @@
     width: 80vw;
     opacity: 0.3;
     margin: 0;
+  }
+
+  .nextStageBtn {
+    width: 120px;
+  }
+
+  .nextStageWrapper {
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -269,5 +286,57 @@
     font-size: 16px;
     width: 135px;
     height: 45px;
+  }
+
+  .tbody:hover {
+    background-color: unset;
+  }
+
+  .tbody:hover .button {
+    background-color: #fcedda;
+    color: #ee4e34;
+  }
+
+  .tbody:hover .viewIcon {
+    color: #ee4e34;
+    background-color: #fcedda;
+  }
+
+  .tbody:hover .deleteIcon {
+    color: #fcedda;
+  }
+
+  .tbody:hover .td {
+    color: #fcedda;
+  }
+
+  .deleteIcon:hover {
+    transform: scale(1);
+  }
+
+  .init > .id,
+  .init > .id2 {
+    display: flex;
+  }
+
+  .init > .initInner {
+    display: none;
+  }
+
+  .id,
+  .id2 {
+    position: unset;
+    background-color: none;
+    color: #fcedda;
+    box-shadow: none;
+  }
+
+  .nextStageBtn {
+    width: 120px;
+  }
+
+  .nextStageWrapper {
+    display: flex;
+    align-items: center;
   }
 }

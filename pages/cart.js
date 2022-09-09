@@ -211,13 +211,7 @@ const Cart = () => {
           <h4 style={{ textAlign: 'center' }}>No pizzas in cart</h4>
         </div>
       ) : (
-        <div
-          style={
-            (cart.products.length > 3 ? {} : { height: '100vh' },
-            cart.products.length >= 1 ? { height: 'unset' } : {})
-          }
-          className={styles.container}
-        >
+        <div className={styles.container}>
           <div className={styles.left}>
             <div className="table-responsive-sm">
               <table className={`${styles.table} table`}>

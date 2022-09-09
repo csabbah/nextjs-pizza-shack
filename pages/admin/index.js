@@ -559,24 +559,26 @@ const Index = ({ orders, products }) => {
                             {status[order.status]}
                           </td>
                           <td className={styles.td}>
-                            <button
-                              // Disable button if order status is 3 (2 == delivered)
-                              style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                pointerEvents:
-                                  order.status == 3 ? 'none' : 'all',
-                                display: order.status == 3 ? 'none' : '',
-                              }}
-                              className={`${styles.nextStageBtn} ${styles.button}`}
-                              onClick={() => handleNext(order._id, order)}
-                            >
-                              Next Stage
-                            </button>
-                            <BsFillTrashFill
-                              className={styles.deleteIcon}
-                              onClick={() => handleOrderDelete(order._id)}
-                            />
+                            <span className={styles.nextStageWrapper}>
+                              <button
+                                // Disable button if order status is 3 (2 == delivered)
+                                style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  pointerEvents:
+                                    order.status == 3 ? 'none' : 'all',
+                                  display: order.status == 3 ? 'none' : '',
+                                }}
+                                className={`${styles.nextStageBtn} ${styles.button}`}
+                                onClick={() => handleNext(order._id, order)}
+                              >
+                                Next Stage
+                              </button>
+                              <BsFillTrashFill
+                                className={styles.deleteIcon}
+                                onClick={() => handleOrderDelete(order._id)}
+                              />
+                            </span>
                           </td>
                         </tr>
                       </tbody>

@@ -88,6 +88,12 @@
   padding: 5px 25px;
 }
 
+@media screen and (max-width: 730px) {
+  .closeBtn:hover {
+    transform: scale(1);
+  }
+}
+
 @media screen and (max-width: 768px) {
   .title {
     font-size: 27px;

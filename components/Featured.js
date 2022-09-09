@@ -41,7 +41,7 @@ const Featured = () => {
         <div className={styles.arrowContainer}>
           <IoIosArrowBack
             className={styles.arrow}
-            onClick={() => handleArrow('r')}
+            onClick={() => handleArrow('l')}
           />
         </div>
         <div

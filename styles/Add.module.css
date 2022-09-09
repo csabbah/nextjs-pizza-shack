@@ -149,7 +149,7 @@
 }
 
 .optionDelete:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 .optionDelete:active {
@@ -185,8 +185,14 @@
   background-color: #fcedda;
 }
 
-.file::file-selector-button:hover {
-  background-color: #fcedda;
+@media screen and (max-width: 730px) {
+  .optionDelete:hover {
+    transform: scale(1);
+  }
+
+  .close:hover {
+    transform: scale(1);
+  }
 }
 
 @media screen and (max-width: 768px) {
