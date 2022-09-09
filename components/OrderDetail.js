@@ -76,7 +76,11 @@ const OrderDetail = ({ total, createOrder, setCash, setOpen }) => {
         <button className={styles.button} onClick={handleClick}>
           Order
         </button>
-        {error[0] && <p style={{ color: 'red' }}>{error[1]}</p>}
+        {error[0] && (
+          <p style={{ color: '#fcedda', marginTop: '10px', marginBottom: '0' }}>
+            {error[1]}
+          </p>
+        )}
       </div>
     </div>
   );

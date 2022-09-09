@@ -39,7 +39,7 @@ const Navbar = ({ mobile, setMobile }) => {
         )}
       </div>
       <div className={mobile ? styles.activeNav : styles.inactiveNav}>
-        <MobileNav setMobile={setMobile} />
+        <MobileNav setMobile={setMobile} mobile={mobile} />
       </div>
       <div className={styles.desktopContainer}>
         <div className={styles.item}>

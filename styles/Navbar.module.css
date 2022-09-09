@@ -10,7 +10,7 @@
   width: 100vw;
   top: 0;
   z-index: 999;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(10px);
 }
 
@@ -97,6 +97,11 @@
   color: #ee4e34;
 }
 
+.hr {
+  width: 100%;
+  border: 1px solid #fcedda;
+  margin: 5px 0;
+}
 @media screen and (max-width: 730px) {
   .customIcon {
     color: #fcedda;
@@ -106,15 +111,28 @@
     border-radius: 5px;
   }
 
-  .navStack {
-    position: fixed;
-    right: 160px;
-    z-index: 99999;
-    display: flex;
-  }
-
   .desktopContainer {
     display: none;
+  }
+
+  .background {
+    height: 100vh;
+    position: fixed;
+    right: 0px;
+    z-index: 9999;
+    width: 100vw;
+    pointer-events: none;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .false {
+    opacity: 0;
+    transition: 0.4s all ease-in-out;
+  }
+
+  .true {
+    opacity: 1;
+    transition: 0.4s all ease-in-out;
   }
 
   .mobileContainer {
@@ -123,25 +141,27 @@
     align-items: flex-end;
     justify-content: space-between;
     height: 100vh;
-    width: 140px;
-    padding-right: 15px;
-    background-color: #ee4d34e2;
+    width: 200px;
+    padding-right: 18px;
+    background-color: #ee4d34e7;
     color: #fcedda;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     position: fixed;
-    z-index: 999;
+    z-index: 9999999;
     text-transform: uppercase;
   }
 
   .listItem {
-    font-size: 16px;
+    font-size: 22px;
+    letter-spacing: 0.9px;
+    font-weight: bold;
   }
 
   .activeNav {
     position: absolute;
-    right: 139px;
+    right: 200px;
     transition: 0.4s all ease-in-out;
   }
 
@@ -151,21 +171,34 @@
     transition: 0.4s all ease-in-out;
   }
 
+  .closeNav {
+    position: relative;
+    right: -5.5px;
+    font-size: 35px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  .navStack {
+    position: fixed;
+    right: 160px;
+    z-index: 99999;
+    display: flex;
+  }
+
   .inactiveStack {
     right: 15px;
     top: 12px;
-    transition: 0.4s all ease-in-out;
+    opacity: 1;
+    transition: 0.45s all ease-in-out;
   }
   .activeStack {
-    right: 154px;
-    top: 12px;
-    transition: 0.4s all ease-in-out;
+    opacity: 0;
   }
 
   .counter {
     font-size: 15px;
     position: relative;
-    top: -23px;
+    top: -26px;
     right: 25px;
   }
 

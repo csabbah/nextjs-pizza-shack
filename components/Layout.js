@@ -48,19 +48,25 @@ const Layout = ({ children }) => {
         if (e.target.getAttribute('data-id') == 'navStack') {
           return setMobile(!mobile);
         }
+
         // If innerText is blank or does not contain 'Home' which is a nav menu item
         // That means user clicked outside the Nav so set mobile to false
-        if (e.target.innerText == undefined) {
-          return setMobile(!mobile);
-        }
-        if (e.target.innerText == '' || !e.target.innerText.includes('HOME')) {
-          // Then close the nav menu
-          setMobile(false);
+        if (mobile) {
+          if (e.target.innerText == undefined) {
+            return setMobile(!mobile);
+          }
+          if (
+            e.target.innerText == '' ||
+            !e.target.innerText.includes('HOME')
+          ) {
+            // Then close the nav menu
+            setMobile(false);
+          }
         }
       }}
     >
       <Navbar setMobile={setMobile} mobile={mobile} />
-      {children}
+      <div>{children}</div>
       <Footer />
     </div>
   );

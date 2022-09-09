@@ -5,9 +5,10 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../redux/cartSlice';
 import { BsCartPlus } from 'react-icons/bs';
+import { GiFullPizza } from 'react-icons/gi';
+
 import { server } from '../../utils/config.js';
 import Head from 'next/head';
-
 const Product = ({ pizza }) => {
   const cart = useSelector((state) => state.cart);
 
@@ -178,7 +179,7 @@ const Product = ({ pizza }) => {
               className={styles.size}
               style={{ opacity: pizzaSize == 0 ? '1' : '0.4' }}
             >
-              <Image src="/img/size.png " layout="fill" alt="" />
+              <GiFullPizza className={styles.pizzaSizeSm} />
               <span className={styles.sizeLabel}>Small</span>
             </div>
             <div
@@ -189,7 +190,7 @@ const Product = ({ pizza }) => {
               className={styles.size}
               style={{ opacity: pizzaSize == 1 ? '1' : '0.4' }}
             >
-              <Image src="/img/size.png " layout="fill" alt="" />
+              <GiFullPizza className={styles.pizzaSizeMd} />
               <span className={styles.sizeLabel}>Medium</span>
             </div>
             <div
@@ -200,7 +201,7 @@ const Product = ({ pizza }) => {
               className={styles.size}
               style={{ opacity: pizzaSize == 2 ? '1' : '0.4' }}
             >
-              <Image src="/img/size.png " layout="fill" alt="" />
+              <GiFullPizza className={styles.pizzaSizeLg} />
               <span className={styles.sizeLabel}>Large</span>
             </div>
           </div>
