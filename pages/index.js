@@ -4,6 +4,7 @@ import PizzaList from '../components/PizzaList';
 import Featured from '../components/Featured';
 import axios from 'axios';
 import { useState } from 'react';
+import { server } from '../utils/config.js';
 
 export default function Home({ pizzaList }) {
   const [activePizzas, setActivePizzas] = useState(pizzaList);
@@ -22,7 +23,7 @@ export default function Home({ pizzaList }) {
 }
 
 export const getServerSideProps = async () => {
-  const res = await axios.get('http://localhost:3000/api/products');
+  const res = await axios.get(`${server}/api/products`);
   return {
     props: {
       pizzaList: res.data,

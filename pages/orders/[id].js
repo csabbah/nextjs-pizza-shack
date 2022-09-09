@@ -2,6 +2,7 @@ import styles from '../../styles/Order.module.css';
 import Image from 'next/image';
 import axios from 'axios';
 import Head from 'next/head';
+import { server } from '../../utils/config.js';
 
 const Order = ({ order }) => {
   const status = order.status;
@@ -158,7 +159,7 @@ const Order = ({ order }) => {
 export default Order;
 
 export const getServerSideProps = async ({ params }) => {
-  const res = await axios.get(`http://localhost:3000/api/orders/${params.id}`);
+  const res = await axios.get(`${server}/api/orders/${params.id}`);
   return {
     props: {
       order: res.data,

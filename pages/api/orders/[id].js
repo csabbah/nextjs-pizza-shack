@@ -3,7 +3,7 @@ import Order from '../../../models/Order';
 
 const handler = async (req, res) => {
   // Establish DB connection
-  dbConnect();
+  await dbConnect();
 
   // Extract request method, query returns id 'orders/"203faangwoeiwecas"'
   const {

@@ -13,6 +13,8 @@ import Add from '../../components/Add';
 
 import { useRouter } from 'next/router';
 
+import { server } from '../../utils/config.js';
+
 const Index = ({ orders, products }) => {
   const router = useRouter();
   const [close, setClose] = useState(true);
@@ -53,9 +55,7 @@ const Index = ({ orders, products }) => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(
-        `http://localhost:3000/api/products/${id}`
-      );
+      const res = await axios.delete(`${server}/api/products/${id}`);
 
       // Normally, when we delete something from the database, it doesn't show right away
       // So, we update the pizzaList useState object which reflects realtime changes
@@ -624,8 +624,8 @@ export const getServerSideProps = async (ctx) => {
     };
   }
 
-  const products = await axios.get(`http://localhost:3000/api/products`);
-  const orders = await axios.get(`http://localhost:3000/api/orders`);
+  const products = await axios.get(`${server}/api/products`);
+  const orders = await axios.get(`${server}/api/orders`);
 
   return {
     props: {

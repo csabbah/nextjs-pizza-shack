@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Head from 'next/head';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { server } from '../utils/config.js';
 
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 import { useEffect, useState } from 'react';
@@ -42,7 +43,7 @@ const Cart = () => {
   const createOrder = async (data) => {
     try {
       // Use the post method to create the Order data
-      const res = await axios.post('http://localhost:3000/api/orders', data);
+      const res = await axios.post(`${server}/api/orders`, data);
       // If successful, redirect user to /orders/ page and pass the id of the Order we just created
       // router is a nextjs function
       res.status === 201 && router.push('/orders/' + res.data._id);

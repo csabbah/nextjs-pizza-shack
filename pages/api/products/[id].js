@@ -3,7 +3,7 @@ import Product from '../../../models/Product';
 
 export default async function handler(req, res) {
   // Establish DB connection
-  dbConnect();
+  await dbConnect();
 
   // Extract request method, query returns id 'product/"203faangwoeiwecas"'
   const {

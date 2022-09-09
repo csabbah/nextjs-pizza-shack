@@ -4,6 +4,8 @@ import { useState } from 'react';
 import styles from '../../styles/Login.module.css';
 import Head from 'next/head';
 
+import { server } from '../../utils/config.js';
+
 const Login = () => {
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
@@ -17,7 +19,7 @@ const Login = () => {
       return setError([true, 'Please fill in all fields']);
     }
     try {
-      await axios.post('http://localhost:3000/api/login', {
+      await axios.post(`${server}/api/login`, {
         username,
         password,
       });

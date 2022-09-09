@@ -3,8 +3,9 @@ import styles from '../styles/TrackOrder.module.css';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { ImSearch } from 'react-icons/im';
 import { FiSearch } from 'react-icons/fi';
+
+import { server } from '../utils/config.js';
 
 const TrackOrder = () => {
   const [inputtedId, setInputtedId] = useState(null);
@@ -17,9 +18,7 @@ const TrackOrder = () => {
     if (inputtedId) {
       // Fetch the data to first check if it exists
       try {
-        const res = await axios.get(
-          `http://localhost:3000/api/orders/${inputtedId}`
-        );
+        const res = await axios.get(`${server}/api/orders/${inputtedId}`);
 
         if (res.data !== null && res.status == 200) {
           // If data exists, redirect to orders page with given id
