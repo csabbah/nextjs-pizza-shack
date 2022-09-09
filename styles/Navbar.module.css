@@ -104,10 +104,11 @@
 @media screen and (max-width: 730px) {
   .customIcon {
     color: #fcedda;
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     background-color: #ee4e34;
     border-radius: 5px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
   }
 
   .desktopContainer {
@@ -185,13 +186,16 @@
   }
 
   .inactiveStack {
-    right: 15px;
-    top: 12px;
+    right: 20px;
+    top: 20px;
     opacity: 1;
     transition: 0.45s all ease-in-out;
   }
   .activeStack {
+    right: 100px;
+    top: 20px;
     opacity: 0;
+    transition: 0.45s all ease-in-out;
   }
 
   .counter {
