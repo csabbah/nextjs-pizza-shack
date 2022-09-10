@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 
-import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai';
+import { GiHamburgerMenu } from 'react-icons/gi';
 import { useRouter } from 'next/router';
 
 import MobileNav from '../components/MobileNav';
@@ -22,24 +22,14 @@ const Navbar = ({ mobile, setMobile }) => {
           mobile ? styles.activeStack : styles.inactiveStack
         } `}
       >
-        {mobile ? (
-          <span data-id="navStack">
-            <AiOutlineMenuUnfold
-              className={`${
-                mobile ? styles.activeStack : styles.inactiveStack
-              } ${styles.customIcon}`}
-            />
-          </span>
-        ) : (
-          <span data-id="navStack">
-            <AiOutlineMenuFold
-              data-id="navStack"
-              className={`${
-                mobile ? styles.activeStack : styles.inactiveStack
-              } ${styles.customIcon}`}
-            />
-          </span>
-        )}
+        <span data-id="navStack">
+          <GiHamburgerMenu
+            data-id="navStack"
+            className={`${mobile ? styles.activeStack : styles.inactiveStack} ${
+              styles.customIcon
+            }`}
+          />
+        </span>
       </div>
       <div className={mobile ? styles.activeNav : styles.inactiveNav}>
         <MobileNav setMobile={setMobile} mobile={mobile} />

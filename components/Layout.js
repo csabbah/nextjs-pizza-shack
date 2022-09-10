@@ -45,8 +45,13 @@ const Layout = ({ children }) => {
   return (
     <div
       onClick={(e) => {
+        console.log(e);
         // If user clicks on navstack icon, open nav menu and take precedence over the other conditional
-        if (e.target.getAttribute('data-id') == 'navStack') {
+        if (
+          e.target.getAttribute('data-id') == 'navStack' ||
+          e.target.outerHTML ==
+            '<path d="M32 96v64h448V96H32zm0 128v64h448v-64H32zm0 128v64h448v-64H32z"></path>'
+        ) {
           return setMobile(!mobile);
         }
 

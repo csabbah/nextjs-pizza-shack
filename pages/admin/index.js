@@ -306,7 +306,7 @@ const Index = ({ orders, products }) => {
               <FiSearch className={styles.icon} />
             </span>
           </div>
-          <div className="table-responsive-sm">
+          <div className="table-responsive-sm" style={{ overflowX: 'scroll' }}>
             <table className={`${styles.table} table table-hover`}>
               <thead className={styles.thead}>
                 <tr className={styles.trTitle}>

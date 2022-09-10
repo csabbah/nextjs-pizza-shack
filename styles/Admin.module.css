@@ -115,7 +115,6 @@
 
 .td {
   font-size: 16px;
-  position: relative;
   box-shadow: none !important;
 }
 
@@ -123,6 +122,11 @@
   align-items: center;
   display: flex;
 }
+
+.init {
+  position: relative;
+}
+
 .id,
 .id2 {
   display: none;
@@ -133,15 +137,16 @@
   color: black;
   z-index: 999;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  left: 1px;
 }
 
 .id {
-  top: 8px;
+  left: -9px;
+  top: -2.5px;
 }
 
 .id2 {
-  top: 40px;
+  left: -9px;
+  top: -2.5px;
 }
 
 .init:hover > .id,
@@ -215,7 +220,7 @@
   align-items: center;
 }
 
-@media (max-width: 1375px) {
+@media (max-width: 1479px) {
   .buttonWrapper {
     justify-content: center;
     margin-left: 0;
