@@ -40,10 +40,11 @@
   justify-content: center;
   cursor: pointer;
   position: absolute;
-  top: -10px;
-  right: -10px;
+  top: -7px;
+  right: -7px;
   user-select: none;
   cursor: pointer;
+  border: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 .closeBtn:hover {

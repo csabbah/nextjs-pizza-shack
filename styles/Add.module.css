@@ -29,8 +29,8 @@
 }
 
 .close {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   background-color: #fcedda;
   color: #ee4e34;
   border-radius: 50%;
@@ -39,8 +39,9 @@
   justify-content: center;
   cursor: pointer;
   position: absolute;
-  top: -17px;
-  right: -17px;
+  top: -7px;
+  right: -7px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 .close:hover {
