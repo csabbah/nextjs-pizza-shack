@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from '../styles/Add.module.css';
 import axios from 'axios';
 import { TiDelete } from 'react-icons/ti';
+import Image from 'next/image';
 
 import { server } from '../utils/config.js';
 
@@ -67,9 +68,7 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
   const deleteExtra = (extraId) => {
     extraOptions.forEach((item) => {
       if (item.id == extraId) {
-        console.log(true, item.id);
         setExtraOptions(extraOptions.filter((item) => item.id !== extraId));
-        console.log(extraOptions);
       }
     });
   };
@@ -134,6 +133,26 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
     }
   };
 
+  const [image, setImage] = useState('');
+  function useDisplayImage() {
+    const [result, setResult] = useState('');
+
+    function uploader(e) {
+      const imageFile = e.target.files[0];
+
+      const reader = new FileReader();
+      reader.addEventListener('load', (e) => {
+        setResult(e.target.result);
+      });
+
+      reader.readAsDataURL(imageFile);
+    }
+
+    return { result, uploader };
+  }
+
+  const { result, uploader } = useDisplayImage();
+
   return (
     <div
       onClick={(e) => clickOutside(e.target.className)}
@@ -145,6 +164,17 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
         </span>
         <h1 className={styles.title}>Add a new Pizza</h1>
         <div className={styles.item}>
+          {image ? (
+            <Image
+              src={`${result}`}
+              width={110}
+              height={110}
+              objectFit="contain"
+              alt="Preview image"
+            />
+          ) : (
+            ''
+          )}
           <label className={styles.label}>Choose an image</label>
           <input
             style={{ color: error[0] ? 'white' : '' }}
@@ -156,6 +186,9 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
               setErrorExtra([false, '']);
               // Choose the first [0] file
               setFile(e.target.files[0]);
+
+              setImage(e.target.files[0]);
+              uploader(e);
             }}
           />
         </div>

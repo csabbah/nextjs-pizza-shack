@@ -16,7 +16,7 @@
   width: 525px;
   background-color: #ee4e34;
   color: #fcedda;
-  padding: 35px 50px;
+  padding: 35px 30px;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -51,7 +51,8 @@
 .item {
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  align-items: flex-start;
+  margin-bottom: 7px;
 }
 
 .item input::placeholder,
@@ -70,11 +71,12 @@
 }
 .label {
   color: #fcedda;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
 }
 
 .input {
+  width: 100%;
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   outline: none;
@@ -82,6 +84,7 @@
   background-color: transparent;
 }
 .textarea {
+  width: 100%;
   resize: none;
   font-family: inherit;
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -210,7 +213,9 @@
   }
 
   .wrapper {
+    padding: 30px 20px;
     width: 90vw;
+    max-width: 500px;
   }
   .item input::placeholder {
     font-size: 15px;
