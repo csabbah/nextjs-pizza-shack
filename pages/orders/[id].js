@@ -50,8 +50,8 @@ const Order = ({ order }) => {
       </Head>
       <div className={styles.container}>
         <div className={styles.left}>
-          <div className={styles.row}>
-            <table className={styles.table}>
+          <div className={`${styles.row} `}>
+            <table className={`${styles.table} table table-borderless`}>
               <thead>
                 <tr className={styles.trTitle}>
                   <th>Order ID</th>

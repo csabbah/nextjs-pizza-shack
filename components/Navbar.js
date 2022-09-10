@@ -34,7 +34,14 @@ const Navbar = ({ mobile, setMobile }) => {
       <div className={mobile ? styles.activeNav : styles.inactiveNav}>
         <MobileNav setMobile={setMobile} mobile={mobile} />
       </div>
-      <div className={styles.desktopContainer}>
+      <div
+        className={styles.desktopContainer}
+        style={
+          endpointName !== '/'
+            ? { boxShadow: '0 0 15px 0 rgba(0, 0, 0, 0.2)' }
+            : {}
+        }
+      >
         <div className={styles.item}>
           <div className={styles.callButton}>
             <Image

@@ -108,7 +108,7 @@
     height: 55px;
     background-color: #ee4e34;
     border-radius: 5px;
-    border: 2px solid rgba(0, 0, 0, 0.35);
+    border: 2px solid rgba(0, 0, 0, 0.15);
   }
 
   .desktopContainer {
@@ -146,11 +146,14 @@
     background-color: #ee4d34e7;
     color: #fcedda;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     position: fixed;
     z-index: 9999999;
     text-transform: uppercase;
+    border-left: 2px solid rgba(0, 0, 0, 0.15);
   }
 
   .listItem {
@@ -191,11 +194,13 @@
   .inactiveStack {
     right: 20px;
     top: 20px;
+    transition: 0.4s all ease-in-out;
   }
 
   .activeStack {
-    right: 20px;
+    right: 100px;
     top: 20px;
+    transition: 0.4s all ease-in-out;
   }
 
   .counter {

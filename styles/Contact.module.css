@@ -14,7 +14,10 @@
   color: #fcedda;
   border-radius: 15px;
   box-shadow: 4px 4px 5px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 4px 4px 5px 0 rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 4px 4px 5px 0 rgba(0, 0, 0, 0.2);
   padding: 25px;
+  border: 2px solid rgba(0, 0, 0, 0.15);
 }
 
 .wrapper {

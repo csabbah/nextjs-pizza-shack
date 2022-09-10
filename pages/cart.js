@@ -150,7 +150,6 @@ const Cart = () => {
       <>
         {showSpinner && isPending && <div className="spinner" />}
         <PayPalButtons
-          style={style}
           disabled={false}
           forceReRender={[amount, currency, style]}
           fundingSource={undefined}
@@ -355,7 +354,7 @@ const Cart = () => {
                     onClick={() => setCash(true)}
                     className={styles.payButton}
                   >
-                    CASH ON DELIVERY
+                    Cash on Delivery
                   </button>
                   <PayPalScriptProvider
                     options={{

@@ -85,7 +85,10 @@ button {
   border-radius: 8px !important;
   color: #fcedda;
   background-color: #ee4e34;
-  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
@@ -105,6 +108,8 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
+  box-shadow: 0 0 0px 1000px #ebdecc inset;
+  -moz-box-shadow: 0 0 0px 1000px #ebdecc inset;
   -webkit-box-shadow: 0 0 0px 1000px #ebdecc inset;
   transition: background-color 5000s ease-in-out 0s;
 }

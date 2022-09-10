@@ -23,6 +23,9 @@
   justify-content: space-between;
   position: relative;
   box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(0, 0, 0, 0.15);
 }
 
 .close {
@@ -161,7 +164,6 @@
 
 .addButton {
   width: 40%;
-  border: none;
   color: #ee4e34;
   background-color: #fcedda;
   font-weight: 500;
@@ -182,10 +184,11 @@
   cursor: pointer;
   border: none;
   font-size: 17px;
-  border-radius: 3px;
+  border-radius: 5px;
   padding: 5px 10px;
   color: #ee4e34;
   background-color: #fcedda;
+  border: 2px solid rgba(0, 0, 0, 0.15);
 }
 
 @media screen and (max-width: 730px) {
