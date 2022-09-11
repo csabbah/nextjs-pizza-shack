@@ -1,14 +1,17 @@
 import styles from '../styles/Navbar.module.css';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { AiOutlineClose } from 'react-icons/ai';
+
+import { useState } from 'react';
 
 import { useRouter } from 'next/router';
 
 const Navbar = ({ setMobile, mobile }) => {
   const router = useRouter();
   let endpointName = router.pathname;
+
+  const [color, setColor] = useState('#fcedda');
 
   // Initially this is 0
   const quantity = useSelector((state) => state.cart.quantity);
@@ -29,7 +32,7 @@ const Navbar = ({ setMobile, mobile }) => {
             />
             <Link href="/" passHref>
               <li
-                style={{ color: endpointName == '/' ? 'black' : '' }}
+                style={{ color: endpointName == '/' ? 'black' : color }}
                 className={`${styles.listItem}`}
                 onClick={() => setMobile(false)}
               >
@@ -45,7 +48,7 @@ const Navbar = ({ setMobile, mobile }) => {
                       ? 'black'
                       : endpointName == '/admin/login'
                       ? 'black'
-                      : '',
+                      : color,
                 }}
                 className={`${styles.listItem}`}
                 onClick={() => setMobile(false)}
@@ -56,7 +59,9 @@ const Navbar = ({ setMobile, mobile }) => {
             <hr className={styles.hr} />
             <Link href="/trackorder" passHref>
               <li
-                style={{ color: endpointName == '/trackorder' ? 'black' : '' }}
+                style={{
+                  color: endpointName == '/trackorder' ? 'black' : color,
+                }}
                 className={styles.listItem}
                 onClick={() => setMobile(false)}
               >
@@ -66,7 +71,9 @@ const Navbar = ({ setMobile, mobile }) => {
             <hr className={styles.hr} />
             <Link href="/contact" passHref>
               <li
-                style={{ color: endpointName == '/contact' ? 'black' : '' }}
+                style={{
+                  color: endpointName == '/contact' ? 'black' : color,
+                }}
                 className={styles.listItem}
                 onClick={() => setMobile(false)}
               >
@@ -78,14 +85,17 @@ const Navbar = ({ setMobile, mobile }) => {
               <div className={styles.item}>
                 <div className={quantity == 0 ? styles.default : styles.cart}>
                   <li
-                    style={{ color: endpointName == '/cart' ? 'black' : '' }}
+                    style={{
+                      color: endpointName == '/cart' ? 'black' : color,
+                    }}
                     className={styles.listItem}
                     onClick={() => setMobile(false)}
                   >
                     Cart
                     <div
                       style={{
-                        backgroundColor: endpointName == '/cart' ? 'black' : '',
+                        backgroundColor:
+                          endpointName == '/cart' ? 'black' : color,
                       }}
                       className={styles.counter}
                     >

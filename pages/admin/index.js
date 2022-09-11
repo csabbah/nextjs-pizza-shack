@@ -539,25 +539,25 @@ const Index = ({ orders, products }) => {
                             </span>
                           </td>
                           <td
-                            style={{ opacity: order.status == 3 ? '0.4' : '' }}
+                            style={{ opacity: order.status == 3 ? '0.4' : '1' }}
                             className={styles.td}
                           >
                             {order.customer}
                           </td>
                           <td
-                            style={{ opacity: order.status == 3 ? '0.4' : '' }}
+                            style={{ opacity: order.status == 3 ? '0.4' : '1' }}
                             className={styles.td}
                           >
                             ${order.total}
                           </td>
                           <td
-                            style={{ opacity: order.status == 3 ? '0.4' : '' }}
+                            style={{ opacity: order.status == 3 ? '0.4' : '1' }}
                             className={styles.td}
                           >
                             {order.method == 1 ? 'PayPal' : 'Cash'}
                           </td>
                           <td
-                            style={{ opacity: order.status == 3 ? '0.4' : '' }}
+                            style={{ opacity: order.status == 3 ? '0.4' : '1' }}
                             className={styles.td}
                           >
                             {status[order.status]}
@@ -571,7 +571,7 @@ const Index = ({ orders, products }) => {
                                   alignItems: 'center',
                                   pointerEvents:
                                     order.status == 3 ? 'none' : 'all',
-                                  display: order.status == 3 ? 'none' : '',
+                                  display: order.status == 3 ? 'none' : 'unset',
                                 }}
                                 className={`${styles.nextStageBtn} ${styles.button}`}
                                 onClick={() => handleNext(order._id, order)}

@@ -45,8 +45,7 @@ const Layout = ({ children }) => {
   return (
     <div
       onClick={(e) => {
-        console.log(e);
-        // If user clicks on navstack icon, open nav menu and take precedence over the other conditional
+        // If user clicks on nav stack icon, open nav menu and take precedence over the other conditional
         if (
           e.target.getAttribute('data-id') == 'navStack' ||
           e.target.outerHTML ==

@@ -166,7 +166,7 @@ const Add = ({ setClose, pizzaList, setPizzaList }) => {
         <div className={styles.item}>
           {image ? (
             <Image
-              src={`${result}`}
+              src={result}
               width={110}
               height={110}
               objectFit="contain"
