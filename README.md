@@ -1,34 +1,79 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# nextjs-pizza-shack - Sept 10th 2022 - Carlos Sabbah
 
-First, run the development server:
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-```bash
-npm run dev
-# or
-yarn dev
+## Table of Contents
+
+- [Description](#Description)
+- [Installation](#Installation)
+- [Local Usage](#Local-Usage)
+- [Links](#Links)
+- [Questions](#Questions)
+- [License](#License)
+
+##
+
+## Description
+
+This application...
+
+## Installation
+
+1. To install application, clone the main project via the HTTP or SSH link on github.
+
+```
+git clone
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Once cloned, open the project folder in your text editor and run the following command in terminal to install all dependencies.
+   Important note - You will need to run the below command in the 'root', 'client' and 'server' directory paths.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```
+npm install
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Local-Usage
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+To view the application in your local browser, cd into the root directory path and run this in terminal:
 
-## Learn More
+```
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Links
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+[Link to live application](https://nextjs-pizza-shack.vercel.app/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Built With
 
-## Deploy on Vercel
+- Next.js
+- React.js
+- React-icons
+- Bootstrap
+- Emailjs
+- Redux
+- Cookie
+- Mongoose
+- Axios
+- Vercel
+- Node.js
+- JavaScript / JSX
+- HTML
+- CSS
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Questions
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[My portfolio](https://csabbah.github.io/Carlos-Sabbah-portfolio/)
+
+To view my other repositories:
+[Github](https://github.com/csabbah)
+
+If you have questions about this application or general inquiry, please reach out to me via email: carlossabbah@hotmail.com
+
+## License
+
+This project is covered under the MIT License.
+
+</br>![ChatCord](./Public/Preview.png 'Pizza-Shack')</br>
