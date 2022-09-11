@@ -17,7 +17,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Description
 
-This application...
+Pizza Shack is a Next.js application that utilizes MongoDB, React and Redux at its core. On the customer side, users can visit the contact page, view pizzas uploaded by admins, add them to their cart, pay through PayPal services or Cash on delivery and finally, track their orders. Additionally, when viewing their orders, they can view each step such as when the order is 'Preparing', 'On the way' and so forth. On the Admin side, admins have access to the Admin page which allows them to add, delete and view all pizzas as well as view, delete and progress active orders.
 
 ## Installation
 
