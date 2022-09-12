@@ -240,11 +240,10 @@
     background-color: #ee4e34;
     bottom: 0;
     text-align: center;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+
     text-transform: uppercase;
     padding: 0 20px;
     border: 2px solid rgba(0, 0, 0, 0.15);
