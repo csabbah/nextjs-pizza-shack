@@ -15,3 +15,17 @@
 .divider {
   height: 65px;
 }
+
+.listItem:last-child {
+  position: relative;
+}
+
+.counter {
+  position: absolute;
+  height: 19px;
+  width: 19px;
+  font-size: 13px;
+  border-radius: 50px;
+  right: 5px;
+  top: 5px;
+}

@@ -285,3 +285,9 @@
     padding: 0 20px;
   }
 }
+
+@media screen and (max-width: 468px) {
+  .right {
+    margin-bottom: 50px;
+  }
+}

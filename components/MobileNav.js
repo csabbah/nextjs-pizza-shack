@@ -142,6 +142,7 @@ const MobileNav = () => {
                 className={styles.listItem}
               >
                 <div
+                  className={styles.icon}
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -155,14 +156,15 @@ const MobileNav = () => {
                   )}
                   <span style={{ fontSize: '12px' }}>Cart</span>
                 </div>
-                {/* <div
+                <div
                   style={{
-                    backgroundColor: endpointName == '/cart' ? 'black' : color,
+                    backgroundColor: endpointName == '/cart' ? color2 : color,
+                    color: endpointName == '/cart' ? color : color2,
                   }}
                   className={styles.counter}
                 >
                   <span>{quantity == 0 ? '' : quantity}</span>
-                </div> */}
+                </div>
               </li>
             </div>
           </div>
