@@ -150,6 +150,12 @@
   }
 }
 
+@media screen and (max-width: 730px) {
+  .container {
+    padding-top: 0;
+  }
+}
+
 @media screen and (max-width: 518px) {
   .tr {
     text-align: center;
@@ -220,8 +226,16 @@
   }
 }
 
-@media screen and (max-width: 730px) {
+@media screen and (max-width: 468px) {
   .container {
     padding-top: 0;
+  }
+
+  .left {
+    margin-top: 25px;
+  }
+
+  .right {
+    margin-bottom: 3px;
   }
 }

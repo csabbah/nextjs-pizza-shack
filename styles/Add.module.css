@@ -242,3 +242,10 @@
     width: 150px;
   }
 }
+
+@media screen and (max-width: 468px) {
+  .container {
+    padding-top: 20px;
+    align-items: flex-start;
+  }
+}

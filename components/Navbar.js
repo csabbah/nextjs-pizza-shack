@@ -8,7 +8,8 @@ import { useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { useRouter } from 'next/router';
 
-import MobileNav from '../components/MobileNav';
+import TabletNav from '../components/TabletNav';
+import MobileNav from './MobileNav';
 
 const Navbar = ({ mobile, setMobile }) => {
   const router = useRouter();
@@ -20,22 +21,27 @@ const Navbar = ({ mobile, setMobile }) => {
 
   return (
     <div>
-      <div
-        className={`${styles.navStack} ${
-          mobile ? styles.activeStack : styles.inactiveStack
-        } `}
-      >
-        <span data-id="navStack">
-          <GiHamburgerMenu
-            data-id="navStack"
-            className={`${mobile ? styles.activeStack : styles.inactiveStack} ${
-              styles.customIcon
-            }`}
-          />
-        </span>
+      <div className={styles.mobileNav}>
+        <MobileNav />
       </div>
-      <div className={mobile ? styles.activeNav : styles.inactiveNav}>
-        <MobileNav setMobile={setMobile} mobile={mobile} />
+      <div className={styles.tabletNav}>
+        <div
+          className={`${styles.navStack} ${
+            mobile ? styles.activeStack : styles.inactiveStack
+          } `}
+        >
+          <span data-id="navStack">
+            <GiHamburgerMenu
+              data-id="navStack"
+              className={`${
+                mobile ? styles.activeStack : styles.inactiveStack
+              } ${styles.customIcon}`}
+            />
+          </span>
+        </div>
+        <div className={mobile ? styles.activeNav : styles.inactiveNav}>
+          <TabletNav setMobile={setMobile} mobile={mobile} />
+        </div>
       </div>
       <div
         className={styles.desktopContainer}

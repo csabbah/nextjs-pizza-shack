@@ -121,3 +121,10 @@
     font-size: 15px;
   }
 }
+
+@media screen and (max-width: 468px) {
+  .container {
+    padding-top: 70px;
+    align-items: flex-start;
+  }
+}

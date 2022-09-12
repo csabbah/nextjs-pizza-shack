@@ -1,0 +1,17 @@
+.ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-left: 0;
+  margin-bottom: 0ex;
+}
+
+.ul li {
+  width: 70px;
+  padding: 12px 20px;
+}
+
+.divider {
+  height: 65px;
+}

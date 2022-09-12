@@ -14,11 +14,8 @@
   -webkit-backdrop-filter: blur(10px);
 }
 
-.navStack {
-  display: none;
-}
-
-.mobileContainer {
+.tabletNav,
+.mobileNav {
   display: none;
 }
 
@@ -102,6 +99,10 @@
   margin: 3px 0;
 }
 @media screen and (max-width: 730px) {
+  .tabletNav {
+    display: unset;
+  }
+
   .customIcon {
     color: #fcedda;
     width: 55px;
@@ -149,10 +150,10 @@
     -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    position: fixed;
-    z-index: 9999999;
     text-transform: uppercase;
     border-left: 2px solid rgba(0, 0, 0, 0.15);
+    position: fixed;
+    z-index: 9999999;
   }
 
   .listItem {
@@ -222,5 +223,30 @@
 
   .listItem {
     margin: 8px 0;
+  }
+}
+
+@media screen and (max-width: 468px) {
+  .tabletNav {
+    display: none;
+  }
+
+  .mobileNav {
+    color: #fcedda;
+    display: unset;
+    position: fixed;
+    z-index: 999999;
+    width: 100vw;
+    background-color: #ee4e34;
+    bottom: 0;
+    text-align: center;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    text-transform: uppercase;
+    padding: 0 20px;
+    border: 2px solid rgba(0, 0, 0, 0.15);
   }
 }

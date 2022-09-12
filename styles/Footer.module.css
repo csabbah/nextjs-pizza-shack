@@ -115,4 +115,10 @@
   .text {
     font-size: 15px;
   }
+
+  .item:last-child {
+    padding: 0 10px;
+    padding-top: 38px;
+    padding-bottom: 80px;
+  }
 }
