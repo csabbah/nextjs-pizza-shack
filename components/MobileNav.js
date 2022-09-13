@@ -107,9 +107,13 @@ const MobileNav = () => {
                 className={`${styles.listItem} ${active ? styles.active : ''}`}
               >
                 <div className={styles.innerItemUpper}>
-                  <div className={styles.counter}>
-                    <span>{quantity == 0 ? '' : quantity}</span>
-                  </div>
+                  {quantity !== 0 ? (
+                    <div className={styles.counter}>
+                      <span>{quantity}</span>
+                    </div>
+                  ) : (
+                    ''
+                  )}
                   <div className={`${styles.icon} `}>
                     {endpointName == '/cart' ? (
                       <HiShoppingCart style={{ fontSize: '23px' }} />
