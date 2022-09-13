@@ -354,10 +354,10 @@
 
 @media screen and (max-width: 468px) {
   .outerContainer {
-    padding-top: 30px;
+    padding-top: 65px;
   }
 
   .buttonWrapper {
-    margin-top: 0;
+    margin-top: 39px;
   }
 }

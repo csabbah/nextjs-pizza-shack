@@ -4,7 +4,7 @@
   background-color: rgba(0, 0, 0, 0.605);
   position: fixed;
   top: 0;
-  z-index: 99999;
+  z-index: 9999999;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -244,8 +244,4 @@
 }
 
 @media screen and (max-width: 468px) {
-  .container {
-    padding-top: 20px;
-    align-items: flex-start;
-  }
 }

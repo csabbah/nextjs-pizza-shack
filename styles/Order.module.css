@@ -227,10 +227,6 @@
 }
 
 @media screen and (max-width: 468px) {
-  .container {
-    padding-top: 0;
-  }
-
   .left {
     margin-top: 25px;
   }
