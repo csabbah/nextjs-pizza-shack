@@ -111,18 +111,6 @@ const Navbar = ({ mobile, setMobile }) => {
                 Track order
               </li>
             </Link>
-            <span style={{ fontSize: '16px', opacity: '0.4' }}>/</span>
-
-            <Link href="/contact" passHref>
-              <li
-                style={{
-                  color: endpointName == '/contact' ? 'black' : color,
-                }}
-                className={styles.listItem}
-              >
-                Contact
-              </li>
-            </Link>
           </ul>
         </div>
         <Link href="/cart">

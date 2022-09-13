@@ -11,6 +11,7 @@ import {
 } from 'react-icons/md';
 import { HiOutlineShoppingCart, HiShoppingCart } from 'react-icons/hi';
 import { RiSearchLine, RiSearchFill } from 'react-icons/ri';
+import { GiHamburgerMenu } from 'react-icons/gi';
 
 const MobileNav = () => {
   const router = useRouter();
@@ -19,27 +20,25 @@ const MobileNav = () => {
   const [color, setColor] = useState('#fcedda');
   const [color2, setColor2] = useState('#ee4e34');
 
+  const [active, setActive] = useState(false);
   // Initially this is 0
   const quantity = useSelector((state) => state.cart.quantity);
 
   return (
     <div className={styles.container}>
       <ul className={styles.ul}>
+        <li className={`${styles.listItem}`}>
+          <GiHamburgerMenu
+            data-id="navStack"
+            onClick={() => setActive(!active)}
+          />
+        </li>
         <Link href="/" passHref>
           <li
-            style={{
-              color: endpointName == '/' ? color2 : color,
-            }}
-            className={`${styles.listItem}`}
+            onClick={() => setActive(false)}
+            className={`${styles.listItem} ${active ? styles.active : ''}`}
           >
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-              className={styles.innerItemUpper}
-            >
+            <div className={styles.innerItemUpper}>
               {endpointName == '/' ? (
                 <AiFillHome style={{ fontSize: '23px' }} />
               ) : (
@@ -55,25 +54,12 @@ const MobileNav = () => {
             ></div>
           </li>
         </Link>
-        <span className={styles.divider} />
         <Link href="/admin" passHref>
           <li
-            style={{
-              color:
-                endpointName == '/admin' || endpointName == '/admin/login'
-                  ? color2
-                  : color,
-            }}
-            className={`${styles.listItem}`}
+            onClick={() => setActive(false)}
+            className={`${styles.listItem} ${active ? styles.active : ''}`}
           >
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-              className={styles.innerItemUpper}
-            >
+            <div className={styles.innerItemUpper}>
               {endpointName == '/admin' || endpointName == '/admin/login' ? (
                 <MdAdminPanelSettings style={{ fontSize: '23px' }} />
               ) : (
@@ -92,22 +78,12 @@ const MobileNav = () => {
             ></div>
           </li>
         </Link>
-        <span className={styles.divider} />
         <Link href="/trackorder" passHref>
           <li
-            style={{
-              color: endpointName == '/trackorder' ? color2 : color,
-            }}
-            className={styles.listItem}
+            onClick={() => setActive(false)}
+            className={`${styles.listItem} ${active ? styles.active : ''}`}
           >
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-              className={styles.innerItemUpper}
-            >
+            <div className={styles.innerItemUpper}>
               {endpointName == '/trackorder' ? (
                 <RiSearchFill style={{ fontSize: '23px' }} />
               ) : (
@@ -123,78 +99,24 @@ const MobileNav = () => {
             ></div>
           </li>
         </Link>
-        <span className={styles.divider} />
-        <Link href="/contact" passHref>
-          <li
-            style={{
-              color: endpointName == '/contact' ? color2 : color,
-            }}
-            className={styles.listItem}
-          >
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-              className={styles.innerItemUpper}
-            >
-              {endpointName == '/contact' ? (
-                <MdEmail style={{ fontSize: '23px' }} />
-              ) : (
-                <AiOutlineMail style={{ fontSize: '23px' }} />
-              )}
-              <span style={{ fontSize: '11px' }}>Contact</span>
-            </div>
-            <div
-              style={{
-                backgroundColor: endpointName == '/contact' ? color : color2,
-              }}
-              className={styles.innerItem}
-            ></div>
-          </li>
-        </Link>
-        <span className={styles.divider} />
         <Link href="/cart" passHref>
-          <div className={styles.item}>
+          <div className={styles.item} onClick={() => setActive(false)}>
             <div className={quantity == 0 ? styles.default : styles.cart}>
               <li
-                style={{
-                  color: endpointName == '/cart' ? color2 : color,
-                }}
-                className={styles.listItem}
+                className={`${styles.listItem} ${active ? styles.active : ''}`}
               >
                 <div className={styles.innerItemUpper}>
-                  <div
-                    className={`${styles.icon} `}
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                    }}
-                  >
+                  <div className={styles.counter}>
+                    <span>{quantity == 0 ? '' : quantity}</span>
+                  </div>
+                  <div className={`${styles.icon} `}>
                     {endpointName == '/cart' ? (
                       <HiShoppingCart style={{ fontSize: '23px' }} />
                     ) : (
                       <HiOutlineShoppingCart style={{ fontSize: '23px' }} />
                     )}
-                    <span style={{ fontSize: '11px' }}>Cart</span>
                   </div>
-                  <div
-                    style={{
-                      backgroundColor: endpointName == '/cart' ? color2 : color,
-                      color: endpointName == '/cart' ? color2 : color,
-                    }}
-                    className={styles.counter}
-                  >
-                    <span
-                      style={{
-                        color: endpointName == '/cart' ? color : color2,
-                      }}
-                    >
-                      {quantity == 0 ? '' : quantity}
-                    </span>
-                  </div>
+                  <span style={{ fontSize: '11px' }}>Cart</span>
                 </div>
                 <div
                   style={{

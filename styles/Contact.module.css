@@ -1,7 +1,7 @@
 .container {
-  padding-top: 72px;
   width: 100%;
-  height: calc(100vh);
+  margin-top: 0;
+  margin-bottom: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -80,15 +80,16 @@
 
 @media screen and (max-width: 1090px) {
   .container {
-    padding-top: 100px;
     height: 100%;
-    padding: 50px 0;
+    padding: 0;
     display: flex;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   .innerContainer {
-    margin-top: 90px;
     flex-direction: column;
+    margin-bottom: 80px;
   }
 
   .wrapper {
@@ -115,6 +116,11 @@
 }
 
 @media screen and (max-width: 730px) {
+  .container {
+    margin-top: 0;
+    padding: 0;
+  }
+
   .wrapper h1,
   .email,
   .address {
@@ -126,6 +132,7 @@
 
   .innerContainer {
     width: 90%;
+    margin-bottom: 80px;
   }
   .textarea,
   .input {

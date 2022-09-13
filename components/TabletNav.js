@@ -69,18 +69,6 @@ const Navbar = ({ setMobile, mobile }) => {
               </li>
             </Link>
             <hr className={styles.hr} />
-            <Link href="/contact" passHref>
-              <li
-                style={{
-                  color: endpointName == '/contact' ? 'black' : color,
-                }}
-                className={styles.listItem}
-                onClick={() => setMobile(false)}
-              >
-                Contact
-              </li>
-            </Link>
-            <hr className={styles.hr} />
             <Link href="/cart" passHref>
               <div className={styles.item}>
                 <div className={quantity == 0 ? styles.default : styles.cart}>
