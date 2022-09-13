@@ -127,22 +127,22 @@
 
   .false {
     opacity: 0;
-    transition: 0.4s all ease-in-out;
+    transition: all 0.5s cubic-bezier(0.65, 0, 0.33, 0.99);
   }
 
   .true {
     opacity: 1;
-    transition: 0.4s all ease-in-out;
+    transition: all 0.5s cubic-bezier(0.65, 0, 0.33, 0.99);
   }
 
-  .mobileContainer {
+  .tabletContainer {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     justify-content: space-between;
     height: 100vh;
-    width: 225px;
-    padding-right: 18px;
+    width: 250px;
+    padding-right: 41.5px;
     background-color: #ee4d34e7;
     color: #fcedda;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
@@ -157,7 +157,7 @@
   }
 
   .listItem {
-    font-size: 22px;
+    font-size: 23px;
     letter-spacing: 0.9px;
     font-weight: bold;
   }
@@ -166,14 +166,14 @@
     position: absolute;
     right: 225px;
     opacity: 1;
-    transition: 0.4s all ease-in-out;
+    transition: all 0.5s cubic-bezier(0.65, 0, 0.33, 0.99);
   }
 
   .inactiveNav {
     position: absolute;
     right: -10px;
     opacity: 1;
-    transition: 0.4s all ease-in-out;
+    transition: all 0.5s cubic-bezier(0.65, 0, 0.33, 0.99);
   }
 
   .inactiveNav .background {
@@ -198,19 +198,19 @@
   .inactiveStack {
     right: 20px;
     top: 20px;
-    transition: 0.4s all ease-in-out;
+    transition: all 0.5s cubic-bezier(0.65, 0, 0.33, 0.99);
   }
 
   .activeStack {
     right: 100px;
     top: 20px;
-    transition: 0.4s all ease-in-out;
+    transition: all 0.5s cubic-bezier(0.65, 0, 0.33, 0.99);
   }
 
   .counter {
     font-size: 15px;
     position: relative;
-    top: -26.5px;
+    top: -27.5px;
     right: 25px;
   }
 
@@ -243,7 +243,6 @@
     box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
     -webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
-
     text-transform: uppercase;
     padding: 0 20px;
     border: 2px solid rgba(0, 0, 0, 0.15);

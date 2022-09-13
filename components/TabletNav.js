@@ -23,7 +23,7 @@ const Navbar = ({ setMobile, mobile }) => {
           mobile ? styles.true : styles.false
         }`}
       ></div>
-      <div className={styles.mobileContainer}>
+      <div className={styles.tabletContainer}>
         <div className={styles.item}>
           <ul className={styles.list}>
             <AiOutlineClose

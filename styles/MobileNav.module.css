@@ -16,16 +16,30 @@
   height: 65px;
 }
 
-.listItem:last-child {
+.listItem {
   position: relative;
 }
+.innerItem {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 0;
+  width: 90%;
+  height: 90%;
+  border-radius: 5px;
+}
 
+.innerItemUpper {
+  position: relative;
+  z-index: 1;
+}
 .counter {
   position: absolute;
-  height: 19px;
-  width: 19px;
-  font-size: 13px;
+  height: 18px;
+  width: 18px;
+  font-size: 12px;
   border-radius: 50px;
-  right: 5px;
-  top: 5px;
+  right: -10px;
+  top: -5px;
 }

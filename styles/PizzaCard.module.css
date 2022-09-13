@@ -51,12 +51,12 @@
   }
 
   .title {
-    font-size: 20px;
+    font-size: 22px;
   }
 
   .price,
   .desc {
-    font-size: 16px;
+    font-size: 17px;
   }
 }
 
@@ -66,7 +66,7 @@
   }
 
   .title {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .price {
@@ -74,7 +74,7 @@
   }
 
   .desc {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 
