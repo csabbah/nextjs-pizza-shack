@@ -9,7 +9,7 @@
   height: 65px;
   background-color: #ee4e34;
   color: #fceeda;
-  margin: 5px 0;
+  margin: 7px 0;
   border-radius: 100px;
   border: 2px solid rgba(0, 0, 0, 0.25);
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
@@ -88,8 +88,7 @@
 .listItem:last-child.active {
   opacity: 1;
   top: 0;
-  pointer-evnts: all;
-
+  pointer-events: all;
   transition: all 1s cubic-bezier(0.44, 0, 0.22, 1.26);
 }
 
@@ -113,5 +112,5 @@
   top: -5px;
   font-size: 14px;
   text-align: center;
-  border: 0.5px solid rgba(0, 0, 0, 0.25);
+  border: 0.5px solid rgba(0, 0, 0, 0.4);
 }

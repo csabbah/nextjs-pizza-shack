@@ -30,6 +30,7 @@ const MobileNav = () => {
         <li className={`${styles.listItem}`}>
           <GiHamburgerMenu
             data-id="navStack"
+            style={{ fontSize: '40px' }}
             onClick={() => setActive(!active)}
           />
         </li>
