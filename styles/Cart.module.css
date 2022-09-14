@@ -133,7 +133,7 @@
 @media screen and (max-width: 1142px) {
   .container {
     flex-direction: column;
-    height: 100%;
+    height: calc(100vh);
   }
 
   .left {
@@ -146,6 +146,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex: unset;
   }
 
   .wrapper {
@@ -259,6 +260,10 @@
 }
 
 @media screen and (max-width: 480px) {
+  .container {
+    height: unset;
+  }
+
   .wrapper {
     width: 340px;
   }

@@ -117,11 +117,11 @@
   user-select: none;
   margin-right: 10px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .quantity {
-  width: 50px;
+  width: 60px;
   height: 45px !important;
 }
 
@@ -196,7 +196,7 @@
   }
 
   .container {
-    height: auto;
+    height: 100vh;
     text-align: center;
     flex-direction: column;
   }

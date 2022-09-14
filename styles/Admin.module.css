@@ -1,6 +1,9 @@
 .outerContainer {
-  padding-top: 65px;
+  height: 100vh;
   padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .addBtn,
 .logout {
@@ -269,6 +272,11 @@
 }
 
 @media screen and (max-width: 730px) {
+  .outerContainer {
+    height: unset;
+    padding-bottom: 60px;
+  }
+
   .itemWrapper {
     justify-content: center;
   }
