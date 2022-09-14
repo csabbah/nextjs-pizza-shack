@@ -21,13 +21,18 @@ const MobileNav = () => {
   const [color2, setColor2] = useState('#ee4e34');
 
   const [active, setActive] = useState(false);
+
   // Initially this is 0
   const quantity = useSelector((state) => state.cart.quantity);
 
   return (
     <div className={styles.container}>
       <ul className={styles.ul}>
-        <li className={`${styles.listItem}`}>
+        <li
+          className={`${styles.listItem} ${styles.navStack} ${
+            active ? styles.active : ''
+          }`}
+        >
           <GiHamburgerMenu
             data-id="navStack"
             style={{ fontSize: '40px' }}
@@ -36,6 +41,14 @@ const MobileNav = () => {
         </li>
         <Link href="/" passHref>
           <li
+            style={
+              endpointName == '/'
+                ? {
+                    backgroundColor: color,
+                    color: color2,
+                  }
+                : {}
+            }
             onClick={() => setActive(false)}
             className={`${styles.listItem} ${active ? styles.active : ''}`}
           >
@@ -57,6 +70,14 @@ const MobileNav = () => {
         </Link>
         <Link href="/admin" passHref>
           <li
+            style={
+              endpointName == '/admin' || endpointName == '/admin/login'
+                ? {
+                    backgroundColor: color,
+                    color: color2,
+                  }
+                : {}
+            }
             onClick={() => setActive(false)}
             className={`${styles.listItem} ${active ? styles.active : ''}`}
           >
@@ -81,6 +102,14 @@ const MobileNav = () => {
         </Link>
         <Link href="/trackorder" passHref>
           <li
+            style={
+              endpointName == '/trackorder'
+                ? {
+                    backgroundColor: color,
+                    color: color2,
+                  }
+                : {}
+            }
             onClick={() => setActive(false)}
             className={`${styles.listItem} ${active ? styles.active : ''}`}
           >
@@ -104,6 +133,14 @@ const MobileNav = () => {
           <div className={styles.item} onClick={() => setActive(false)}>
             <div className={quantity == 0 ? styles.default : styles.cart}>
               <li
+                style={
+                  endpointName == '/cart'
+                    ? {
+                        backgroundColor: color,
+                        color: color2,
+                      }
+                    : {}
+                }
                 className={`${styles.listItem} ${active ? styles.active : ''}`}
               >
                 <div className={styles.innerItemUpper}>
