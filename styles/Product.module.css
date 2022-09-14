@@ -171,17 +171,22 @@
 }
 
 @media screen and (max-width: 768px) {
+  .container {
+    height: 1000px;
+    padding-top: 0;
+  }
   .right {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-left: 0;
     padding-right: 0;
-    margin-bottom: 20px;
+    margin-bottom: 140px;
   }
 
   .left {
     justify-content: center;
+    align-items: flex-end;
   }
   .title {
     text-align: center;
@@ -196,14 +201,13 @@
   }
 
   .container {
-    height: 100vh;
     text-align: center;
     flex-direction: column;
   }
   .imgContainer {
     margin-top: 50px;
-    width: 60vw;
-    height: 60vw;
+    width: 300px;
+    height: 300px;
   }
 
   .title {

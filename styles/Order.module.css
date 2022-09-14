@@ -54,7 +54,7 @@
   flex-direction: column;
   justify-content: center;
   display: flex;
-  width: 80%;
+  width: 50%;
   margin-right: 60px;
 }
 .right {
@@ -99,7 +99,8 @@
 
 @media screen and (max-width: 1120px) {
   .container {
-    padding-top: 90px;
+    height: unset;
+    padding-top: 150px;
     padding-bottom: 90px;
     flex-direction: column;
     align-items: center;
@@ -107,6 +108,8 @@
 
   .left {
     margin-right: 0;
+
+    width: 80%;
   }
 
   .row:last-child {
@@ -121,7 +124,7 @@
   }
   .table {
     width: 90vw;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
 
   .trTitle {
@@ -144,10 +147,6 @@
     align-items: center;
     margin-top: 90px;
   }
-
-  .right {
-    margin-bottom: 90px;
-  }
 }
 
 @media screen and (max-width: 730px) {
@@ -157,6 +156,10 @@
 }
 
 @media screen and (max-width: 518px) {
+  .container {
+    height: unset;
+  }
+
   .tr {
     text-align: center;
   }

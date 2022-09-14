@@ -1,5 +1,5 @@
 .outerContainer {
-  height: 100vh;
+  padding: 90px 0;
   padding-bottom: 10px;
   display: flex;
   flex-direction: column;
