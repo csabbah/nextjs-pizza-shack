@@ -98,7 +98,7 @@
   width: 115%;
   margin: 3px 0;
 }
-@media screen and (max-width: 730px) {
+@media screen and (max-width: 1024px) {
   .tabletNav {
     display: unset;
   }
