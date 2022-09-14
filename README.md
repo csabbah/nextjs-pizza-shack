@@ -76,4 +76,4 @@ If you have questions about this application or general inquiry, please reach ou
 
 This project is covered under the MIT License.
 
-</br>![Pizza-Shack](./public/Preview.png 'Pizza-Shack')</br>
+</br>![Pizza-Shack](./public/Preview.jpg 'Pizza-Shack')</br>
