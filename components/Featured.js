@@ -2,12 +2,13 @@ import styles from '../styles/Featured.module.css';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+
+import { useSelector } from 'react-redux';
+
 const Featured = () => {
-  const image = [
-    '/img/featured.png',
-    '/img/featured2.png',
-    '/img/featured3.png',
-  ];
+  const featuredImages = useSelector((state) => state.featuredImages);
+
+  const image = featuredImages.images;
 
   const [index, setIndex] = useState(0);
 

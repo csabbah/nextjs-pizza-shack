@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 .addBtn,
 .logout {
@@ -18,7 +19,7 @@
 
 .buttonWrapper {
   margin-top: 39px;
-  margin-left: 33px;
+  margin-bottom: 0;
 }
 
 .addBtn {
@@ -30,13 +31,15 @@
 }
 
 .container {
+  margin-top: 20px;
   padding: 21px;
   display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 .item {
-  width: 48.5%;
+  width: 100%;
   background-color: #ee4e34;
   box-shadow: 4px 4px 5px 0 rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 4px 4px 5px 0 rgba(0, 0, 0, 0.2);
@@ -44,18 +47,112 @@
   border-radius: 15px;
   padding: 15px;
   border: 2px solid rgba(0, 0, 0, 0.15);
+  margin: 10px;
+}
+.itemFeatured {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.outerItem {
+  display: flex;
+  align-items: flex-start;
+}
+
+.item:first-child .title {
+  margin-bottom: 10px;
+}
+
+.itemFeatured .itemWrapper {
+  display: unset;
+}
+.item:first-child .label {
+  margin-top: 10px;
 }
 
 .itemWrapper {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+}
+
+.imgContainer {
+  position: relative;
+  margin: 10px !important;
+  border-radius: 7px;
+  background-color: #ee4e34;
+}
+
+.deleteImageBtn {
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  height: 35px;
+  width: 35px;
+  border-radius: 10px !important;
+  background-color: #fcedda;
+  color: #ee4e34;
+}
+
+.imgWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  width: 100%;
+  background-color: #fcedda;
+  border-radius: 7px 7px 0 0;
+}
+
+.newImageWrapper {
+  border-radius: 0 0 7px 7px;
+  border-top: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+.addImageBtn {
+  font-size: 18px;
+  width: 150px;
+  height: 50px;
+}
+
+.file {
+  width: 100%;
+  max-width: 400px;
+  min-width: 290px;
+  background-color: transparent;
+  padding-left: 0;
+  border-radius: 0;
+  margin-bottom: 5px;
+  padding: 0px 15px;
+}
+
+.file::file-selector-button {
+  cursor: pointer;
+  border: none;
+  font-size: 17px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: #fcedda;
+  background-color: #ee4e34;
+  border: 2px solid rgba(0, 0, 0, 0.15);
 }
 
 .itemWrapper h1 {
   color: #fcedda;
   user-select: none;
   margin-bottom: 0;
+}
+
+.itemWrapper span {
+  position: relative;
+}
+
+.imgWrapper {
+  height: 100vh;
+  max-height: 350px;
+  overflow-y: scroll;
 }
 
 .input {
@@ -68,8 +165,13 @@
   margin: 20px 0;
 }
 
-.itemWrapper span {
-  position: relative;
+.newImageWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fcedda;
+  padding-bottom: 10px;
 }
 .icon {
   position: absolute;
@@ -79,11 +181,8 @@
   opacity: 0.4;
 }
 
-.thead {
-  background-color: #fcedda;
-  color: #ee4e34;
-}
 .table {
+  position: relative;
   padding: 10px;
   width: 100%;
   border-spacing: 12.5px;
@@ -91,8 +190,18 @@
   color: #fcedda;
   border: 2px solid #fcedda;
 }
+
 .table:last-child {
   margin-bottom: 10px;
+}
+
+.tableWrapper {
+  overflow: scroll;
+}
+
+.thead {
+  background-color: #fcedda;
+  color: #ee4e34;
 }
 
 .tbody:hover {
@@ -209,10 +318,6 @@
   margin-right: 10px;
 }
 
-.hr {
-  display: none;
-}
-
 .addBtn,
 .logout {
   font-size: 18px;
@@ -229,14 +334,18 @@
   align-items: center;
 }
 
-@media (max-width: 1479px) {
+.imgContainer img {
+  width: 100px;
+}
+
+@media (max-width: 1600px) {
+  .outerItem {
+    flex-direction: column;
+  }
+
   .buttonWrapper {
     justify-content: center;
     margin-left: 0;
-  }
-  .container {
-    flex-direction: column;
-    align-items: center;
   }
 
   .input {
@@ -244,21 +353,9 @@
   }
 
   .item {
-    width: 93vw;
-  }
-
-  .item:first-child {
-    margin-bottom: 35px;
-  }
-
-  .item:last-child {
-    margin-top: 35px;
-  }
-  .hr {
-    display: flex;
-    width: 80vw;
-    opacity: 0.3;
-    margin: 0;
+    width: 90vw;
+    max-width: 900px;
+    margin: 20px 0;
   }
 
   .nextStageBtn {
@@ -272,6 +369,15 @@
 }
 
 @media screen and (max-width: 730px) {
+  .file {
+    font-size: 15px;
+  }
+
+  .file::file-selector-button {
+    font-size: 15px;
+    padding: 3px 7px;
+  }
+
   .outerContainer {
     height: unset;
     padding-bottom: 60px;

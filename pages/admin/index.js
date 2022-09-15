@@ -15,7 +15,17 @@ import { useRouter } from 'next/router';
 
 import { server } from '../../utils/config.js';
 
+import { useSelector } from 'react-redux';
+import { deleteImage } from '../../redux/featuredSlice';
+import { useDispatch } from 'react-redux';
+
 const Index = ({ orders, products }) => {
+  const featuredImages = useSelector((state) => state.featuredImages);
+  const dispatch = useDispatch();
+
+  const image = featuredImages.images;
+  const [file, setFile] = useState(null);
+
   const router = useRouter();
   const [close, setClose] = useState(true);
 
@@ -294,317 +304,368 @@ const Index = ({ orders, products }) => {
       )}
 
       <div className={`${styles.container} container-fluid mt-4 admin-dash`}>
-        <div className={`${styles.item}`}>
+        <div className={`${styles.item} ${styles.itemFeatured}`}>
           <div className={styles.itemWrapper}>
-            <h1 className={styles.title}>Products</h1>
-            <span className={styles.input}>
+            <h1 className={styles.title}>Featured Images</h1>
+            <div className={styles.imgWrapper}>
+              {image.map((image, key) => {
+                return (
+                  <div key={key} className={styles.imgContainer}>
+                    <Image
+                      width={150}
+                      height={150}
+                      objectFit="contain"
+                      className={styles.image}
+                      src={image}
+                      alt={`FeaturedImage-${key}`}
+                    />
+                    <button
+                      className={styles.deleteImageBtn}
+                      onClick={(e) => dispatch(deleteImage({ key }))}
+                    >
+                      X
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+            <div className={styles.newImageWrapper}>
+              <label className={styles.label}>Add new Image</label>
               <input
-                type="text"
-                placeholder="Search Pizzas"
-                onChange={(e) => setProductQuery(e.target.value.trim())}
-              ></input>
-              <FiSearch className={styles.icon} />
-            </span>
-          </div>
-          <div className="table-responsive-sm" style={{ overflowX: 'scroll' }}>
-            <table className={`${styles.table} table table-hover`}>
-              <thead className={styles.thead}>
-                <tr className={styles.trTitle}>
-                  <th></th>
-                  <th>
-                    <span
-                      name="productsId"
-                      onClick={(e) =>
-                        handleSort(
-                          e.target.innerText,
-                          e.target.getAttribute('name')
-                        )
-                      }
-                    >
-                      Id
-                    </span>
-                  </th>
-                  <th>
-                    <span onClick={(e) => handleSort(e.target.innerText)}>
-                      Title
-                    </span>
-                  </th>
-                  <th>
-                    <span onClick={(e) => handleSort(e.target.innerText)}>
-                      Price
-                    </span>
-                    <span
-                      onClick={() =>
-                        setPizzaSize(pizzaSize !== 2 ? pizzaSize + 1 : 0)
-                      }
-                      style={{ marginLeft: '10px' }}
-                    >
-                      {returnSize(pizzaSize)}
-                    </span>
-                  </th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              {pizzaList.length == 0 || pizzaList == undefined ? (
-                <tbody>
-                  <td>#</td>
-                  <td>No Data</td>
-                  <td>No Data</td>
-                  <td>No Data</td>
-                  <td>No Data</td>
-                </tbody>
-              ) : (
-                pizzaList
-                  .filter((pizza) =>
-                    checkInputVal()
-                      ? // If no value exist then...
-                        !parseInt(productQuery)
-                        ? // return all prices
-                          pizza.prices[pizzaSize]
-                        : // else return the number that the user searched up (either equal to or less than)
-                          pizza.prices[pizzaSize] <= parseInt(productQuery)
-                      : pizza.title.toLowerCase().includes(productQuery) ||
-                        pizza._id.toLowerCase().includes(productQuery)
-                  )
-                  .map((product) => {
-                    return (
-                      <tbody
-                        className={styles.tbody}
-                        key={product._id}
-                        style={{ verticalAlign: 'revert' }}
-                      >
-                        <tr className={styles.trTitle}>
-                          <td className={`${styles.td} tdImg`}>
-                            <Image
-                              src={product.img}
-                              width={80}
-                              height={80}
-                              objectFit="contain"
-                              alt=""
-                            />
-                          </td>
-                          <td className={styles.td}>
-                            {/* Show the first 5 letters */}
-                            <span className={styles.init}>
-                              <span className={styles.initInner}>
-                                {product._id.slice(0, 5)}...
-                              </span>
-                              <span className={styles.id2}>
-                                {/* Show everything but the first 5 letters */}
-                                {/* {product._id.slice(5)} */}
-                                {product._id}
-                              </span>
-                            </span>
-                          </td>
-                          <td className={styles.td}>{product.title}</td>
-                          <td className={styles.td}>
-                            ${product.prices[pizzaSize]}
-                          </td>
-                          <td className={styles.td}>
-                            <span
-                              style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                              }}
-                            >
-                              <Link href={`/product/${product._id}`} passHref>
-                                <button
-                                  style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                  }}
-                                  className={`${styles.button}`}
-                                >
-                                  <AiFillEye
-                                    className={styles.viewIcon}
-                                    style={{
-                                      display: 'flex',
-                                      marginRight: '2px',
-                                    }}
-                                  />
-                                  view
-                                </button>
-                              </Link>
-                              <BsFillTrashFill
-                                className={styles.deleteIcon}
-                                onClick={() => handleDelete(product._id)}
-                              />
-                            </span>
-                          </td>
-                        </tr>
-                      </tbody>
-                    );
-                  })
-              )}
-            </table>
+                type="file"
+                className={styles.file}
+                accept="image/png, image/jpeg"
+                onChange={(e) => {
+                  setFile(e.target.files[0]);
+                }}
+              />
+            </div>
           </div>
         </div>
-        <hr className={styles.hr}></hr>
-        <div className={styles.item}>
-          <div className={styles.itemWrapper}>
-            <h1 className={styles.title}>Orders</h1>
-            <span className={styles.input}>
-              <input
-                type="text"
-                placeholder="Search Orders"
-                onChange={(e) => SetOrderQuery(e.target.value)}
-              ></input>
-              <FiSearch className={styles.icon} />
-            </span>
-          </div>
-          <div className="table-responsive-lg">
-            <table className={`${styles.table} table table-hover`}>
-              <thead className={styles.thead}>
-                <tr className={styles.trTitle}>
-                  <th>
-                    <span
-                      name="ordersId"
-                      onClick={(e) =>
-                        handleSort(
-                          e.target.innerText,
-                          e.target.getAttribute('name')
-                        )
-                      }
-                    >
-                      Id
-                    </span>
-                  </th>
-                  <th>
-                    <span onClick={(e) => handleSort(e.target.innerText)}>
-                      Customer
-                    </span>
-                  </th>
-                  <th>
-                    <span onClick={(e) => handleSort(e.target.innerText)}>
-                      Total
-                    </span>
-                  </th>
-                  <th>
-                    <span onClick={(e) => handleSort(e.target.innerText)}>
-                      Payment
-                    </span>
-                  </th>
-                  <th>
-                    <span onClick={(e) => handleSort(e.target.innerText)}>
-                      Status
-                    </span>
-                  </th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              {orderList == undefined || orderList.length == 0 ? (
-                <tbody>
-                  <td>#</td>
-                  <td>No Data</td>
-                  <td>No Data</td>
-                  <td>No Data</td>
-                  <td>No Data</td>
-                </tbody>
-              ) : (
-                orderList
-                  .filter((order) =>
-                    checkInputVal()
-                      ? // If no value exist then...
-                        !parseInt(orderQuery)
-                        ? // return all prices
-                          order.total
-                        : // else return the number that the user searched up (either equal to or less than)
-                          order.total <= parseInt(orderQuery)
-                      : order._id.toLowerCase().includes(orderQuery) ||
-                        order.customer.toLowerCase().includes(orderQuery) ||
-                        returnMethodStr(order.method).includes(orderQuery) ||
-                        returnStatusStr(order.status)
-                          .toLowerCase()
-                          .includes(orderQuery)
-                  )
-                  .map((order) => {
-                    return (
-                      <tbody
-                        className={styles.tbody}
-                        key={order._id}
-                        style={{ verticalAlign: 'revert' }}
+        <div className={styles.outerItem}>
+          <div className={`${styles.item}`}>
+            <div className={styles.itemWrapper}>
+              <h1 className={styles.title}>Products</h1>
+              <span className={styles.input}>
+                <input
+                  type="text"
+                  placeholder="Search Pizzas"
+                  onChange={(e) => setProductQuery(e.target.value.trim())}
+                ></input>
+                <FiSearch className={styles.icon} />
+              </span>
+            </div>
+            <div
+              className={`table-responsive-sm ${styles.tableWrapper}`}
+              style={{ overflowX: 'scroll' }}
+            >
+              <table className={`${styles.table} table table-hover`}>
+                <thead className={styles.thead}>
+                  <tr className={styles.trTitle}>
+                    <th></th>
+                    <th>
+                      <span
+                        name="productsId"
+                        onClick={(e) =>
+                          handleSort(
+                            e.target.innerText,
+                            e.target.getAttribute('name')
+                          )
+                        }
                       >
-                        <tr className={styles.trTitle}>
-                          <td className={styles.td}>
-                            {/* Show the first 5 letters */}
-                            <span className={styles.init}>
-                              <span className={styles.initInner}>
-                                {order._id.slice(0, 5)}...
+                        Id
+                      </span>
+                    </th>
+                    <th>
+                      <span onClick={(e) => handleSort(e.target.innerText)}>
+                        Title
+                      </span>
+                    </th>
+                    <th>
+                      <span onClick={(e) => handleSort(e.target.innerText)}>
+                        Price
+                      </span>
+                      <span
+                        onClick={() =>
+                          setPizzaSize(pizzaSize !== 2 ? pizzaSize + 1 : 0)
+                        }
+                        style={{ marginLeft: '10px' }}
+                      >
+                        {returnSize(pizzaSize)}
+                      </span>
+                    </th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                {pizzaList.length == 0 || pizzaList == undefined ? (
+                  <tbody>
+                    <td>#</td>
+                    <td>No Data</td>
+                    <td>No Data</td>
+                    <td>No Data</td>
+                    <td>No Data</td>
+                  </tbody>
+                ) : (
+                  pizzaList
+                    .filter((pizza) =>
+                      checkInputVal()
+                        ? // If no value exist then...
+                          !parseInt(productQuery)
+                          ? // return all prices
+                            pizza.prices[pizzaSize]
+                          : // else return the number that the user searched up (either equal to or less than)
+                            pizza.prices[pizzaSize] <= parseInt(productQuery)
+                        : pizza.title.toLowerCase().includes(productQuery) ||
+                          pizza._id.toLowerCase().includes(productQuery)
+                    )
+                    .map((product) => {
+                      return (
+                        <tbody
+                          className={styles.tbody}
+                          key={product._id}
+                          style={{ verticalAlign: 'revert' }}
+                        >
+                          <tr className={styles.trTitle}>
+                            <td className={`${styles.td} tdImg`}>
+                              <Image
+                                src={product.img}
+                                width={80}
+                                height={80}
+                                objectFit="contain"
+                                alt=""
+                              />
+                            </td>
+                            <td className={styles.td}>
+                              {/* Show the first 5 letters */}
+                              <span className={styles.init}>
+                                <span className={styles.initInner}>
+                                  {product._id.slice(0, 5)}...
+                                </span>
+                                <span className={styles.id2}>
+                                  {/* Show everything but the first 5 letters */}
+                                  {/* {product._id.slice(5)} */}
+                                  {product._id}
+                                </span>
                               </span>
-                              <span className={styles.id}>
-                                {/* Show everything but the first 5 letters */}
-                                {/* {order._id.slice(5)} */}
-                                {order._id}
-                              </span>
-                            </span>
-                          </td>
-                          <td
-                            style={{ opacity: order.status == 3 ? '0.4' : '1' }}
-                            className={styles.td}
-                          >
-                            {order.customer}
-                          </td>
-                          <td
-                            style={{ opacity: order.status == 3 ? '0.4' : '1' }}
-                            className={styles.td}
-                          >
-                            ${order.total}
-                          </td>
-                          <td
-                            style={{ opacity: order.status == 3 ? '0.4' : '1' }}
-                            className={styles.td}
-                          >
-                            {order.method == 1 ? 'PayPal' : 'Cash'}
-                          </td>
-                          <td
-                            style={{ opacity: order.status == 3 ? '0.4' : '1' }}
-                            className={styles.td}
-                          >
-                            {status[order.status]}
-                          </td>
-                          <td className={styles.td}>
-                            <span className={styles.nextStageWrapper}>
-                              <button
-                                // Disable button if order status is 3 (2 == delivered)
+                            </td>
+                            <td className={styles.td}>{product.title}</td>
+                            <td className={styles.td}>
+                              ${product.prices[pizzaSize]}
+                            </td>
+                            <td className={styles.td}>
+                              <span
                                 style={{
                                   display: 'flex',
                                   alignItems: 'center',
-                                  pointerEvents:
-                                    order.status == 3 ? 'none' : 'all',
-                                  display: order.status == 3 ? 'none' : 'unset',
                                 }}
-                                className={`${styles.nextStageBtn} ${styles.button}`}
-                                onClick={() => handleNext(order._id, order)}
                               >
-                                Next Stage
-                              </button>
-                              <BsFillTrashFill
-                                className={styles.deleteIcon}
-                                onClick={() => handleOrderDelete(order._id)}
-                              />
-                            </span>
-                          </td>
-                        </tr>
-                      </tbody>
-                    );
-                  })
-              )}
-            </table>
+                                <Link href={`/product/${product._id}`} passHref>
+                                  <button
+                                    style={{
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                    }}
+                                    className={`${styles.button}`}
+                                  >
+                                    <AiFillEye
+                                      className={styles.viewIcon}
+                                      style={{
+                                        display: 'flex',
+                                        marginRight: '2px',
+                                      }}
+                                    />
+                                    view
+                                  </button>
+                                </Link>
+                                <BsFillTrashFill
+                                  className={styles.deleteIcon}
+                                  onClick={() => handleDelete(product._id)}
+                                />
+                              </span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      );
+                    })
+                )}
+              </table>
+            </div>
           </div>
-          <span style={{ display: 'flex', marginTop: '5px' }}>
-            <p className={styles.extraData}>
-              Grand Total:
-              <span className={styles.extraDataSingle}>
-                ${totalSum.toFixed(2)}
+          <div className={styles.item}>
+            <div className={styles.itemWrapper}>
+              <h1 className={styles.title}>Orders</h1>
+              <span className={styles.input}>
+                <input
+                  type="text"
+                  placeholder="Search Orders"
+                  onChange={(e) => SetOrderQuery(e.target.value)}
+                ></input>
+                <FiSearch className={styles.icon} />
               </span>
-            </p>
-            <p className={styles.extraData}>
-              Average Order Total:
-              <span className={styles.extraDataSingle}>
-                ${averageTotal.toFixed(2)}
-              </span>
-            </p>
-          </span>
+            </div>
+            <div className={`table-responsive-sm ${styles.tableWrapper}`}>
+              <table className={`${styles.table} table table-hover`}>
+                <thead className={styles.thead}>
+                  <tr className={styles.trTitle}>
+                    <th>
+                      <span
+                        name="ordersId"
+                        onClick={(e) =>
+                          handleSort(
+                            e.target.innerText,
+                            e.target.getAttribute('name')
+                          )
+                        }
+                      >
+                        Id
+                      </span>
+                    </th>
+                    <th>
+                      <span onClick={(e) => handleSort(e.target.innerText)}>
+                        Customer
+                      </span>
+                    </th>
+                    <th>
+                      <span onClick={(e) => handleSort(e.target.innerText)}>
+                        Total
+                      </span>
+                    </th>
+                    <th>
+                      <span onClick={(e) => handleSort(e.target.innerText)}>
+                        Payment
+                      </span>
+                    </th>
+                    <th>
+                      <span onClick={(e) => handleSort(e.target.innerText)}>
+                        Status
+                      </span>
+                    </th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                {orderList == undefined || orderList.length == 0 ? (
+                  <tbody>
+                    <td>#</td>
+                    <td>No Data</td>
+                    <td>No Data</td>
+                    <td>No Data</td>
+                    <td>No Data</td>
+                  </tbody>
+                ) : (
+                  orderList
+                    .filter((order) =>
+                      checkInputVal()
+                        ? // If no value exist then...
+                          !parseInt(orderQuery)
+                          ? // return all prices
+                            order.total
+                          : // else return the number that the user searched up (either equal to or less than)
+                            order.total <= parseInt(orderQuery)
+                        : order._id.toLowerCase().includes(orderQuery) ||
+                          order.customer.toLowerCase().includes(orderQuery) ||
+                          returnMethodStr(order.method).includes(orderQuery) ||
+                          returnStatusStr(order.status)
+                            .toLowerCase()
+                            .includes(orderQuery)
+                    )
+                    .map((order) => {
+                      return (
+                        <tbody
+                          className={styles.tbody}
+                          key={order._id}
+                          style={{ verticalAlign: 'revert' }}
+                        >
+                          <tr className={styles.trTitle}>
+                            <td className={styles.td}>
+                              {/* Show the first 5 letters */}
+                              <span className={styles.init}>
+                                <span className={styles.initInner}>
+                                  {order._id.slice(0, 5)}...
+                                </span>
+                                <span className={styles.id}>
+                                  {/* Show everything but the first 5 letters */}
+                                  {/* {order._id.slice(5)} */}
+                                  {order._id}
+                                </span>
+                              </span>
+                            </td>
+                            <td
+                              style={{
+                                opacity: order.status == 3 ? '0.4' : '1',
+                              }}
+                              className={styles.td}
+                            >
+                              {order.customer}
+                            </td>
+                            <td
+                              style={{
+                                opacity: order.status == 3 ? '0.4' : '1',
+                              }}
+                              className={styles.td}
+                            >
+                              ${order.total}
+                            </td>
+                            <td
+                              style={{
+                                opacity: order.status == 3 ? '0.4' : '1',
+                              }}
+                              className={styles.td}
+                            >
+                              {order.method == 1 ? 'PayPal' : 'Cash'}
+                            </td>
+                            <td
+                              style={{
+                                opacity: order.status == 3 ? '0.4' : '1',
+                              }}
+                              className={styles.td}
+                            >
+                              {status[order.status]}
+                            </td>
+                            <td className={styles.td}>
+                              <span className={styles.nextStageWrapper}>
+                                <button
+                                  // Disable button if order status is 3 (2 == delivered)
+                                  style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    pointerEvents:
+                                      order.status == 3 ? 'none' : 'all',
+                                    display:
+                                      order.status == 3 ? 'none' : 'unset',
+                                  }}
+                                  className={`${styles.nextStageBtn} ${styles.button}`}
+                                  onClick={() => handleNext(order._id, order)}
+                                >
+                                  Next Stage
+                                </button>
+                                <BsFillTrashFill
+                                  className={styles.deleteIcon}
+                                  onClick={() => handleOrderDelete(order._id)}
+                                />
+                              </span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      );
+                    })
+                )}
+              </table>
+            </div>
+            <span style={{ display: 'flex', marginTop: '5px' }}>
+              <p className={styles.extraData}>
+                Grand Total:
+                <span className={styles.extraDataSingle}>
+                  ${totalSum.toFixed(2)}
+                </span>
+              </p>
+              <p className={styles.extraData}>
+                Average Order Total:
+                <span className={styles.extraDataSingle}>
+                  ${averageTotal.toFixed(2)}
+                </span>
+              </p>
+            </span>
+          </div>
         </div>
       </div>
     </div>
