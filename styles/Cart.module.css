@@ -1,5 +1,4 @@
 .container {
-  height: 100vh;
   padding-top: 90px;
   padding-left: 25px;
   padding-right: 25px;
@@ -130,10 +129,10 @@
 .trTitle {
   border: transparent;
 }
-@media screen and (max-width: 1142px) {
+@media screen and (max-width: 1200px) {
   .container {
     flex-direction: column;
-    height: calc(100vh);
+    height: unset;
   }
 
   .left {
