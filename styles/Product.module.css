@@ -90,7 +90,7 @@
   appearance: none;
   border: none;
   border-radius: 5px;
-  margin-right: 5px;
+  margin-right: 7px;
   cursor: pointer;
 }
 
@@ -160,11 +160,11 @@
   font-size: 55px;
 }
 
-@media screen and (max-width: 1024px) {
-  .ingredients {
-    flex-direction: column;
-  }
+.option {
+  margin: 2px;
+}
 
+@media screen and (max-width: 1024px) {
   .container {
     height: 100vh;
   }
