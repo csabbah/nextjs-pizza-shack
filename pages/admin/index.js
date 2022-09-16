@@ -4,6 +4,7 @@ import Image from 'next/image';
 import axios from 'axios';
 import Head from 'next/head';
 import Link from 'next/link';
+import { IoMdCloudUpload } from 'react-icons/io';
 
 import { BsFillTrashFill } from 'react-icons/bs';
 import { AiFillEye } from 'react-icons/ai';
@@ -312,7 +313,7 @@ const Index = ({ orders, products }) => {
                 return (
                   <div key={key} className={styles.imgContainer}>
                     <Image
-                      width={150}
+                      width={225}
                       height={150}
                       objectFit="contain"
                       className={styles.image}
@@ -339,6 +340,20 @@ const Index = ({ orders, products }) => {
                   setFile(e.target.files[0]);
                 }}
               />
+              {file ? (
+                <button
+                  className={styles.uploadImage}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                >
+                  <IoMdCloudUpload style={{ marginRight: '5px' }} />
+                  Upload
+                </button>
+              ) : (
+                ''
+              )}
             </div>
           </div>
         </div>

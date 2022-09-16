@@ -39,7 +39,7 @@
   flex-wrap: wrap;
 }
 .item {
-  width: 100%;
+  width: 47vw;
   background-color: #ee4e34;
   box-shadow: 4px 4px 5px 0 rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 4px 4px 5px 0 rgba(0, 0, 0, 0.2);
@@ -50,7 +50,7 @@
   margin: 10px;
 }
 .itemFeatured {
-  width: 60%;
+  width: 50%;
   display: flex;
   flex-direction: column;
 }
@@ -68,7 +68,7 @@
   display: unset;
 }
 .item:first-child .label {
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .itemWrapper {
@@ -82,6 +82,9 @@
   margin: 10px !important;
   border-radius: 7px;
   background-color: #ee4e34;
+  box-shadow: 4px 4px 5px 0 rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 4px 4px 5px 0 rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 4px 4px 5px 0 rgba(0, 0, 0, 0.15);
 }
 
 .deleteImageBtn {
@@ -106,11 +109,6 @@
   border-radius: 7px 7px 0 0;
 }
 
-.newImageWrapper {
-  border-radius: 0 0 7px 7px;
-  border-top: 2px solid rgba(0, 0, 0, 0.15);
-}
-
 .addImageBtn {
   font-size: 18px;
   width: 150px;
@@ -119,7 +117,7 @@
 
 .file {
   width: 100%;
-  max-width: 400px;
+  max-width: 340px;
   min-width: 290px;
   background-color: transparent;
   padding-left: 0;
@@ -128,7 +126,8 @@
   padding: 0px 15px;
 }
 
-.file::file-selector-button {
+.file::file-selector-button,
+.uploadImage {
   cursor: pointer;
   border: none;
   font-size: 17px;
@@ -137,6 +136,12 @@
   color: #fcedda;
   background-color: #ee4e34;
   border: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+.uploadImage {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding: 5px 15px;
 }
 
 .itemWrapper h1 {
@@ -151,8 +156,8 @@
 
 .imgWrapper {
   height: 100vh;
-  max-height: 350px;
-  overflow-y: scroll;
+  max-height: 250px;
+  overflow-x: scroll;
 }
 
 .input {
@@ -172,6 +177,8 @@
   justify-content: center;
   background-color: #fcedda;
   padding-bottom: 10px;
+  border-radius: 0 0 7px 7px;
+  border-top: 2px solid rgba(0, 0, 0, 0.1);
 }
 .icon {
   position: absolute;
@@ -369,11 +376,13 @@
 }
 
 @media screen and (max-width: 730px) {
-  .file {
+  .file,
+  .uploadImage {
     font-size: 15px;
   }
 
-  .file::file-selector-button {
+  .file::file-selector-button,
+  .uploadImage {
     font-size: 15px;
     padding: 3px 7px;
   }
