@@ -1,4 +1,11 @@
+.outerContainer {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .container {
+  height: 100vh;
   padding-top: 90px;
   padding-left: 25px;
   padding-right: 25px;
@@ -8,6 +15,13 @@
 }
 
 .left {
+  background-color: #ee4e34;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  max-height: 550px;
+  min-height: 200px;
+  overflow-y: scroll;
   margin-right: 20px;
   flex: 2;
 }
@@ -23,6 +37,7 @@
 }
 
 .table {
+  color: #fcedda;
   width: 100%;
   text-align: left;
   border-spacing: 20px;
@@ -30,7 +45,6 @@
 
 .name {
   font-weight: 500;
-  color: #d1411e;
   font-size: 18px;
 }
 
@@ -132,11 +146,11 @@
 @media screen and (max-width: 1200px) {
   .container {
     flex-direction: column;
-    height: unset;
   }
 
   .left {
     margin-right: 0;
+    margin-bottom: 25px;
   }
 
   .right,
@@ -149,7 +163,7 @@
   }
 
   .wrapper {
-    margin-bottom: 50px;
+    margin-bottom: 25px;
   }
 }
 
@@ -259,11 +273,10 @@
 }
 
 @media screen and (max-width: 480px) {
-  .container {
-    height: unset;
+  .left {
+    width: 90vw;
   }
-
   .wrapper {
-    width: 340px;
+    width: 90vw;
   }
 }
