@@ -41,7 +41,6 @@
 }
 
 .wrapper {
-  width: 300vw;
   height: 100%;
   display: flex;
   transition: all 0.7s cubic-bezier(0.63, 0, 0.49, 1);

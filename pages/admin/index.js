@@ -16,15 +16,9 @@ import { useRouter } from 'next/router';
 
 import { server } from '../../utils/config.js';
 
-import { useSelector } from 'react-redux';
-import { deleteImage } from '../../redux/featuredSlice';
-import { useDispatch } from 'react-redux';
+const Index = ({ orders, products, masterStore }) => {
+  const [images, setImages] = useState(masterStore);
 
-const Index = ({ orders, products }) => {
-  const featuredImages = useSelector((state) => state.featuredImages);
-  const dispatch = useDispatch();
-
-  const image = featuredImages.images;
   const [file, setFile] = useState(null);
 
   const router = useRouter();
@@ -267,6 +261,48 @@ const Index = ({ orders, products }) => {
     return status[value];
   };
 
+  const handleCreate = async () => {
+    // For cloud hosting
+    const data = new FormData();
+    data.append('file', file);
+    data.append('upload_preset', 'uploads');
+    try {
+      // The post method to upload an image to Cloudinary
+      const uploadRes = await axios.post(
+        // csabbah is our Cloud name (Can be found in the Cloudinary/Dashboard)
+        'https://api.cloudinary.com/v1_1/csabbah/image/upload',
+        data
+      );
+
+      // Extract the cloud link (that was generated above)
+      const { url } = uploadRes.data;
+
+      const res = await axios.post(`${server}/api/store`, { url: url });
+
+      setImages([
+        // Push the the updated data
+        res.data,
+        // Keep the existing data but delete the previous version of the order we just modified
+        ...images.filter((img) => img._id !== res.data._id),
+      ]);
+
+      // Reload current page
+      // Router.reload(window.location.pathname);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleImageDelete = async (id) => {
+    try {
+      await axios.delete(`${server}/api/store/${id}`);
+
+      setImages(images.filter((img) => img._id !== id));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className={styles.outerContainer}>
       <Head>
@@ -309,29 +345,32 @@ const Index = ({ orders, products }) => {
           <div className={styles.itemWrapper}>
             <h1 className={styles.title}>Featured Images</h1>
             <div className={styles.imgWrapper}>
-              {image.map((image, key) => {
-                return (
-                  <div key={key} className={styles.imgContainer}>
-                    <Image
-                      width={225}
-                      height={150}
-                      objectFit="contain"
-                      className={styles.image}
-                      src={image}
-                      alt={`FeaturedImage-${key}`}
-                    />
-                    <button
-                      className={styles.deleteImageBtn}
-                      onClick={(e) => dispatch(deleteImage({ key }))}
-                    >
-                      X
-                    </button>
-                  </div>
-                );
-              })}
+              {images.length > 0 ? '' : <div>No Images</div>}
+              {images.length > 0
+                ? images.map((image, key) => {
+                    return (
+                      <div key={key} className={styles.imgContainer}>
+                        <Image
+                          width={225}
+                          height={150}
+                          objectFit="contain"
+                          className={styles.image}
+                          src={image.url}
+                          alt={`FeaturedImage-${key}`}
+                        />
+                        <button
+                          className={styles.deleteImageBtn}
+                          onClick={() => handleImageDelete(image._id)}
+                        >
+                          X
+                        </button>
+                      </div>
+                    );
+                  })
+                : ''}
             </div>
             <div className={styles.newImageWrapper}>
-              <label className={styles.label}>Add new Image</label>
+              <label className={styles.label}>Add new image</label>
               <input
                 type="file"
                 className={styles.file}
@@ -342,6 +381,7 @@ const Index = ({ orders, products }) => {
               />
               {file ? (
                 <button
+                  onClick={() => handleCreate()}
                   className={styles.uploadImage}
                   style={{
                     display: 'flex',
@@ -708,11 +748,13 @@ export const getServerSideProps = async (ctx) => {
 
   const products = await axios.get(`${server}/api/products`);
   const orders = await axios.get(`${server}/api/orders`);
+  const store = await axios.get(`${server}/api/store`);
 
   return {
     props: {
       orders: orders.data,
       products: products.data,
+      masterStore: store.data,
     },
   };
 };

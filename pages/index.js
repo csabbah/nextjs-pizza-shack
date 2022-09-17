@@ -7,7 +7,7 @@ import { server } from '../utils/config.js';
 import { IoIosSend } from 'react-icons/io';
 import styles from '../styles/Contact.module.css';
 
-export default function Home({ pizzaList }) {
+export default function Home({ pizzaList, masterStore }) {
   const [activePizzas, setActivePizzas] = useState(pizzaList);
 
   return (
@@ -21,7 +21,11 @@ export default function Home({ pizzaList }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Featured />
+      {masterStore.length > 0 ? (
+        <Featured masterStore={masterStore} />
+      ) : (
+        <div style={{ paddingTop: '100px' }}></div>
+      )}
       <PizzaList activePizzas={activePizzas} />
       <div className={styles.container}>
         <div className={styles.innerContainer}>
@@ -79,10 +83,13 @@ export default function Home({ pizzaList }) {
 }
 
 export const getServerSideProps = async () => {
-  const res = await axios.get(`${server}/api/products`);
+  const products = await axios.get(`${server}/api/products`);
+  const store = await axios.get(`${server}/api/store`);
+
   return {
     props: {
-      pizzaList: res.data,
+      masterStore: store.data,
+      pizzaList: products.data,
     },
   };
 };
