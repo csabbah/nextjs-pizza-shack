@@ -277,7 +277,7 @@ const Index = ({ orders, products, masterStore }) => {
       // Extract the cloud link (that was generated above)
       const { url } = uploadRes.data;
 
-      const res = await axios.post(`${server}/api/store`, { url: url });
+      const res = await axios.post(`${server}/api/store`, { featuredImg: url });
 
       setImages([
         // Push the the updated data
@@ -355,7 +355,7 @@ const Index = ({ orders, products, masterStore }) => {
                           height={150}
                           objectFit="contain"
                           className={styles.image}
-                          src={image.url}
+                          src={image.featuredImg}
                           alt={`FeaturedImage-${key}`}
                         />
                         <button

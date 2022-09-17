@@ -91,7 +91,7 @@ const Featured = ({ masterStore }) => {
                   <div key={key} className={styles.imgContainer}>
                     <Image
                       layout="fill"
-                      src={image.url}
+                      src={image.featuredImg}
                       alt={`FeaturedImage-${key}`}
                     />
                   </div>
