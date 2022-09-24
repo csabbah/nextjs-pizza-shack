@@ -1,12 +1,7 @@
-.outerContainer {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .container {
   height: 100vh;
-  padding-top: 90px;
+  padding-top: 150px;
+  padding-bottom: 90px;
   padding-left: 25px;
   padding-right: 25px;
   display: flex;
@@ -16,18 +11,14 @@
 
 .left {
   background-color: #ee4e34;
-  padding: 10px;
+  padding: 0 10px;
+  height: fit-content;
+  max-height: 475px;
+  min-height: 300px;
   border-radius: 10px;
   border: 2px solid rgba(0, 0, 0, 0.15);
-  max-height: 550px;
-  min-height: 200px;
   overflow-y: scroll;
   margin-right: 20px;
-  flex: 2;
-}
-
-.right {
-  flex: 1;
 }
 
 .imgContainer {
@@ -149,6 +140,7 @@
   }
 
   .left {
+    margin-top: 50px;
     margin-right: 0;
     margin-bottom: 25px;
   }
