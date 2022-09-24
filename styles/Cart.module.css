@@ -13,8 +13,8 @@
   background-color: #ee4e34;
   padding: 0 10px;
   height: fit-content;
-  max-height: 475px;
-  min-height: 300px;
+  max-height: 500px;
+  min-height: 400px;
   border-radius: 10px;
   border: 2px solid rgba(0, 0, 0, 0.15);
   overflow-y: scroll;
