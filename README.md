@@ -28,7 +28,6 @@ git clone
 ```
 
 2. Once cloned, open the project folder in your text editor and run the following command in terminal to install all dependencies.
-   Important note - You will need to run the below command in the 'root', 'client' and 'server' directory paths.
 
 ```
 npm install
