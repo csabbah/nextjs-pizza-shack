@@ -55,6 +55,7 @@ npm run dev
 - Redux
 - Cookie
 - Mongoose
+- MongoDB
 - Axios
 - Vercel
 - Node.js
